@@ -14,6 +14,7 @@ class PropertyGroupOption
 {
     public const TYPE_CHECKBOX = 'checkbox';
     public const TYPE_SELECT = 'select';
+    public const TYPE_MULTI_SELECT = 'multiSelect';
     public const TYPE_TEXT_FIELD = 'textField';
 
     use EntityIdTrait;
