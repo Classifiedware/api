@@ -95,4 +95,31 @@ class Classified
 
         return $this;
     }
+
+    public function getDataForCustomerFrontendApi(): array
+    {
+        $propertyGroupOptions = [];
+
+        foreach ($this->propertyGroupOptionValues as $propertyGroupOptionValue) {
+            if ($propertyGroupOptionValue instanceof ClassifiedPropertyGroupOptionValue) {
+                /** @var ClassifiedPropertyGroupOptionValue $propertyGroupOptionValue */
+                $propertyGroupOption = $propertyGroupOptionValue->getPropertyGroupOptionValue()->getGroupOption();
+
+                if ($propertyGroupOption instanceof PropertyGroupOption) {
+                    $propertyGroupOptions[] = [
+                        'name' => $propertyGroupOption->getName(),
+                        'value' => $propertyGroupOptionValue->getPropertyGroupOptionValue()->getValue(),
+                    ];
+                }
+            }
+        }
+
+        return [
+            'name' => $this->name,
+            'description' => $this->description,
+            'price' => $this->price,
+            'offerNumber' => $this->offerNumber,
+            'propertyGroupOptions' => $propertyGroupOptions,
+        ];
+    }
 }
