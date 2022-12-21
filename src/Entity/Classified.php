@@ -28,7 +28,10 @@ class Classified
     #[ORM\Column(length: 255)]
     private ?string $offerNumber = null;
 
-    #[ORM\OneToMany(mappedBy: 'classified', targetEntity: ClassifiedPropertyGroupOptionValue::class)]
+    #[ORM\JoinTable(name: 'classified_property_group_option_value')]
+    #[ORM\JoinColumn(name: 'classified_id', referencedColumnName: 'id')]
+    #[ORM\InverseJoinColumn(name: 'property_group_option_value_id', referencedColumnName: 'id')]
+    #[ORM\ManyToMany(targetEntity: PropertyGroupOptionValue::class)]
     private Collection $propertyGroupOptionValues;
 
     public function __construct()
@@ -101,14 +104,13 @@ class Classified
         $propertyGroupOptions = [];
 
         foreach ($this->propertyGroupOptionValues as $propertyGroupOptionValue) {
-            if ($propertyGroupOptionValue instanceof ClassifiedPropertyGroupOptionValue) {
-                /** @var ClassifiedPropertyGroupOptionValue $propertyGroupOptionValue */
-                $propertyGroupOption = $propertyGroupOptionValue->getPropertyGroupOptionValue()->getGroupOption();
+            if ($propertyGroupOptionValue instanceof PropertyGroupOptionValue) {
+                $propertyGroupOption = $propertyGroupOptionValue->getGroupOption();
 
                 if ($propertyGroupOption instanceof PropertyGroupOption) {
                     $propertyGroupOptions[] = [
                         'name' => $propertyGroupOption->getName(),
-                        'value' => $propertyGroupOptionValue->getPropertyGroupOptionValue()->getValue(),
+                        'value' => $propertyGroupOptionValue->getValue(),
                     ];
                 }
             }

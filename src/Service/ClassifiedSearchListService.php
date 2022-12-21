@@ -15,7 +15,7 @@ class ClassifiedSearchListService
 
     public function searchClassifieds(): array
     {
-        $classifieds = $this->classifiedRepository->findAll();
+        $classifieds = $this->classifiedRepository->findClassifiedsForSearchList();
 
         $data = [];
         foreach ($classifieds as $classified) {
