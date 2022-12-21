@@ -19,11 +19,11 @@ class ClassifiedSearchListService
 
         $data = [];
         foreach ($classifieds as $classified) {
-           if (!$classified instanceof Classified) {
+           /*if (!$classified instanceof Classified) {
                continue;
-           }
+           }*/
 
-           $data[] = $classified->getDataForCustomerFrontendApi();
+           $data[] = $classified;
         }
 
         return $data;

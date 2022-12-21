@@ -5,10 +5,8 @@ namespace App\Repository;
 use App\Entity\Classified;
 use App\Entity\PropertyGroupOption;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
-use function Doctrine\ORM\QueryBuilder;
 
 /**
  * @extends ServiceEntityRepository<Classified>
@@ -50,12 +48,18 @@ class ClassifiedRepository extends ServiceEntityRepository
         $propertyGroupOptionsIds = $this->getPropertyGroupOptionIdsToShownInSearchList();
 
         return $qb
-            ->select(['c', 'pgov'])
+            ->select([
+                    'partial c.{id, name, description, price}',
+                    'partial pgov.{id, value}',
+                    'partial gp.{id, name}'
+                ]
+            )
             ->leftJoin('c.propertyGroupOptionValues', 'pgov', Join::WITH, $qb->expr()->andX(
                 $qb->expr()->in('pgov.groupOption', $propertyGroupOptionsIds)
             ))
+            ->leftJoin('pgov.groupOption', 'gp')
             ->getQuery()
-            ->execute();
+            ->getArrayResult();
     }
 
     private function getPropertyGroupOptionIdsToShownInSearchList(): array

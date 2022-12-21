@@ -98,30 +98,4 @@ class Classified
 
         return $this;
     }
-
-    public function getDataForCustomerFrontendApi(): array
-    {
-        $propertyGroupOptions = [];
-
-        foreach ($this->propertyGroupOptionValues as $propertyGroupOptionValue) {
-            if ($propertyGroupOptionValue instanceof PropertyGroupOptionValue) {
-                $propertyGroupOption = $propertyGroupOptionValue->getGroupOption();
-
-                if ($propertyGroupOption instanceof PropertyGroupOption) {
-                    $propertyGroupOptions[] = [
-                        'name' => $propertyGroupOption->getName(),
-                        'value' => $propertyGroupOptionValue->getValue(),
-                    ];
-                }
-            }
-        }
-
-        return [
-            'name' => $this->name,
-            'description' => $this->description,
-            'price' => $this->price,
-            'offerNumber' => $this->offerNumber,
-            'propertyGroupOptions' => $propertyGroupOptions,
-        ];
-    }
 }
