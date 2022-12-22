@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Entity\Classified;
+use App\Dto\ClassifiedSearchDto;
 use App\Repository\ClassifiedRepository;
 
 class ClassifiedSearchListService
@@ -13,9 +13,13 @@ class ClassifiedSearchListService
     {
     }
 
-    public function searchClassifieds(): array
+    public function searchClassifieds(ClassifiedSearchDto $searchDto): array
     {
-        $classifieds = $this->classifiedRepository->findClassifiedsForSearchList();
+        $classifieds = $this->classifiedRepository->findClassifiedsForSearchList(
+            $searchDto->getPage(),
+            $searchDto->getItemsPerPage(),
+            $searchDto->getPropertyGroupOptionValueIds()
+        );
 
         $data = [];
         foreach ($classifieds as $classified) {

@@ -6,7 +6,9 @@ use App\Entity\Classified;
 use App\Entity\PropertyGroupOption;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
+use function Doctrine\ORM\QueryBuilder;
 
 /**
  * @extends ServiceEntityRepository<Classified>
@@ -41,13 +43,13 @@ class ClassifiedRepository extends ServiceEntityRepository
         }
     }
 
-    public function findClassifiedsForSearchList(): array
+    public function findClassifiedsForSearchList(int $page, $itemsPerPage, array $propertyGroupOptionValueIds = []): array
     {
         $qb = $this->createQueryBuilder('c');
 
         $propertyGroupOptionsIds = $this->getPropertyGroupOptionIdsToShownInSearchList();
 
-        return $qb
+        $query = $qb
             ->select([
                     'partial c.{id, name, description, price}',
                     'partial pgov.{id, value}',
@@ -57,9 +59,18 @@ class ClassifiedRepository extends ServiceEntityRepository
             ->leftJoin('c.propertyGroupOptionValues', 'pgov', Join::WITH, $qb->expr()->andX(
                 $qb->expr()->in('pgov.groupOption', $propertyGroupOptionsIds)
             ))
-            ->leftJoin('pgov.groupOption', 'gp')
-            ->getQuery()
-            ->getArrayResult();
+            ->leftJoin('pgov.groupOption', 'gp');
+
+        if ($propertyGroupOptionValueIds) {
+            // todo filter
+        }
+
+        $paginator = new Paginator($query->getQuery());
+        $paginator->getQuery()
+            ->setFirstResult(($page * $itemsPerPage) - $itemsPerPage)
+            ->setMaxResults($itemsPerPage);
+
+        return $paginator->getQuery()->getArrayResult();
     }
 
     private function getPropertyGroupOptionIdsToShownInSearchList(): array
