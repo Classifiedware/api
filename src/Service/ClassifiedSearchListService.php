@@ -9,7 +9,9 @@ use App\Repository\ClassifiedRepository;
 
 class ClassifiedSearchListService
 {
-    public function __construct(private readonly ClassifiedRepository $classifiedRepository)
+    public function __construct(
+        private readonly ClassifiedRepository $classifiedRepository
+    )
     {
     }
 
