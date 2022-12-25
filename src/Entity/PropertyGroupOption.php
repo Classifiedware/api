@@ -16,6 +16,7 @@ class PropertyGroupOption
     public const TYPE_SELECT = 'select';
     public const TYPE_MULTI_SELECT = 'multiSelect';
     public const TYPE_TEXT_FIELD = 'textField';
+    public const TYPE_SELECT_RANGE = 'selectRange';
 
     use EntityIdTrait;
     use EntityCreatedAndUpdatedAtTrait;
