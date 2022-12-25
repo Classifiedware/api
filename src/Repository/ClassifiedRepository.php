@@ -62,7 +62,9 @@ class ClassifiedRepository extends ServiceEntityRepository
             ->leftJoin('pgov.groupOption', 'gp');
 
         if ($propertyGroupOptionValueIds) {
-            // todo filter
+            $classifiedIds = $this->getClassifiedIdsForPropertyGroupOptionValueIds(array_unique($propertyGroupOptionValueIds));
+            $query->andWhere('c.id IN (:classifiedIds)');
+            $query->setParameter('classifiedIds', $classifiedIds);
         }
 
         $paginator = new Paginator($query->getQuery());
@@ -90,6 +92,26 @@ class ClassifiedRepository extends ServiceEntityRepository
         }
 
         return $ids;
+    }
+
+    private function getClassifiedIdsForPropertyGroupOptionValueIds(array $propertyGroupOptionValueIds): array
+    {
+        $rows = $this
+            ->createQueryBuilder('c')
+            ->innerJoin('c.propertyGroupOptionValues', 'pgov')
+            ->select(['c.id'])
+            ->where('pgov.id IN (:propertyGroupOptionValueIds)')
+            ->setParameter('propertyGroupOptionValueIds', $propertyGroupOptionValueIds)
+            ->groupBy('c.id')
+            ->getQuery()
+            ->getArrayResult();
+
+        $classifiedIds = [];
+        foreach ($rows as $row) {
+            $classifiedIds[] = $row['id'] ?? null;
+        }
+
+        return $classifiedIds;
     }
 
 //    /**
