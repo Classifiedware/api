@@ -104,6 +104,163 @@ class CarDealerPropertyGroupFixture extends Fixture
             ]
         ], $manager);
 
+        $this->createPropertyGroup('Basisdaten', [
+            [
+                'name' => 'Preis (€)',
+                'type' => PropertyGroupOption::TYPE_SELECT_RANGE,
+                'values' => [1000, 5000, 10000, 15000, 20000, 30000, 45000, 60000, 75000, 100000, 200000, 300000, 400000, 500000]
+            ],
+            [
+                'name' => 'MwSt',
+                'type' => PropertyGroupOption::TYPE_SELECT,
+                'values' => ['MwSt. ausweisbar', 'MwSt. nicht ausweisbar']
+            ]
+        ], $manager);
+
+        $this->createPropertyGroup('Motor', [
+            [
+                'name' => 'Benzin',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Diesel',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'PlugIn Hybrid-Benzin',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Elektro',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Automatik',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Schaltgetriebe',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+        ], $manager);
+
+        $this->createPropertyGroup('Außenfarbe', [
+            [
+                'name' => 'Schwarz',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Grau',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Weiss',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Blau',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Rot',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Grün',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Silber',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Orange',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Gelb',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Violett',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Metallic',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+        ], $manager);
+
+        $this->createPropertyGroup('Innenausstattung', [
+            [
+                'name' => 'Schwarz',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Braun',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Grau',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Beige',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Andere',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Anthrazit',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Weiss',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Blau',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Hellgrau',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Material der Innenausstattung',
+                'type' => PropertyGroupOption::TYPE_SELECT,
+                'values' => ['Alcantara', 'Kunstleder', 'Leder', 'Leder nappa', 'Stoff', 'Teilleder']
+            ],
+        ], $manager);
+
         $this->createPropertyGroup('Ausstattung', [
             [
                 'name' => 'Technik',
@@ -317,6 +474,62 @@ class CarDealerPropertyGroupFixture extends Fixture
                     'Winterpaket',
                     'Winterreifen',
                 ]
+            ],
+        ], $manager);
+
+        $this->createPropertyGroup('Angebotsdetails', [
+            [
+                'name' => 'Inserate mit Bildern',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Nichtraucher-Fahrzeug',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Unfallfahrzeug',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'EU-Import',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Reduzierter Preis',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => [true]
+            ],
+            [
+                'name' => 'Qualitätssiegel',
+                'type' => PropertyGroupOption::TYPE_SELECT,
+                'values' => ['BMW Premium Selection', 'MINI NEXT']
+            ],
+            [
+                'name' => 'Angebotsnummer',
+                'type' => PropertyGroupOption::TYPE_TEXT_FIELD,
+                'values' => []
+            ],
+        ], $manager);
+
+        $this->createPropertyGroup('Umwelt', [
+            [
+                'name' => 'Emissionsklasse',
+                'type' => PropertyGroupOption::TYPE_SELECT,
+                'values' => ['Emissionsklasse wählen', 'Euro6', 'Euro6d', 'Euro6dtemp', 'unbekannt']
+            ],
+            [
+                'name' => 'Umweltplakette',
+                'type' => PropertyGroupOption::TYPE_SELECT,
+                'values' => ['Umweltplakette wählen', 'Grün', 'keine Plakette']
+            ],
+            [
+                'name' => 'Effizienzklasse',
+                'type' => PropertyGroupOption::TYPE_SELECT,
+                'values' => ['Effizienzklasse wählen', 'A', 'A+', 'A++', 'A+++', 'B', 'C', 'D', 'E']
             ],
         ], $manager);
     }
