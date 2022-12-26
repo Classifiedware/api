@@ -119,34 +119,14 @@ class CarDealerPropertyGroupFixture extends Fixture
 
         $this->createPropertyGroup('Motor', [
             [
-                'name' => 'Benzin',
-                'type' => PropertyGroupOption::TYPE_CHECKBOX,
-                'values' => [true]
+                'name' => 'Kraftstoffart',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX_GROUP,
+                'values' => ['Benzin', 'Diesel', 'PlugIn Hybrid-Benzin', 'Elektro']
             ],
             [
-                'name' => 'Diesel',
-                'type' => PropertyGroupOption::TYPE_CHECKBOX,
-                'values' => [true]
-            ],
-            [
-                'name' => 'PlugIn Hybrid-Benzin',
-                'type' => PropertyGroupOption::TYPE_CHECKBOX,
-                'values' => [true]
-            ],
-            [
-                'name' => 'Elektro',
-                'type' => PropertyGroupOption::TYPE_CHECKBOX,
-                'values' => [true]
-            ],
-            [
-                'name' => 'Automatik',
-                'type' => PropertyGroupOption::TYPE_CHECKBOX,
-                'values' => [true]
-            ],
-            [
-                'name' => 'Schaltgetriebe',
-                'type' => PropertyGroupOption::TYPE_CHECKBOX,
-                'values' => [true]
+                'name' => 'Getriebe',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX_GROUP,
+                'values' => ['Automatik', 'Schaltgetriebe']
             ],
         ], $manager);
 
