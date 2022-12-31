@@ -12,9 +12,6 @@ class CarDealerPropertyGroupFixture extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
-
         $this->createPropertyGroup('Fahrzeugzustand', [
             [
                 'name' => 'Neufahrzeug',
@@ -114,7 +111,22 @@ class CarDealerPropertyGroupFixture extends Fixture
                 'name' => 'MwSt',
                 'type' => PropertyGroupOption::TYPE_SELECT,
                 'values' => ['MwSt. ausweisbar', 'MwSt. nicht ausweisbar']
-            ]
+            ],
+            [
+                'name' => 'Erstzulassung',
+                'type' => PropertyGroupOption::TYPE_SELECT_RANGE,
+                'values' => $this->getFirstRegistrationYearValues()
+            ],
+            [
+                'name' => 'Kilometer',
+                'type' => PropertyGroupOption::TYPE_SELECT_RANGE,
+                'values' => $this->getMileageValues()
+            ],
+            [
+                'name' => 'Leistung (in kw)',
+                'type' => PropertyGroupOption::TYPE_SELECT_RANGE,
+                'values' => $this->getHorsePowerValues()
+            ],
         ], $manager);
 
         $this->createPropertyGroup('Motor', [
@@ -542,5 +554,51 @@ class CarDealerPropertyGroupFixture extends Fixture
                 $manager->flush();
             }
         }
+    }
+
+    private function getFirstRegistrationYearValues(): array
+    {
+        $data = [];
+
+        for ($i = 1900; $i <= 1990; $i += 10) {
+            $data[] = $i;
+        }
+
+        for ($i = 2000; $i <= date('Y'); ++$i) {
+            $data[] = $i;
+        }
+
+        return $data;
+    }
+
+    private function getMileageValues(): array
+    {
+        $data = [];
+
+        for ($i = 0; $i <= 9000; $i += 1000) {
+            $data[] = $i;
+        }
+
+        for ($i = 10000; $i <= 200000; $i += 10000) {
+            $data[] = $i;
+        }
+
+        return $data;
+    }
+
+    private function getHorsePowerValues(): array
+    {
+        return [
+            '40 kw (54 PS)',
+            '60 kw (82 PS)',
+            '80 kw (109 PS)',
+            '100 kw (136 PS)',
+            '150 kw (204 PS)',
+            '200 kw (272 PS)',
+            '300 kw (408 PS)',
+            '400 kw (544 PS)',
+            '500 kw (680 PS)',
+            '600 kw (816 PS)',
+        ];
     }
 }
