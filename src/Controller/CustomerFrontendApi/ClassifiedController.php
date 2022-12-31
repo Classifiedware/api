@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller\CustomerFrontendApi;
 
-use App\Dto\ClassifiedSearchDto;
-use App\Serializer\DeserializerInterface;
 use App\Serializer\FailedToDeserializeObjectClassException;
 use App\Service\ClassifiedSearchListService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,8 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ClassifiedController extends AbstractController
 {
     public function __construct(
-        private readonly ClassifiedSearchListService $classifiedSearchListService,
-        private readonly DeserializerInterface $deserializer
+        private readonly ClassifiedSearchListService $classifiedSearchListService
     )
     {
     }
@@ -27,7 +24,9 @@ class ClassifiedController extends AbstractController
     public function classifiedSearch(Request $request): Response
     {
         try {
-            $searchDto = $this->deserializer->deserialize($request->getContent(), ClassifiedSearchDto::class);
+            $result = $this->classifiedSearchListService->searchClassifieds($request);
+
+            return $this->json(['data' => $result]);
         } catch (FailedToDeserializeObjectClassException $e) {
             return $this->json(
                 [
@@ -37,9 +36,5 @@ class ClassifiedController extends AbstractController
                 Response::HTTP_BAD_REQUEST
             );
         }
-
-        $result = $this->classifiedSearchListService->searchClassifieds($searchDto);
-
-        return $this->json(['data' => $result]);
     }
 }
