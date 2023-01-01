@@ -5,17 +5,20 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Dto\ClassifiedSearchDto;
+use App\Exception\ClassifiedSearchFailedException;
 use App\Repository\ClassifiedRepository;
 use App\Serializer\DeserializerInterface;
 use App\Serializer\FailedToDeserializeObjectClassException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ClassifiedSearchListService
 {
     public function __construct(
         private readonly ClassifiedRepository $classifiedRepository,
         private readonly DeserializerInterface $deserializer,
+        private readonly ValidatorInterface $validator,
         private readonly LoggerInterface $logger
     )
     {
@@ -33,7 +36,13 @@ class ClassifiedSearchListService
                 'code' => $e->getCode(),
             ]);
 
-            throw $e;
+            throw new ClassifiedSearchFailedException(null, $e);
+        }
+
+        $errors = $this->validator->validate($searchDto);
+
+        if (count($errors) > 0) {
+            throw new ClassifiedSearchFailedException($errors, null);
         }
 
         $classifieds = $this->classifiedRepository->findClassifiedsForSearchList(
@@ -44,10 +53,6 @@ class ClassifiedSearchListService
 
         $data = [];
         foreach ($classifieds as $classified) {
-           /*if (!$classified instanceof Classified) {
-               continue;
-           }*/
-
            $data[] = $classified;
         }
 

@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace App\Dto;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 class ClassifiedSearchDto
 {
+    #[Assert\Positive]
     private int $page = 1;
 
+    #[Assert\Positive]
     private int $itemsPerPage = 10;
 
     private array $propertyGroupOptionValueIds = [];

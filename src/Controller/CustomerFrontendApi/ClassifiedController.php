@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\CustomerFrontendApi;
 
-use App\Serializer\FailedToDeserializeObjectClassException;
+use App\Exception\ClassifiedSearchFailedException;
 use App\Service\ClassifiedSearchListService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +27,7 @@ class ClassifiedController extends AbstractController
             $result = $this->classifiedSearchListService->searchClassifieds($request);
 
             return $this->json(['data' => $result]);
-        } catch (FailedToDeserializeObjectClassException $e) {
+        } catch (ClassifiedSearchFailedException $e) {
             return $this->json(
                 [
                     'data' => [],
