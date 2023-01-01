@@ -11,9 +11,6 @@ class ClassifiedSearchDto
     #[Assert\Positive]
     private int $page = 1;
 
-    #[Assert\Positive]
-    private int $itemsPerPage = 10;
-
     private array $propertyGroupOptionValueIds = [];
 
     public function getPage(): int
@@ -24,16 +21,6 @@ class ClassifiedSearchDto
     public function setPage(int $page): void
     {
         $this->page = $page;
-    }
-
-    public function getItemsPerPage(): int
-    {
-        return $this->itemsPerPage;
-    }
-
-    public function setItemsPerPage(int $itemsPerPage): void
-    {
-        $this->itemsPerPage = $itemsPerPage;
     }
 
     public function getPropertyGroupOptionValueIds(): array

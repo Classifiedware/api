@@ -15,6 +15,8 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ClassifiedSearchListService
 {
+    private const LIMIT_PER_PAGE = 10;
+
     public function __construct(
         private readonly ClassifiedRepository $classifiedRepository,
         private readonly DeserializerInterface $deserializer,
@@ -47,7 +49,7 @@ class ClassifiedSearchListService
 
         $classifieds = $this->classifiedRepository->findClassifiedsForSearchList(
             $searchDto->getPage(),
-            $searchDto->getItemsPerPage(),
+            self::LIMIT_PER_PAGE,
             $searchDto->getPropertyGroupOptionValueIds()
         );
 
