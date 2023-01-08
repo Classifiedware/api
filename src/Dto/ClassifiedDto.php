@@ -126,7 +126,7 @@ class ClassifiedDto
             'description' => $this->description,
             'price' => $this->price,
             'offerNumber' => $this->offerNumber,
-            'propertyGroupOptions' => $propertyGroupOptions,
+            'options' => $propertyGroupOptions,
         ];
     }
 }
