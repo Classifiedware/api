@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Dto\ClassifiedDto;
 use App\Dto\ClassifiedSearchDto;
 use App\Exception\ClassifiedSearchFailedException;
-use App\Repository\ClassifiedRepository;
 use App\Serializer\DeserializerInterface;
 use App\Serializer\FailedToDeserializeObjectClassException;
 use Psr\Log\LoggerInterface;
@@ -15,10 +15,8 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ClassifiedSearchListService
 {
-    private const LIMIT_PER_PAGE = 10;
-
     public function __construct(
-        private readonly ClassifiedRepository $classifiedRepository,
+        private readonly ClassifiedSearchListGatewayInterface $searchListGateway,
         private readonly DeserializerInterface $deserializer,
         private readonly ValidatorInterface $validator,
         private readonly LoggerInterface $logger
@@ -47,17 +45,17 @@ class ClassifiedSearchListService
             throw new ClassifiedSearchFailedException($errors, null);
         }
 
-        $classifieds = $this->classifiedRepository->findClassifiedsForSearchList(
-            $searchDto->getPage(),
-            self::LIMIT_PER_PAGE,
-            $searchDto->getPropertyGroupOptionValueIds()
-        );
+        $classifiedDtos = $this->searchListGateway->getClassifiedsForSearch($searchDto);
 
-        $data = [];
-        foreach ($classifieds as $classified) {
-           $data[] = $classified;
+        $classifieds = [];
+        foreach ($classifiedDtos as $classifiedDto) {
+            if (!$classifiedDto instanceof ClassifiedDto) {
+                continue;
+            }
+
+            $classifieds[] = $classifiedDto->toArray();
         }
 
-        return $data;
+        return $classifieds;
     }
 }

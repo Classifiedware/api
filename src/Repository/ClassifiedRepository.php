@@ -51,9 +51,9 @@ class ClassifiedRepository extends ServiceEntityRepository
 
         $query = $qb
             ->select([
-                    'partial c.{id, name, description, price}',
+                    'partial c.{id, name, description, price, offerNumber}',
                     'partial pgov.{id, value}',
-                    'partial gp.{id, name}'
+                    'partial gp.{id, name, type}'
                 ]
             )
             ->leftJoin('c.propertyGroupOptionValues', 'pgov', Join::WITH, $qb->expr()->andX(
