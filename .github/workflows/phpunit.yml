@@ -1,0 +1,57 @@
+name: PHPUnit Test
+on: [ push, pull_request ]
+
+jobs:
+  phpunit:
+    name: "${{ matrix.operating-system }} / PHPUnit with PHP ${{ matrix.php-version }}"
+    runs-on: ${{ matrix.operating-system }}
+    continue-on-error: false
+
+    services:
+      mysql:
+        image: mariadb:10.5.18
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: false
+          MYSQL_ROOT_PASSWORD: classifiedware
+          MYSQL_DATABASE: classifiedware_test
+        ports:
+          - 3306/tcp
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    strategy:
+      matrix:
+        operating-system: [ 'ubuntu-latest' ]
+        php-version: [ '8.2' ]
+
+    steps:
+      - name: Clone API
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          tools: composer:v2, phpunit-bridge
+          extensions: mbstring, xml, ctype, iconv, intl, mysql
+          coverage: pcov
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --no-progress
+
+      - name: Run Migration
+        run: bin/console doctrine:migrations:migrate --no-interaction --env=test
+        env:
+          DATABASE_URL: mysql://root:classifiedware@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/classifiedware?serverVersion=10.5.18-MariaDB
+
+      - name: Validate Doctrine Schema
+        run: bin/console doctrine:schema:validate --no-interaction --env=test
+        env:
+          DATABASE_URL: mysql://root:classifiedware@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/classifiedware?serverVersion=10.5.18-MariaDB
+
+      - name: Install PHPUnit
+        run: simple-phpunit install
+
+      - name: Run PHPUnit Tests
+        run: simple-phpunit --coverage-text
+        env:
+          DATABASE_URL: mysql://root:classifiedware@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/classifiedware?serverVersion=10.5.18-MariaDB

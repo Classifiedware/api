@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: classifiedware_nginx
+    volumes:
+      - ./:/var/www/api
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/sites:/etc/nginx/sites-available
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - php-fpm
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      default:
+        aliases:
+          - "classifiedware-api.test"
+
+  mysql:
+    image: mariadb:10.5.18
+    container_name: classifiedware_mysql
+    environment:
+      - MYSQL_DATABASE=classifiedware
+      - MYSQL_USER=classifiedware
+      - MYSQL_PASSWORD=classifiedware
+      - MYSQL_ROOT_PASSWORD=classifiedware
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: always
+    ports:
+      - "4406:3306"
+
+  php-fpm:
+    build:
+      context: ./docker/php-fpm
+      args:
+        - PHP_VERSION=8.2
+    container_name: classifiedware_php-fpm
+    environment:
+      - PHP_IDE_CONFIG=serverName=classifiedware
+    volumes:
+      - ./:/var/www/api
+    restart: always
+    networks:
+      default:
+        aliases:
+          - "classifiedware-api.test"
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: classifiedware_mailhog
+    restart: always
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    networks:
+      default:
+        aliases:
+          - "classifiedware-api.test"
+
+volumes:
+  mysql-data:
+    external: false
+    name: classifiedware_mysql-data
