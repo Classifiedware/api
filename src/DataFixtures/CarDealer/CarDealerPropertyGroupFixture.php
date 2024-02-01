@@ -44,12 +44,12 @@ class CarDealerPropertyGroupFixture extends Fixture
             [
                 'name' => 'Marke',
                 'type' => PropertyGroupOption::TYPE_SELECT,
-                'values' => ['BMW']
+                'values' => ['BMW', 'Audi']
             ],
             [
                 'name' => 'Modell',
                 'type' => PropertyGroupOption::TYPE_SELECT,
-                'values' => ['1er', '2er', '3er', '4er', '5er', '6er', '7er', '8er']
+                'values' => []
             ],
             [
                 'name' => 'Variante',
@@ -57,6 +57,42 @@ class CarDealerPropertyGroupFixture extends Fixture
                 'values' => []
             ],
         ], $manager);
+
+        $brandWithModels = [
+            [
+                'brand' => 'BMW',
+                'options' => [
+                    [
+                        'name' => '1er (alle)',
+                        'childOptions' => [
+                            '118',
+                            '120',
+                        ],
+                    ],
+                    [
+                        'name' => '5er (alle)',
+                        'childOptions' => [
+                            '520',
+                            '530',
+                            '540',
+                            '550'
+                        ],
+                    ]
+                ]
+            ],
+            [
+                'brand' => 'Audi',
+                'options' => [
+                    [
+                        'name' => 'A5',
+                    ],
+                    [
+                        'name' => 'A6',
+                    ]
+                ]
+            ]
+        ];
+        $this->createBrandWithModels($brandWithModels, $manager);
 
         $this->createPropertyGroup('Fahrzeugtyp', [
             [
@@ -568,6 +604,47 @@ class CarDealerPropertyGroupFixture extends Fixture
                 $createdGroupOptionValue->setCreatedAt(new \DateTimeImmutable());
                 $manager->persist($createdGroupOptionValue);
                 $manager->flush();
+            }
+        }
+    }
+
+    private function createBrandWithModels(array $brandWithModels, ObjectManager $manager): void
+    {
+        $propertyGroupOptionRepository = $manager->getRepository(PropertyGroupOption::class);
+        $propertyGroupRepository = $manager->getRepository(PropertyGroup::class);
+        /** @var PropertyGroup $existingPropertyGroup */
+        $existingPropertyGroup = $propertyGroupRepository->findOneBy(['name' => 'Marke, Modell, Variante']);
+
+        foreach ($brandWithModels as $brand) {
+            foreach ($brand['options'] as $option) {
+                /** @var PropertyGroupOption $existingBrand */
+                $existingBrand = $propertyGroupOptionRepository->findOneBy(['name' => $brand['brand']]);
+
+                $propertyGroupOption = new PropertyGroupOption();
+                $propertyGroupOption->setUuid(Uuid::v4());
+                $propertyGroupOption->setPropertyGroup($existingPropertyGroup);
+                $propertyGroupOption->setParent($existingBrand);
+                $propertyGroupOption->setName($option['name']);
+                $propertyGroupOption->setType(PropertyGroupOption::TYPE_SELECT);
+                $propertyGroupOption->setShowInDetailPage(true);
+                $propertyGroupOption->setShowInSearchList(true);
+                $propertyGroupOption->setCreatedAt(new \DateTimeImmutable());
+                $manager->persist($propertyGroupOption);
+                $manager->flush();
+
+                foreach ($option['childOptions'] ?? [] as $childOption) {
+                    $childPropertyGroupOption = new PropertyGroupOption();
+                    $childPropertyGroupOption->setUuid(Uuid::v4());
+                    $childPropertyGroupOption->setPropertyGroup($existingPropertyGroup);
+                    $childPropertyGroupOption->setParent($propertyGroupOption);
+                    $childPropertyGroupOption->setName($childOption);
+                    $childPropertyGroupOption->setType(PropertyGroupOption::TYPE_SELECT);
+                    $childPropertyGroupOption->setShowInDetailPage(true);
+                    $childPropertyGroupOption->setShowInSearchList(true);
+                    $childPropertyGroupOption->setCreatedAt(new \DateTimeImmutable());
+                    $manager->persist($childPropertyGroupOption);
+                    $manager->flush();
+                }
             }
         }
     }
