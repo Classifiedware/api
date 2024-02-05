@@ -48,12 +48,16 @@ class PropertyGroupRepository extends ServiceEntityRepository
             ->select([
                 'partial pg.{id, uuid, name, isEquipmentGroup}',
                 'partial pgo.{id, uuid, name, type}',
-                'partial pgop.{id, name}',
+                'pgop',
+                'pgoc',
+                'pgoch'
             ])
             ->leftJoin('pg.groupOptions', 'pgo', Join::WITH, $qb->expr()->andX(
                 $qb->expr()->eq('pgo.showInSearchList', '1')
             ))
-            ->leftJoin('pgo.parent', 'pgop');
+            ->leftJoin('pgo.parent', 'pgop')
+            ->leftJoin('pgo.children', 'pgoc')
+            ->leftJoin('pgoc.children', 'pgoch');
 
         return $qb->getQuery()->getArrayResult();
     }

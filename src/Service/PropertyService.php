@@ -16,6 +16,8 @@ class PropertyService
     public function getProperties(): array
     {
         $propertyGroups = $this->propertyGroupRepository->getPropertyGroups();
+        $brandModels = $this->getBrandModels($propertyGroups);
+        dd($brandModels);
 
         $mappedPropertyGroups = [];
         foreach ($propertyGroups as $propertyGroup) {
@@ -42,6 +44,46 @@ class PropertyService
         unset($propertyGroups);
 
         return $mappedPropertyGroups;
+    }
+
+    private function getBrandModels(array $propertyGroups): array
+    {
+        $models = [];
+        foreach ($propertyGroups as $propertyGroup) {
+            foreach ($propertyGroup['groupOptions'] as $groupOption) {
+                if (isset($groupOption['parent']) && $groupOption['parent']['name'] === 'Marke') {
+                    foreach ($groupOption['children'] as $groupOptionChildren) {
+
+                        if (count($groupOptionChildren['children']) === 0) {
+                            $models[] = [
+                                'id' => $groupOptionChildren['uuid'],
+                                'parentName' => $groupOption['name'],
+                                'value' => $groupOptionChildren['name'],
+                            ];
+                        }
+
+                        if (count($groupOptionChildren['children']) > 0) {
+                            $childValues = [];
+                            foreach ($groupOptionChildren['children'] as $child) {
+                                $childValues[] = [
+                                    'id' => $child['uuid'],
+                                    'value' => $child['name'],
+                                ];
+                            }
+
+                            $models[] = [
+                                'id' => $groupOptionChildren['uuid'],
+                                'parentName' => $groupOption['name'],
+                                'childName' => $groupOptionChildren['name'],
+                                'values' => $childValues,
+                            ];
+                        }
+                    }
+                }
+            }
+        }
+
+        return $models;
     }
 
     private function getGroupsOptionsByParentId(int $groupOptionId, array $groupOptions): array
