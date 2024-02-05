@@ -88,9 +88,18 @@ class CarDealerPropertyGroupFixture extends Fixture
                     ],
                     [
                         'name' => 'A6',
-                    ]
+                    ],
+                    [
+                        'name' => 'RS (alle)',
+                        'childOptions' => [
+                            'RS 3',
+                            'RS 4',
+                            'RS 5',
+                            'RS 6',
+                        ],
+                    ],
                 ]
-            ]
+            ],
         ];
         $this->createBrandWithModels($brandWithModels, $manager);
 

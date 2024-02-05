@@ -8,6 +8,10 @@ use App\Repository\PropertyGroupRepository;
 
 class PropertyService
 {
+    private const GROUP_NAME_BRAND_MODEL = 'Marke, Modell, Variante';
+    private const GROUP_OPTION_MODEL = 'Modell';
+    private const GROUP_OPTION_BRAND = 'Marke';
+
     public function __construct(
         private readonly PropertyGroupRepository $propertyGroupRepository
     ) {
@@ -17,7 +21,6 @@ class PropertyService
     {
         $propertyGroups = $this->propertyGroupRepository->getPropertyGroups();
         $brandModels = $this->getBrandModels($propertyGroups);
-        dd($brandModels);
 
         $mappedPropertyGroups = [];
         foreach ($propertyGroups as $propertyGroup) {
@@ -26,11 +29,16 @@ class PropertyService
             $groupOptions = [];
             foreach ($propertyGroupOptions as $groupOption) {
                 if (!isset($groupOption['parent'])) {
+                    $optionValues = $this->getGroupsOptionsByParentId($groupOption['id'], $propertyGroupOptions);
+                    if ($propertyGroup['name'] === self::GROUP_NAME_BRAND_MODEL && $groupOption['name'] === self::GROUP_OPTION_MODEL) {
+                        $optionValues = $brandModels;
+                    }
+
                     $groupOptions[] = [
                         'id' => $groupOption['uuid'],
                         'name' => $groupOption['name'],
                         'type' => $groupOption['type'],
-                        'optionValues' => $this->getGroupsOptionsByParentId($groupOption['id'], $propertyGroupOptions),
+                        'optionValues' => $optionValues,
                     ];
                 }
             }
@@ -51,9 +59,8 @@ class PropertyService
         $models = [];
         foreach ($propertyGroups as $propertyGroup) {
             foreach ($propertyGroup['groupOptions'] as $groupOption) {
-                if (isset($groupOption['parent']) && $groupOption['parent']['name'] === 'Marke') {
+                if (isset($groupOption['parent']) && $groupOption['parent']['name'] === self::GROUP_OPTION_BRAND) {
                     foreach ($groupOption['children'] as $groupOptionChildren) {
-
                         if (count($groupOptionChildren['children']) === 0) {
                             $models[] = [
                                 'id' => $groupOptionChildren['uuid'],
