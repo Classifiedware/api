@@ -12,6 +12,10 @@ class ClassifiedSearchDto
     #[Assert\Positive]
     private int $page = 1;
 
+    private string $brand = '';
+
+    private string $model = '';
+
     private array $propertyGroupOptionIds = [];
 
     private array $propertyGroupOptionIdsSelectFrom = [];
@@ -41,6 +45,26 @@ class ClassifiedSearchDto
     public function setPage(int $page): void
     {
         $this->page = $page;
+    }
+
+    public function getBrand(): string
+    {
+        return $this->brand;
+    }
+
+    public function setBrand(string $brand): void
+    {
+        $this->brand = $brand;
+    }
+
+    public function getModel(): string
+    {
+        return $this->model;
+    }
+
+    public function setModel(string $model): void
+    {
+        $this->model = $model;
     }
 
     public function getPropertyGroupOptionIds(): array

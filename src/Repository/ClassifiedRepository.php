@@ -177,6 +177,58 @@ class ClassifiedRepository extends ServiceEntityRepository
         return $ids;
     }
 
+    public function getExcludedPropertyGroupOptionIds(string $propertyGroupId, array $whitelistPropertyGroupOptionIds): array
+    {
+        $whitelistPropertyGroupOptionIds = array_map(fn (string $propertyGroupOptionId) => Uuid::fromString($propertyGroupOptionId)->toBinary(), $whitelistPropertyGroupOptionIds);
+
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $query = $qb
+            ->select(['pgo.uuid'])
+            ->from(PropertyGroupOption::class, 'pgo')
+            ->innerJoin('pgo.propertyGroup', 'pg')
+            ->where($qb->expr()->eq('pgo.isModel', true))
+            ->andWhere($qb->expr()->eq('pg.uuid', ':propertyGroupId'))
+            ->andWhere($qb->expr()->notIn('pgo.uuid', ':whitelistPropertyGroupOptionIds'))
+            ->setParameter('propertyGroupId', Uuid::fromString($propertyGroupId)->toBinary())
+            ->setParameter('whitelistPropertyGroupOptionIds', $whitelistPropertyGroupOptionIds);
+
+        $ids = [];
+        foreach ($query->getQuery()->getArrayResult() as $row) {
+            if (!isset($row['uuid'])) {
+                continue;
+            }
+
+            $ids[] = Uuid::fromString($row['uuid'])->toBinary();
+        }
+
+        return $ids;
+    }
+
+    public function getPropertyGroupOptionIdsByParentId(string $propertyGroupId, string $parentId): array
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $query = $qb
+            ->select(['pgo.uuid'])
+            ->from(PropertyGroupOption::class, 'pgo')
+            ->innerJoin('pgo.propertyGroup', 'pg')
+            ->innerJoin('pgo.parent', 'pgp')
+            ->andWhere($qb->expr()->eq('pg.uuid', ':propertyGroupId'))
+            ->andWhere($qb->expr()->eq('pgp.uuid', ':parentId'))
+            ->setParameter('propertyGroupId', Uuid::fromString($propertyGroupId)->toBinary())
+            ->setParameter('parentId', Uuid::fromString($parentId)->toBinary());
+
+        $ids = [];
+        foreach ($query->getQuery()->getArrayResult() as $row) {
+            if (!isset($row['uuid'])) {
+                continue;
+            }
+
+            $ids[] = Uuid::fromString($row['uuid'])->toBinary();
+        }
+
+        return $ids;
+    }
+
     public function getPropertyGroupId(string $name): string
     {
         $qb = $this->getEntityManager()->createQueryBuilder();

@@ -43,6 +43,9 @@ class PropertyGroupOption
     #[ORM\Column]
     private bool $showInDetailPage = false;
 
+    #[ORM\Column(options: ['default' => false])]
+    private bool $isModel = false;
+
     public function __construct()
     {
         $this->children = new ArrayCollection();
@@ -126,5 +129,15 @@ class PropertyGroupOption
         $this->showInDetailPage = $showInDetailPage;
 
         return $this;
+    }
+
+    public function isModel(): bool
+    {
+        return $this->isModel;
+    }
+
+    public function setIsModel(bool $isModel): void
+    {
+        $this->isModel = $isModel;
     }
 }

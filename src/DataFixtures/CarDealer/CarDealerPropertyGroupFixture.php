@@ -637,6 +637,7 @@ class CarDealerPropertyGroupFixture extends Fixture
                 $propertyGroupOption->setType(PropertyGroupOption::TYPE_SELECT);
                 $propertyGroupOption->setShowInDetailPage(true);
                 $propertyGroupOption->setShowInSearchList(true);
+                $propertyGroupOption->setIsModel(true);
                 $propertyGroupOption->setCreatedAt(new \DateTimeImmutable());
                 $manager->persist($propertyGroupOption);
                 $manager->flush();
@@ -650,6 +651,7 @@ class CarDealerPropertyGroupFixture extends Fixture
                     $childPropertyGroupOption->setType(PropertyGroupOption::TYPE_SELECT);
                     $childPropertyGroupOption->setShowInDetailPage(true);
                     $childPropertyGroupOption->setShowInSearchList(true);
+                    $childPropertyGroupOption->setIsModel(true);
                     $childPropertyGroupOption->setCreatedAt(new \DateTimeImmutable());
                     $manager->persist($childPropertyGroupOption);
                     $manager->flush();
