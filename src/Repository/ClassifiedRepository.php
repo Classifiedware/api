@@ -60,7 +60,7 @@ class ClassifiedRepository extends ServiceEntityRepository
             ->select([
                     'partial c.{id, uuid, name, description, price, offerNumber}',
                     'partial pgo.{id, uuid, name, type}',
-                    'partial pgop.{id, uuid, name, type}',
+                    'partial pgop.{id, uuid, name, type, isModel}',
                     'partial pg.{id, uuid, name}'
                 ]
             )
@@ -164,6 +164,58 @@ class ClassifiedRepository extends ServiceEntityRepository
             $query->andWhere($qb->expr()->lte('pgo.name', ':betweenTo'));
             $query->setParameter(':betweenTo', $to);
         }
+
+        $ids = [];
+        foreach ($query->getQuery()->getArrayResult() as $row) {
+            if (!isset($row['uuid'])) {
+                continue;
+            }
+
+            $ids[] = Uuid::fromString($row['uuid'])->toBinary();
+        }
+
+        return $ids;
+    }
+
+    public function getExcludedPropertyGroupOptionIds(string $propertyGroupId, array $whitelistPropertyGroupOptionIds): array
+    {
+        $whitelistPropertyGroupOptionIds = array_map(fn (string $propertyGroupOptionId) => Uuid::fromString($propertyGroupOptionId)->toBinary(), $whitelistPropertyGroupOptionIds);
+
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $query = $qb
+            ->select(['pgo.uuid'])
+            ->from(PropertyGroupOption::class, 'pgo')
+            ->innerJoin('pgo.propertyGroup', 'pg')
+            ->where($qb->expr()->eq('pgo.isModel', true))
+            ->andWhere($qb->expr()->eq('pg.uuid', ':propertyGroupId'))
+            ->andWhere($qb->expr()->notIn('pgo.uuid', ':whitelistPropertyGroupOptionIds'))
+            ->setParameter('propertyGroupId', Uuid::fromString($propertyGroupId)->toBinary())
+            ->setParameter('whitelistPropertyGroupOptionIds', $whitelistPropertyGroupOptionIds);
+
+        $ids = [];
+        foreach ($query->getQuery()->getArrayResult() as $row) {
+            if (!isset($row['uuid'])) {
+                continue;
+            }
+
+            $ids[] = Uuid::fromString($row['uuid'])->toBinary();
+        }
+
+        return $ids;
+    }
+
+    public function getPropertyGroupOptionIdsByParentId(string $propertyGroupId, string $parentId): array
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $query = $qb
+            ->select(['pgo.uuid'])
+            ->from(PropertyGroupOption::class, 'pgo')
+            ->innerJoin('pgo.propertyGroup', 'pg')
+            ->innerJoin('pgo.parent', 'pgp')
+            ->andWhere($qb->expr()->eq('pg.uuid', ':propertyGroupId'))
+            ->andWhere($qb->expr()->eq('pgp.uuid', ':parentId'))
+            ->setParameter('propertyGroupId', Uuid::fromString($propertyGroupId)->toBinary())
+            ->setParameter('parentId', Uuid::fromString($parentId)->toBinary());
 
         $ids = [];
         foreach ($query->getQuery()->getArrayResult() as $row) {

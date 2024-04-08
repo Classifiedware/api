@@ -41,7 +41,8 @@ class CarDealerClassifiedFixture extends Fixture implements DependentFixtureInte
             $this->getClassifiedPropertyGroupOptions(
                 'Neufahrzeug',
                 'BMW',
-                '5er',
+                '540',
+                '5er (alle)',
                 'Limousine',
                 'Automatik',
                 '4/5',
@@ -55,14 +56,15 @@ class CarDealerClassifiedFixture extends Fixture implements DependentFixtureInte
         );
 
         $this->createClassified(
-            'BMW 320i Sport Line LCProf ACC LED DAB HiFi Leder',
+            'BMW 520i Sport Line LCProf ACC LED DAB HiFi Leder',
             'This is a good car and has many features including warranty of 24 Months',
             4012300,
             'AB02345',
             $this->getClassifiedPropertyGroupOptions(
                 'Gebrauchtfahrzeug',
                 'BMW',
-                '3er',
+                '520',
+                '5er (alle)',
                 'Limousine',
                 'Automatik',
                 '4/5',
@@ -83,7 +85,8 @@ class CarDealerClassifiedFixture extends Fixture implements DependentFixtureInte
             $this->getClassifiedPropertyGroupOptions(
                 'Gebrauchtfahrzeug',
                 'BMW',
-                '1er',
+                '118',
+                '1er (alle)',
                 'Sportwagen/Coupe',
                 'Schaltgetriebe',
                 '2/3',
@@ -104,7 +107,8 @@ class CarDealerClassifiedFixture extends Fixture implements DependentFixtureInte
             $this->getClassifiedPropertyGroupOptions(
                 'Gebrauchtfahrzeug',
                 'BMW',
-                '1er',
+                '120',
+                '1er (alle)',
                 'Sportwagen/Coupe',
                 'Automatik',
                 '2/3',
@@ -118,14 +122,15 @@ class CarDealerClassifiedFixture extends Fixture implements DependentFixtureInte
         );
 
         $this->createClassified(
-            'BMW 740i Premium Line LCProf ACC LED DAB HiFi Leder',
+            'BMW 550i Premium Line LCProf ACC LED DAB HiFi Leder',
             'This is a good car and has many features including warranty of 24 Months',
             9912348,
             'AB92345',
             $this->getClassifiedPropertyGroupOptions(
                 'Vorführfahrzeug',
                 'BMW',
-                '7er',
+                '550',
+                '5er (alle)',
                 'Limousine',
                 'Automatik',
                 '6/7',
@@ -137,12 +142,79 @@ class CarDealerClassifiedFixture extends Fixture implements DependentFixtureInte
             ),
             $manager
         );
+
+        $this->createClassified(
+            'Audi A6 Sport Line',
+            'This is a good car and has many features including warranty of 24 Months',
+            5012300,
+            'A6123123',
+            $this->getClassifiedPropertyGroupOptions(
+                'Gebrauchtfahrzeug',
+                'Audi',
+                'A6',
+                'Audi',
+                'Limousine',
+                'Automatik',
+                '4/5',
+                '5',
+                '2024',
+                '150 kw (204 PS)',
+                'Benzin',
+                '10560'
+            ),
+            $manager
+        );
+
+        $this->createClassified(
+            'Audi A6 Sport Line Ultra',
+            'This is a good car and has many features including warranty of 24 Months',
+            6012300,
+            'A6U123124',
+            $this->getClassifiedPropertyGroupOptions(
+                'Gebrauchtfahrzeug',
+                'Audi',
+                'A6',
+                'Audi',
+                'Limousine',
+                'Automatik',
+                '4/5',
+                '5',
+                '2024',
+                '300 kw (408 PS)',
+                'Benzin',
+                '10560'
+            ),
+            $manager
+        );
+
+        $this->createClassified(
+            'Audi RS3 Soft Close Self Parking',
+            'This is a good car and has many features including warranty of 24 Months',
+            9000000,
+            'RS3S123123',
+            $this->getClassifiedPropertyGroupOptions(
+                'Gebrauchtfahrzeug',
+                'Audi',
+                'RS 3',
+                'RS (alle)',
+                'Sportwagen/Coupe',
+                'Schaltgetriebe',
+                '4/5',
+                '5',
+                '2024',
+                '400 kw (544 PS)',
+                'Benzin',
+                '70205'
+            ),
+            $manager
+        );
     }
 
     private function getClassifiedPropertyGroupOptions(
         string $vehicleCondition,
         string $brand,
         string $model,
+        string $parentModel,
         string $vehicleType,
         string $transmission,
         string $doorCount,
@@ -165,7 +237,7 @@ class CarDealerClassifiedFixture extends Fixture implements DependentFixtureInte
             $propertyGroupOptions[] = $propertyGroupOption;
         }
 
-        $propertyGroupOption = $this->getPropertyGroupOption('Marke, Modell, Variante', $model, 'Modell');
+        $propertyGroupOption = $this->getPropertyGroupOption('Marke, Modell, Variante', $model, $parentModel);
         if ($propertyGroupOption instanceof PropertyGroupOption) {
             $propertyGroupOptions[] = $propertyGroupOption;
         }

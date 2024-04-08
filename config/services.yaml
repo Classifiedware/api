@@ -41,6 +41,12 @@ services:
     App\Api\Search\VehicleSeatCountSearchCriteriaHandler:
         tags: ['app.search_condition.handler']
 
+    App\Api\Search\BrandSearchCriteriaHandler:
+        tags: ['app.search_condition.handler']
+
+    App\Api\Search\ModelSearchCriteriaHandler:
+        tags: ['app.search_condition.handler']
+
     App\Api\Search\SearchCriteriaHandler:
         arguments:
             - !tagged_iterator app.search_condition.handler
