@@ -9,6 +9,7 @@ use App\Api\Struct\PropertyGroupOptionStruct;
 use App\Api\Struct\PropertyGroupStruct;
 use App\Api\Struct\ResponseStruct;
 use App\Repository\ClassifiedRepository;
+use App\Service\PropertyService;
 
 class ClassifiedSearchListService implements ClassifiedSearchListServiceInterface
 {
@@ -131,6 +132,10 @@ class ClassifiedSearchListService implements ClassifiedSearchListServiceInterfac
         if (\is_array($row['parent'])) {
             $parentId = (string)$row['parent']['uuid'];
             $groupOptionNameParent = $row['parent']['name'];
+
+            if ($row['parent']['isModel'] === true) {
+                $groupOptionNameParent = PropertyService::GROUP_OPTION_MODEL;
+            }
         }
 
         return new PropertyGroupOptionStruct(

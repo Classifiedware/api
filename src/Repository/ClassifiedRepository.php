@@ -60,7 +60,7 @@ class ClassifiedRepository extends ServiceEntityRepository
             ->select([
                     'partial c.{id, uuid, name, description, price, offerNumber}',
                     'partial pgo.{id, uuid, name, type}',
-                    'partial pgop.{id, uuid, name, type}',
+                    'partial pgop.{id, uuid, name, type, isModel}',
                     'partial pg.{id, uuid, name}'
                 ]
             )

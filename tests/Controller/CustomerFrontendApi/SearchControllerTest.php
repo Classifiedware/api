@@ -9,6 +9,7 @@ use App\Dto\ClassifiedPropertyGroupOptionDto;
 use App\Entity\Classified;
 use App\Entity\PropertyGroup;
 use App\Entity\PropertyGroupOption;
+use App\Repository\PropertyGroupOptionRepository;
 use App\Service\ClassifiedService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
@@ -35,6 +36,8 @@ class SearchControllerTest extends WebTestCase
 
     private PropertyGroup $propertyGroupEquipment;
 
+    private PropertyGroupOptionRepository $propertyGroupOptionRepository;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -42,6 +45,7 @@ class SearchControllerTest extends WebTestCase
         $this->client = static::createClient();
         $this->classifiedService = static::getContainer()->get(ClassifiedService::class);
         $this->entityManager = static::getContainer()->get(EntityManagerInterface::class);
+        $this->propertyGroupOptionRepository = $this->entityManager->getRepository(PropertyGroupOption::class);
 
         $this->createPropertyGroups();
     }
@@ -53,6 +57,9 @@ class SearchControllerTest extends WebTestCase
         static::assertResponseIsSuccessful();
 
         $response = json_decode($this->client->getResponse()->getContent(), true);
+
+        /** @var array<PropertyGroupOption> $brandModels */
+        $brandModels = $this->entityManager->getRepository(PropertyGroupOption::class)->findBy(['isModel' => true]);
 
         static::assertSame([
             'data' => [
@@ -79,7 +86,7 @@ class SearchControllerTest extends WebTestCase
                     'isEquipmentGroup' => false,
                     'groupOptions' => [
                         [
-                            'id' => (string)$this->propertyGroupBrandWithModel->getGroupOptions()->get(1)->getUuid(),
+                            'id' => (string)$this->propertyGroupBrandWithModel->getGroupOptions()->get(2)->getUuid(),
                             'name' => 'Marke',
                             'type' => 'select',
                             'optionValues' => [
@@ -87,25 +94,56 @@ class SearchControllerTest extends WebTestCase
                                     'id' => (string)$this->propertyGroupBrandWithModel->getGroupOptions()->get(0)->getUuid(),
                                     'value' => 'Test Brand'
                                 ],
+                                [
+                                    'id' => (string)$this->propertyGroupBrandWithModel->getGroupOptions()->get(1)->getUuid(),
+                                    'value' => 'Another Test Brand'
+                                ],
                             ]
                         ],
                         [
-                            'id' => (string)$this->propertyGroupBrandWithModel->getGroupOptions()->get(4)->getUuid(),
+                            'id' => (string)$this->propertyGroupBrandWithModel->getGroupOptions()->get(3)->getUuid(),
                             'name' => 'Modell',
                             'type' => 'select',
                             'optionValues' => [
                                 [
-                                    'id' => (string)$this->propertyGroupBrandWithModel->getGroupOptions()->get(2)->getUuid(),
-                                    'value' => 'Test Brand 1 Series'
+                                    'id' => (string)$brandModels[0]->getUuid(),
+                                    'parentName' => 'Test Brand',
+                                    'childName' => 'Test Brand with child options',
+                                    'values' => [
+                                        [
+                                            'id' => (string)$brandModels[1]->getUuid(),
+                                            'value' => 'Test Brand Model child option one',
+                                        ],
+                                        [
+                                            'id' => (string)$brandModels[2]->getUuid(),
+                                            'value' => 'Test Brand Model child option two',
+                                        ],
+                                    ]
                                 ],
                                 [
-                                    'id' => (string)$this->propertyGroupBrandWithModel->getGroupOptions()->get(3)->getUuid(),
-                                    'value' => 'Test Brand 2 Series'
+                                    'id' => (string)$brandModels[3]->getUuid(),
+                                    'parentName' => 'Another Test Brand',
+                                    'value' => 'Another Test Brand Model without child options',
+                                ],
+                                [
+                                    'id' => (string)$brandModels[4]->getUuid(),
+                                    'parentName' => 'Another Test Brand',
+                                    'childName' => 'Another Test Brand Model with child options',
+                                    'values' => [
+                                        [
+                                            'id' => (string)$brandModels[5]->getUuid(),
+                                            'value' => 'Another Test Brand Model child option one',
+                                        ],
+                                        [
+                                            'id' => (string)$brandModels[6]->getUuid(),
+                                            'value' => 'Another Test Brand Model child option two',
+                                        ],
+                                    ]
                                 ],
                             ]
                         ],
                         [
-                            'id' => (string)$this->propertyGroupBrandWithModel->getGroupOptions()->get(5)->getUuid(),
+                            'id' => (string)$this->propertyGroupBrandWithModel->getGroupOptions()->get(4)->getUuid(),
                             'name' => 'Variante',
                             'type' => 'textField',
                             'optionValues' => [],
@@ -451,7 +489,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -504,7 +542,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -591,7 +629,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -678,7 +716,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 2 Series',
+                            'value' => 'Test Brand Model child option two',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -731,7 +769,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 2 Series',
+                            'value' => 'Test Brand Model child option two',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -818,7 +856,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 2 Series',
+                            'value' => 'Test Brand Model child option two',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -871,7 +909,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -924,7 +962,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -977,7 +1015,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -1030,7 +1068,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -1117,7 +1155,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -1170,7 +1208,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -1223,7 +1261,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -1276,7 +1314,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -1329,7 +1367,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -1382,7 +1420,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -1469,7 +1507,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -1522,7 +1560,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -1575,7 +1613,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 2 Series',
+                            'value' => 'Test Brand Model child option two',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -1628,7 +1666,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 2 Series',
+                            'value' => 'Test Brand Model child option two',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -1681,7 +1719,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -1734,7 +1772,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -1825,7 +1863,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -1878,7 +1916,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -1931,7 +1969,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -2032,7 +2070,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -2085,7 +2123,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -2138,7 +2176,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -2191,7 +2229,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -2244,7 +2282,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Modell',
-                            'value' => 'Test Brand 1 Series',
+                            'value' => 'Test Brand Model child option one',
                         ],
                         [
                             'optionName' => 'Fahrzeugtyp',
@@ -2365,6 +2403,49 @@ class SearchControllerTest extends WebTestCase
         return $createdPropertyGroup;
     }
 
+    private function createBrandWithModels(array $brandWithModels): void
+    {
+        $propertyGroupOptionRepository = $this->entityManager->getRepository(PropertyGroupOption::class);
+        $propertyGroupRepository = $this->entityManager->getRepository(PropertyGroup::class);
+        /** @var PropertyGroup $existingPropertyGroup */
+        $existingPropertyGroup = $propertyGroupRepository->findOneBy(['name' => 'Marke, Modell, Variante']);
+
+        foreach ($brandWithModels as $brand) {
+            foreach ($brand['options'] as $option) {
+                /** @var PropertyGroupOption $existingBrand */
+                $existingBrand = $propertyGroupOptionRepository->findOneBy(['name' => $brand['brand']]);
+
+                $propertyGroupOption = new PropertyGroupOption();
+                $propertyGroupOption->setUuid(Uuid::v4());
+                $propertyGroupOption->setPropertyGroup($existingPropertyGroup);
+                $propertyGroupOption->setParent($existingBrand);
+                $propertyGroupOption->setName($option['name']);
+                $propertyGroupOption->setType(PropertyGroupOption::TYPE_SELECT);
+                $propertyGroupOption->setShowInDetailPage(true);
+                $propertyGroupOption->setShowInSearchList(true);
+                $propertyGroupOption->setIsModel(true);
+                $propertyGroupOption->setCreatedAt(new \DateTimeImmutable());
+                $this->entityManager->persist($propertyGroupOption);
+                $this->entityManager->flush();
+
+                foreach ($option['childOptions'] ?? [] as $childOption) {
+                    $childPropertyGroupOption = new PropertyGroupOption();
+                    $childPropertyGroupOption->setUuid(Uuid::v4());
+                    $childPropertyGroupOption->setPropertyGroup($existingPropertyGroup);
+                    $childPropertyGroupOption->setParent($propertyGroupOption);
+                    $childPropertyGroupOption->setName($childOption);
+                    $childPropertyGroupOption->setType(PropertyGroupOption::TYPE_SELECT);
+                    $childPropertyGroupOption->setShowInDetailPage(true);
+                    $childPropertyGroupOption->setShowInSearchList(true);
+                    $childPropertyGroupOption->setIsModel(true);
+                    $childPropertyGroupOption->setCreatedAt(new \DateTimeImmutable());
+                    $this->entityManager->persist($childPropertyGroupOption);
+                    $this->entityManager->flush();
+                }
+            }
+        }
+    }
+
     private function createPropertyGroups(): void
     {
         $propertyGroupVehicleCondition = $this->createPropertyGroup('Fahrzeugzustand', [
@@ -2384,12 +2465,12 @@ class SearchControllerTest extends WebTestCase
             [
                 'name' => 'Marke',
                 'type' => PropertyGroupOption::TYPE_SELECT,
-                'values' => ['Test Brand']
+                'values' => ['Test Brand', 'Another Test Brand']
             ],
             [
                 'name' => 'Modell',
                 'type' => PropertyGroupOption::TYPE_SELECT,
-                'values' => ['Test Brand 1 Series', 'Test Brand 2 Series']
+                'values' => []
             ],
             [
                 'name' => 'Variante',
@@ -2397,6 +2478,37 @@ class SearchControllerTest extends WebTestCase
                 'values' => []
             ],
         ]);
+
+        $brandWithModels = [
+            [
+                'brand' => 'Test Brand',
+                'options' => [
+                    [
+                        'name' => 'Test Brand with child options',
+                        'childOptions' => [
+                            'Test Brand Model child option one',
+                            'Test Brand Model child option two',
+                        ],
+                    ],
+                ]
+            ],
+            [
+                'brand' => 'Another Test Brand',
+                'options' => [
+                    [
+                        'name' => 'Another Test Brand Model without child options',
+                    ],
+                    [
+                        'name' => 'Another Test Brand Model with child options',
+                        'childOptions' => [
+                            'Another Test Brand Model child option one',
+                            'Another Test Brand Model child option two',
+                        ],
+                    ],
+                ]
+            ],
+        ];
+        $this->createBrandWithModels($brandWithModels);
 
         $propertyGroupVehicleType = $this->createPropertyGroup('Fahrzeugtyp', [
             [
@@ -2509,6 +2621,109 @@ class SearchControllerTest extends WebTestCase
         $this->propertyGroupEquipment = $propertyGroupEquipment;
     }
 
+    private function getClassifiedPropertyGroupOptions(
+        string $vehicleCondition,
+        string $brand,
+        string $model,
+        string $parentModel,
+        string $vehicleType,
+        string $transmission,
+        string $doorCount,
+        string $seatCount,
+        string $firstRegistrationYear,
+        string $horsePower,
+        string $fuelType,
+        string $mileage
+    ): array
+    {
+        $propertyGroupOptions = [];
+
+        $propertyGroupOption = $this->getPropertyGroupOption('Fahrzeugzustand', $vehicleCondition, null);
+        if ($propertyGroupOption instanceof PropertyGroupOption) {
+            $propertyGroupOptions[] = $propertyGroupOption;
+        }
+
+        $propertyGroupOption = $this->getPropertyGroupOption('Marke, Modell, Variante', $brand, 'Marke');
+        if ($propertyGroupOption instanceof PropertyGroupOption) {
+            $propertyGroupOptions[] = $propertyGroupOption;
+        }
+
+        $propertyGroupOption = $this->getPropertyGroupOption('Marke, Modell, Variante', $model, $parentModel);
+        if ($propertyGroupOption instanceof PropertyGroupOption) {
+            $propertyGroupOptions[] = $propertyGroupOption;
+        }
+
+        $propertyGroupOption = $this->getPropertyGroupOption('Fahrzeugtyp', $vehicleType, null);
+        if ($propertyGroupOption instanceof PropertyGroupOption) {
+            $propertyGroupOptions[] = $propertyGroupOption;
+        }
+
+        $propertyGroupOption = $this->getPropertyGroupOption('Motor', $transmission, 'Getriebe');
+        if ($propertyGroupOption instanceof PropertyGroupOption) {
+            $propertyGroupOptions[] = $propertyGroupOption;
+        }
+
+        $propertyGroupOption = $this->getPropertyGroupOption( 'Fahrzeugtyp', $doorCount, 'Anzahl Türen');
+        if ($propertyGroupOption instanceof PropertyGroupOption) {
+            $propertyGroupOptions[] = $propertyGroupOption;
+        }
+
+        $propertyGroupOption = $this->getPropertyGroupOption( 'Fahrzeugtyp', $seatCount, 'Anzahl Sitzplätze');
+        if ($propertyGroupOption instanceof PropertyGroupOption) {
+            $propertyGroupOptions[] = $propertyGroupOption;
+        }
+
+        $propertyGroupOption = $this->getPropertyGroupOption('Basisdaten', $firstRegistrationYear, 'Erstzulassung');
+        if ($propertyGroupOption instanceof PropertyGroupOption) {
+            $propertyGroupOptions[] = $propertyGroupOption;
+        }
+
+        $propertyGroupOption = $this->getPropertyGroupOption('Basisdaten', $horsePower, 'Leistung (in kw)');
+        if ($propertyGroupOption instanceof PropertyGroupOption) {
+            $propertyGroupOptions[] = $propertyGroupOption;
+        }
+
+        $propertyGroupOption = $this->getPropertyGroupOption('Motor', $fuelType, 'Kraftstoffart');
+        if ($propertyGroupOption instanceof PropertyGroupOption) {
+            $propertyGroupOptions[] = $propertyGroupOption;
+        }
+
+        $propertyGroupOption = $this->getPropertyGroupOption('Basisdaten', $mileage, 'Kilometer');
+        if ($propertyGroupOption instanceof PropertyGroupOption) {
+            $propertyGroupOptions[] = $propertyGroupOption;
+        }
+
+        return $propertyGroupOptions;
+    }
+
+    private function getPropertyGroupOption(string $propertyGroupName, string $groupOptionName, ?string $parentGroupOptionName): ?PropertyGroupOption
+    {
+        try {
+            $propertyGroupOptionQuery = $this->propertyGroupOptionRepository->createQueryBuilder('pgo')
+                ->join('pgo.propertyGroup', 'pg')
+                ->where('pg.name = :propertyGroupName')
+                ->andWhere('pgo.name = :groupOptionName')
+                ->setParameter('propertyGroupName', $propertyGroupName)
+                ->setParameter('groupOptionName', $groupOptionName);
+
+            if ($parentGroupOptionName !== null) {
+                $propertyGroupOptionQuery->join('pgo.parent', 'pgop');
+                $propertyGroupOptionQuery->andWhere('pgop.name = :parentGroupOptionName');
+                $propertyGroupOptionQuery->setParameter('parentGroupOptionName', $parentGroupOptionName);
+            }
+
+            $propertyGroupOption = $propertyGroupOptionQuery->getQuery()->getOneOrNullResult();
+
+            if (!$propertyGroupOption instanceof PropertyGroupOption) {
+                return null;
+            }
+
+            return $propertyGroupOption;
+        } catch (\Throwable) {
+            return null;
+        }
+    }
+
     private function createClassified(
         string $name,
         string $description,
@@ -2536,339 +2751,175 @@ class SearchControllerTest extends WebTestCase
 
     private function createClassifieds(): array
     {
-        $classifieds = [
-            [
-                'name' => 'Test Classified',
-                'description' => 'testClassifiedDescription',
-                'price' => 12345,
-                'offerNumber' => 'testOfferNumber',
-                'options' => [
-                    // Gebrauchtfahrzeug
-                    $this->propertyGroupVehicleCondition->getGroupOptions()->get(1),
-
-                    // Test Brand
-                    $this->propertyGroupBrandWithModel->getGroupOptions()->first(),
-
-                    // Test Brand 1 Series
-                    $this->propertyGroupBrandWithModel->getGroupOptions()->get(2),
-
-                    // Limousine
-                    $this->propertyGroupVehicleType->getGroupOptions()->first(),
-
-                    // Anzahl Sitzplätze 5
-                    $this->propertyGroupVehicleType->getGroupOptions()->get(10),
-
-                    // Anzahl Türen 2/3
-                    $this->propertyGroupVehicleType->getGroupOptions()->get(12),
-
-                    // Erstzulassung 2023
-                    $this->propertyGroupBasicData->getGroupOptions()->get(12),
-
-                    // Kilometer 10560
-                    $this->propertyGroupBasicData->getGroupOptions()->get(14),
-
-                    // Leistung (in kw) 200 kw (272 PS)
-                    $this->propertyGroupBasicData->getGroupOptions()->get(17),
-
-                    // Benzin
-                    $this->propertyGroupEngine->getGroupOptions()->first(),
-
-                    // Automatik
-                    $this->propertyGroupEngine->getGroupOptions()->get(5),
-                ],
-            ],
-            [
-                'name' => 'testClassified2',
-                'description' => 'testClassifiedDescription2',
-                'price' => 22345,
-                'offerNumber' => 'testOfferNumber2',
-                'options' => [
-                    // Gebrauchtfahrzeug
-                    $this->propertyGroupVehicleCondition->getGroupOptions()->get(1),
-
-                    // Test Brand
-                    $this->propertyGroupBrandWithModel->getGroupOptions()->first(),
-
-                    // Test Brand 1 Series
-                    $this->propertyGroupBrandWithModel->getGroupOptions()->get(2),
-
-                    // Sportwagen/Coupe
-                    $this->propertyGroupVehicleType->getGroupOptions()->get(4),
-
-                    // Anzahl Sitzplätze 5
-                    $this->propertyGroupVehicleType->getGroupOptions()->get(10),
-
-                    // Anzahl Türen 2/3
-                    $this->propertyGroupVehicleType->getGroupOptions()->get(12),
-
-                    // Erstzulassung 2023
-                    $this->propertyGroupBasicData->getGroupOptions()->get(12),
-
-                    // Kilometer 10560
-                    $this->propertyGroupBasicData->getGroupOptions()->get(14),
-
-                    // Leistung (in kw) 200 kw (272 PS)
-                    $this->propertyGroupBasicData->getGroupOptions()->get(17),
-
-                    // Benzin
-                    $this->propertyGroupEngine->getGroupOptions()->first(),
-
-                    // Automatik
-                    $this->propertyGroupEngine->getGroupOptions()->get(5),
-                ],
-            ],
-            [
-                'name' => 'testClassified3',
-                'description' => 'testClassifiedDescription3',
-                'price' => 22123,
-                'offerNumber' => 'testOfferNumber3',
-                'options' => [
-                    // Neufahrzeug
-                    $this->propertyGroupVehicleCondition->getGroupOptions()->first(),
-
-                    // Test Brand
-                    $this->propertyGroupBrandWithModel->getGroupOptions()->first(),
-
-                    // Test Brand 2 Series
-                    $this->propertyGroupBrandWithModel->getGroupOptions()->get(3),
-
-                    // Kombi
-                    $this->propertyGroupVehicleType->getGroupOptions()->get(1),
-
-                    // Anzahl Sitzplätze 5
-                    $this->propertyGroupVehicleType->getGroupOptions()->get(10),
-
-                    // Anzahl Türen 4/5
-                    $this->propertyGroupVehicleType->getGroupOptions()->get(13),
-
-                    // Erstzulassung 2023
-                    $this->propertyGroupBasicData->getGroupOptions()->get(12),
-
-                    // Kilometer 70205
-                    $this->propertyGroupBasicData->getGroupOptions()->get(15),
-
-                    // Leistung (in kw) 200 kw (272 PS)
-                    $this->propertyGroupBasicData->getGroupOptions()->get(17),
-
-                    // Diesel
-                    $this->propertyGroupEngine->getGroupOptions()->get(1),
-
-                    // Automatik
-                    $this->propertyGroupEngine->getGroupOptions()->get(5),
-                ],
-            ],
-            [
-                'name' => 'testClassified4',
-                'description' => 'testClassifiedDescription4',
-                'price' => 55125,
-                'offerNumber' => 'testOfferNumber4',
-                'options' => [
-                    // Neufahrzeug
-                    $this->propertyGroupVehicleCondition->getGroupOptions()->first(),
-
-                    // Test Brand
-                    $this->propertyGroupBrandWithModel->getGroupOptions()->first(),
-
-                    // Test Brand 2 Series
-                    $this->propertyGroupBrandWithModel->getGroupOptions()->get(3),
-
-                    // Kombi
-                    $this->propertyGroupVehicleType->getGroupOptions()->get(1),
-
-                    // Anzahl Sitzplätze 5
-                    $this->propertyGroupVehicleType->getGroupOptions()->get(10),
-
-                    // Anzahl Türen 4/5
-                    $this->propertyGroupVehicleType->getGroupOptions()->get(13),
-
-                    // Erstzulassung 2023
-                    $this->propertyGroupBasicData->getGroupOptions()->get(12),
-
-                    // Kilometer 70205
-                    $this->propertyGroupBasicData->getGroupOptions()->get(15),
-
-                    // Leistung (in kw) 200 kw (272 PS)
-                    $this->propertyGroupBasicData->getGroupOptions()->get(17),
-
-                    // Diesel
-                    $this->propertyGroupEngine->getGroupOptions()->get(1),
-
-                    // Schaltgetriebe
-                    $this->propertyGroupEngine->getGroupOptions()->get(6),
-                ],
-            ],
-            [
-                'name' => 'testClassified5',
-                'description' => 'testClassifiedDescription5',
-                'price' => 82345,
-                'offerNumber' => 'testOfferNumber5',
-                'options' => [
-                    // Neufahrzeug
-                    $this->propertyGroupVehicleCondition->getGroupOptions()->first(),
-
-                    // Test Brand
-                    $this->propertyGroupBrandWithModel->getGroupOptions()->first(),
-
-                    // Test Brand 1 Series
-                    $this->propertyGroupBrandWithModel->getGroupOptions()->get(2),
-
-                    // Limousine
-                    $this->propertyGroupVehicleType->getGroupOptions()->first(),
-
-                    // Anzahl Sitzplätze 5
-                    $this->propertyGroupVehicleType->getGroupOptions()->get(10),
-
-                    // Anzahl Türen 2/3
-                    $this->propertyGroupVehicleType->getGroupOptions()->get(12),
-
-                    // Erstzulassung 2023
-                    $this->propertyGroupBasicData->getGroupOptions()->get(12),
-
-                    // Kilometer 10560
-                    $this->propertyGroupBasicData->getGroupOptions()->get(14),
-
-                    // Leistung (in kw) 200 kw (272 PS)
-                    $this->propertyGroupBasicData->getGroupOptions()->get(17),
-
-                    // Benzin
-                    $this->propertyGroupEngine->getGroupOptions()->first(),
-
-                    // Schaltgetriebe
-                    $this->propertyGroupEngine->getGroupOptions()->get(6),
-                ],
-            ],
-            [
-                'name' => 'testClassified6',
-                'description' => 'testClassifiedDescription6',
-                'price' => 21346,
-                'offerNumber' => 'testOfferNumber6',
-                'options' => [
-                    // Neufahrzeug
-                    $this->propertyGroupVehicleCondition->getGroupOptions()->first(),
-
-                    // Test Brand
-                    $this->propertyGroupBrandWithModel->getGroupOptions()->first(),
-
-                    // Test Brand 1 Series
-                    $this->propertyGroupBrandWithModel->getGroupOptions()->get(2),
-
-                    // Limousine
-                    $this->propertyGroupVehicleType->getGroupOptions()->first(),
-
-                    // Anzahl Sitzplätze 5
-                    $this->propertyGroupVehicleType->getGroupOptions()->get(10),
-
-                    // Anzahl Türen 2/3
-                    $this->propertyGroupVehicleType->getGroupOptions()->get(12),
-
-                    // Erstzulassung 2018
-                    $this->propertyGroupBasicData->getGroupOptions()->get(7),
-
-                    // Kilometer 10560
-                    $this->propertyGroupBasicData->getGroupOptions()->get(14),
-
-                    // Leistung (in kw) 200 kw (272 PS)
-                    $this->propertyGroupBasicData->getGroupOptions()->get(17),
-
-                    // Benzin
-                    $this->propertyGroupEngine->getGroupOptions()->first(),
-
-                    // Schaltgetriebe
-                    $this->propertyGroupEngine->getGroupOptions()->get(6),
-                ],
-            ],
-            [
-                'name' => 'testClassified7',
-                'description' => 'testClassifiedDescription7',
-                'price' => 11345,
-                'offerNumber' => 'testOfferNumber7',
-                'options' => [
-                    // Neufahrzeug
-                    $this->propertyGroupVehicleCondition->getGroupOptions()->first(),
-
-                    // Test Brand
-                    $this->propertyGroupBrandWithModel->getGroupOptions()->first(),
-
-                    // Test Brand 1 Series
-                    $this->propertyGroupBrandWithModel->getGroupOptions()->get(2),
-
-                    // Limousine
-                    $this->propertyGroupVehicleType->getGroupOptions()->first(),
-
-                    // Anzahl Sitzplätze 5
-                    $this->propertyGroupVehicleType->getGroupOptions()->get(10),
-
-                    // Anzahl Türen 2/3
-                    $this->propertyGroupVehicleType->getGroupOptions()->get(12),
-
-                    // Erstzulassung 2019
-                    $this->propertyGroupBasicData->getGroupOptions()->get(8),
-
-                    // Kilometer 10560
-                    $this->propertyGroupBasicData->getGroupOptions()->get(14),
-
-                    // Leistung (in kw) 200 kw (272 PS)
-                    $this->propertyGroupBasicData->getGroupOptions()->get(17),
-
-                    // Benzin
-                    $this->propertyGroupEngine->getGroupOptions()->first(),
-
-                    // Schaltgetriebe
-                    $this->propertyGroupEngine->getGroupOptions()->get(6),
-                ],
-            ],
-            [
-                'name' => 'testClassified8',
-                'description' => 'testClassifiedDescription8',
-                'price' => 11548,
-                'offerNumber' => 'testOfferNumber8',
-                'options' => [
-                    // Neufahrzeug
-                    $this->propertyGroupVehicleCondition->getGroupOptions()->first(),
-
-                    // Test Brand
-                    $this->propertyGroupBrandWithModel->getGroupOptions()->first(),
-
-                    // Test Brand 1 Series
-                    $this->propertyGroupBrandWithModel->getGroupOptions()->get(2),
-
-                    // Limousine
-                    $this->propertyGroupVehicleType->getGroupOptions()->first(),
-
-                    // Anzahl Sitzplätze 5
-                    $this->propertyGroupVehicleType->getGroupOptions()->get(10),
-
-                    // Anzahl Türen 2/3
-                    $this->propertyGroupVehicleType->getGroupOptions()->get(12),
-
-                    // Erstzulassung 2020
-                    $this->propertyGroupBasicData->getGroupOptions()->get(9),
-
-                    // Kilometer 10560
-                    $this->propertyGroupBasicData->getGroupOptions()->get(14),
-
-                    // Leistung (in kw) 200 kw (272 PS)
-                    $this->propertyGroupBasicData->getGroupOptions()->get(17),
-
-                    // Benzin
-                    $this->propertyGroupEngine->getGroupOptions()->first(),
-
-                    // Schaltgetriebe
-                    $this->propertyGroupEngine->getGroupOptions()->get(6),
-                ],
-            ],
-        ];
-
-        $createdClassifieds = [];
-        foreach ($classifieds as $classified) {
-            $createdClassifieds[] = $this->createClassified(
-                $classified['name'],
-                $classified['description'],
-                $classified['price'],
-                $classified['offerNumber'],
-                $classified['options']
-            );
-        }
+        // TODO create more classifieds
+
+        $createdClassifieds[] = $this->createClassified(
+            'Test Classified',
+            'testClassifiedDescription',
+            12345,
+            'testOfferNumber',
+            $this->getClassifiedPropertyGroupOptions(
+                'Gebrauchtfahrzeug',
+                'Test Brand',
+                'Test Brand Model child option one',
+                'Test Brand with child options',
+                'Limousine',
+                'Automatik',
+                '2/3',
+                '5',
+                '2023',
+                '200 kw (272 PS)',
+                'Benzin',
+                '10560'
+            )
+        );
+
+        $createdClassifieds[] = $this->createClassified(
+            'testClassified2',
+            'testClassifiedDescription2',
+            22345,
+            'testOfferNumber2',
+            $this->getClassifiedPropertyGroupOptions(
+                'Gebrauchtfahrzeug',
+                'Test Brand',
+                'Test Brand Model child option one',
+                'Test Brand with child options',
+                'Sportwagen/Coupe',
+                'Automatik',
+                '2/3',
+                '5',
+                '2023',
+                '200 kw (272 PS)',
+                'Benzin',
+                '10560'
+            )
+        );
+
+        $createdClassifieds[] = $this->createClassified(
+            'testClassified3',
+            'testClassifiedDescription3',
+            22123,
+            'testOfferNumber3',
+            $this->getClassifiedPropertyGroupOptions(
+                'Neufahrzeug',
+                'Test Brand',
+                'Test Brand Model child option two',
+                'Test Brand with child options',
+                'Kombi',
+                'Automatik',
+                '4/5',
+                '5',
+                '2023',
+                '200 kw (272 PS)',
+                'Diesel',
+                '70205'
+            )
+        );
+
+        $createdClassifieds[] = $this->createClassified(
+            'testClassified4',
+            'testClassifiedDescription4',
+            55125,
+            'testOfferNumber4',
+            $this->getClassifiedPropertyGroupOptions(
+                'Neufahrzeug',
+                'Test Brand',
+                'Test Brand Model child option two',
+                'Test Brand with child options',
+                'Kombi',
+                'Schaltgetriebe',
+                '4/5',
+                '5',
+                '2023',
+                '200 kw (272 PS)',
+                'Diesel',
+                '70205'
+            )
+        );
+
+        $createdClassifieds[] = $this->createClassified(
+            'testClassified5',
+            'testClassifiedDescription5',
+            82345,
+            'testOfferNumber5',
+            $this->getClassifiedPropertyGroupOptions(
+                'Neufahrzeug',
+                'Test Brand',
+                'Test Brand Model child option one',
+                'Test Brand with child options',
+                'Limousine',
+                'Schaltgetriebe',
+                '2/3',
+                '5',
+                '2023',
+                '200 kw (272 PS)',
+                'Benzin',
+                '10560'
+            )
+        );
+
+        $createdClassifieds[] = $this->createClassified(
+            'testClassified6',
+            'testClassifiedDescription6',
+            21346,
+            'testOfferNumber6',
+            $this->getClassifiedPropertyGroupOptions(
+                'Neufahrzeug',
+                'Test Brand',
+                'Test Brand Model child option one',
+                'Test Brand with child options',
+                'Limousine',
+                'Schaltgetriebe',
+                '2/3',
+                '5',
+                '2018',
+                '200 kw (272 PS)',
+                'Benzin',
+                '10560'
+            )
+        );
+
+        $createdClassifieds[] = $this->createClassified(
+            'testClassified7',
+            'testClassifiedDescription7',
+            11345,
+            'testOfferNumber7',
+            $this->getClassifiedPropertyGroupOptions(
+                'Neufahrzeug',
+                'Test Brand',
+                'Test Brand Model child option one',
+                'Test Brand with child options',
+                'Limousine',
+                'Schaltgetriebe',
+                '2/3',
+                '5',
+                '2019',
+                '200 kw (272 PS)',
+                'Benzin',
+                '10560'
+            )
+        );
+
+        $createdClassifieds[] = $this->createClassified(
+            'testClassified8',
+            'testClassifiedDescription8',
+            11548,
+            'testOfferNumber8',
+            $this->getClassifiedPropertyGroupOptions(
+                'Neufahrzeug',
+                'Test Brand',
+                'Test Brand Model child option one',
+                'Test Brand with child options',
+                'Limousine',
+                'Schaltgetriebe',
+                '2/3',
+                '5',
+                '2020',
+                '200 kw (272 PS)',
+                'Benzin',
+                '10560'
+            )
+        );
 
         return $createdClassifieds;
     }

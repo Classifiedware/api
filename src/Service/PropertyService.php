@@ -8,9 +8,9 @@ use App\Repository\PropertyGroupRepository;
 
 class PropertyService
 {
-    private const GROUP_NAME_BRAND_MODEL = 'Marke, Modell, Variante';
-    private const GROUP_OPTION_MODEL = 'Modell';
-    private const GROUP_OPTION_BRAND = 'Marke';
+    public const GROUP_NAME_BRAND_MODEL = 'Marke, Modell, Variante';
+    public const GROUP_OPTION_MODEL = 'Modell';
+    public const GROUP_OPTION_BRAND = 'Marke';
 
     public function __construct(
         private readonly PropertyGroupRepository $propertyGroupRepository
