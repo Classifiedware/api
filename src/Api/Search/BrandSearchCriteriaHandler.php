@@ -6,9 +6,14 @@ use App\Repository\ClassifiedRepository;
 
 class BrandSearchCriteriaHandler implements SearchCriteriaHandlerInterface
 {
+    private string $propertyGroupOptionId = '';
+
+    private const GROUP_OPTION_NAME = 'Marke';
+
     public function __construct(
         private readonly ClassifiedRepository $classifiedRepository
     ) {
+        $this->loadPropertyGroupOptionId();
     }
 
     public function supports(ClassifiedSearchDto $searchDto): bool
@@ -18,11 +23,16 @@ class BrandSearchCriteriaHandler implements SearchCriteriaHandlerInterface
 
     public function getAllowedPropertyGroupOptionIds(ClassifiedSearchDto $searchDto): array
     {
-        return [$searchDto->getBrand()];
+        return [];
     }
 
     public function getExcludedPropertyGroupOptionIds(ClassifiedSearchDto $searchDto): array
     {
-        return [];
+        return $this->classifiedRepository->getExcludedPropertyGroupOptionIdsByParentId($this->propertyGroupOptionId, [$searchDto->getBrand()]);
+    }
+
+    private function loadPropertyGroupOptionId(): void
+    {
+        $this->propertyGroupOptionId = $this->classifiedRepository->getPropertyGroupOptionId(self::GROUP_OPTION_NAME);
     }
 }

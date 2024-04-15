@@ -204,6 +204,32 @@ class ClassifiedRepository extends ServiceEntityRepository
         return $ids;
     }
 
+    public function getExcludedPropertyGroupOptionIdsByParentId(string $parentId, array $whitelistPropertyGroupOptionIds): array
+    {
+        $whitelistPropertyGroupOptionIds = array_map(fn (string $propertyGroupOptionId) => Uuid::fromString($propertyGroupOptionId)->toBinary(), $whitelistPropertyGroupOptionIds);
+
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $query = $qb
+            ->select(['pgo.uuid'])
+            ->from(PropertyGroupOption::class, 'pgo')
+            ->innerJoin('pgo.parent', 'pgop')
+            ->where($qb->expr()->eq('pgop.uuid', ':parentId'))
+            ->andWhere($qb->expr()->notIn('pgo.uuid', ':whitelistPropertyGroupOptionIds'))
+            ->setParameter('parentId', Uuid::fromString($parentId)->toBinary())
+            ->setParameter('whitelistPropertyGroupOptionIds', $whitelistPropertyGroupOptionIds);
+
+        $ids = [];
+        foreach ($query->getQuery()->getArrayResult() as $row) {
+            if (!isset($row['uuid'])) {
+                continue;
+            }
+
+            $ids[] = Uuid::fromString($row['uuid'])->toBinary();
+        }
+
+        return $ids;
+    }
+
     public function getPropertyGroupOptionIdsByParentId(string $propertyGroupId, string $parentId): array
     {
         $qb = $this->getEntityManager()->createQueryBuilder();

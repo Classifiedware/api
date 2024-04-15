@@ -23,7 +23,7 @@ class ModelSearchCriteriaHandler implements SearchCriteriaHandlerInterface
 
     public function getAllowedPropertyGroupOptionIds(ClassifiedSearchDto $searchDto): array
     {
-        return [$searchDto->getBrand()];
+        return [];
     }
 
     public function getExcludedPropertyGroupOptionIds(ClassifiedSearchDto $searchDto): array
