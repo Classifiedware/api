@@ -28,7 +28,7 @@ class VehicleEquipmentSearchCriteriaHandler implements SearchCriteriaHandlerInte
 
     public function getExcludedPropertyGroupOptionIds(ClassifiedSearchDto $searchDto): array
     {
-        return [];
+        return $this->classifiedRepository->getExcludedPropertyGroupOptionIdsForEquipment($this->propertyGroupId, $searchDto->getPropertyGroupOptionIds());
     }
 
     private function loadPropertyGroupId(): void

@@ -2054,7 +2054,7 @@ class SearchControllerTest extends WebTestCase
         $response = json_decode($this->client->getResponse()->getContent(), true);
 
         static::assertArrayHasKey('data', $response);
-        static::assertCount(3, $response['data']);
+        static::assertCount(5, $response['data']);
 
         static::assertSame([
             'data' => [
@@ -2214,6 +2214,124 @@ class SearchControllerTest extends WebTestCase
                         [
                             'optionName' => 'Getriebe',
                             'value' => 'Schaltgetriebe',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[10]->getUuid(),
+                    'name' => 'testClassified11',
+                    'description' => 'testClassifiedDescription11',
+                    'price' => '30,00',
+                    'offerNumber' => 'testOfferNumber11',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '6/7',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2019',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '200 kw (272 PS)',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                        [
+                            'optionName' => 'Technik',
+                            'value' => 'Adaptives Dämpfungssystem',
+                        ],
+                        [
+                            'optionName' => 'Komfort',
+                            'value' => 'Ambiente Beleuchtung',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[11]->getUuid(),
+                    'name' => 'testClassified12',
+                    'description' => 'testClassifiedDescription12',
+                    'price' => '60,00',
+                    'offerNumber' => 'testOfferNumber12',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '6/7',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2019',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '200 kw (272 PS)',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                        [
+                            'optionName' => 'Komfort',
+                            'value' => 'Ambiente Beleuchtung',
                         ],
                     ]
                 ],
@@ -3101,11 +3219,11 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Anzahl Türen',
-                            'value' => '2/3',
+                            'value' => '6/7',
                         ],
                         [
                             'optionName' => 'Erstzulassung',
-                            'value' => '2020',
+                            'value' => '2019',
                         ],
                         [
                             'optionName' => 'Kilometer',
@@ -3121,7 +3239,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Getriebe',
-                            'value' => 'Schaltgetriebe',
+                            'value' => 'Automatik',
                         ],
                         [
                             'optionName' => 'Technik',
@@ -3162,11 +3280,11 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Anzahl Türen',
-                            'value' => '2/3',
+                            'value' => '6/7',
                         ],
                         [
                             'optionName' => 'Erstzulassung',
-                            'value' => '2020',
+                            'value' => '2019',
                         ],
                         [
                             'optionName' => 'Kilometer',
@@ -3182,7 +3300,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Getriebe',
-                            'value' => 'Schaltgetriebe',
+                            'value' => 'Automatik',
                         ],
                         [
                             'optionName' => 'Komfort',
@@ -3191,6 +3309,44 @@ class SearchControllerTest extends WebTestCase
                     ]
                 ],
             ]
+        ], $response);
+    }
+
+    public function testSearchClassifiedWithEquipmentGroupContainsNoResults(): void
+    {
+        $this->createClassifieds();
+
+        $propertyGroupOptionOne = $this->getPropertyGroupOption(
+            'Ausstattung',
+            'Allrad',
+            'Technik'
+        );
+
+        $this->client->request(
+            'POST',
+            '/customer-frontend-api/search/classified',
+            [],
+            [],
+            [],
+            json_encode(
+                [
+                    'page' => 1,
+                    'propertyGroupOptionIds' => [
+                        (string)$propertyGroupOptionOne->getUuid(),
+                    ]
+                ]
+            )
+        );
+
+        static::assertResponseIsSuccessful();
+
+        $response = json_decode($this->client->getResponse()->getContent(), true);
+
+        static::assertArrayHasKey('data', $response);
+        static::assertCount(0, $response['data']);
+
+        static::assertSame([
+            'data' => []
         ], $response);
     }
 
@@ -3841,10 +3997,10 @@ class SearchControllerTest extends WebTestCase
             'Test Brand Model child option one',
             'Test Brand with child options',
             'Limousine',
-            'Schaltgetriebe',
-            '2/3',
+            'Automatik',
+            '6/7',
             '5',
-            '2020',
+            '2019',
             '200 kw (272 PS)',
             'Benzin',
             '10560'
@@ -3874,10 +4030,10 @@ class SearchControllerTest extends WebTestCase
             'Test Brand Model child option one',
             'Test Brand with child options',
             'Limousine',
-            'Schaltgetriebe',
-            '2/3',
+            'Automatik',
+            '6/7',
             '5',
-            '2020',
+            '2019',
             '200 kw (272 PS)',
             'Benzin',
             '10560'
