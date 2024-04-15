@@ -41,6 +41,9 @@ services:
     App\Api\Search\VehicleSeatCountSearchCriteriaHandler:
         tags: ['app.search_condition.handler']
 
+    App\Api\Search\VehicleEquipmentSearchCriteriaHandler:
+        tags: ['app.search_condition.handler']
+
     App\Api\Search\BrandSearchCriteriaHandler:
         tags: ['app.search_condition.handler']
 
