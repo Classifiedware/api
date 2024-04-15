@@ -437,7 +437,7 @@ class SearchControllerTest extends WebTestCase
         $response = json_decode($this->client->getResponse()->getContent(), true);
 
         static::assertArrayHasKey('data', $response);
-        static::assertCount(8, $response['data']);
+        static::assertCount(10, $response['data']);
 
         // TODO: assert classifieds i was too lazy
     }
@@ -1134,7 +1134,7 @@ class SearchControllerTest extends WebTestCase
         $response = json_decode($this->client->getResponse()->getContent(), true);
 
         static::assertArrayHasKey('data', $response);
-        static::assertCount(6, $response['data']);
+        static::assertCount(8, $response['data']);
 
         static::assertSame([
             'data' => [
@@ -1456,6 +1456,112 @@ class SearchControllerTest extends WebTestCase
                         ],
                     ]
                 ],
+                [
+                    'id' => (string)$createdClassifieds[8]->getUuid(),
+                    'name' => 'testClassified9',
+                    'description' => 'testClassifiedDescription9',
+                    'price' => '15,48',
+                    'offerNumber' => 'testOfferNumber9',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Another Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Another Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '2/3',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2023',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '200 kw (272 PS)',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[9]->getUuid(),
+                    'name' => 'testClassified10',
+                    'description' => 'testClassifiedDescription10',
+                    'price' => '20,00',
+                    'offerNumber' => 'testOfferNumber10',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Another Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Another Test Brand Model child option two',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '2/3',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2023',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '200 kw (272 PS)',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                    ]
+                ],
             ]
         ], $response);
     }
@@ -1486,7 +1592,7 @@ class SearchControllerTest extends WebTestCase
         $response = json_decode($this->client->getResponse()->getContent(), true);
 
         static::assertArrayHasKey('data', $response);
-        static::assertCount(6, $response['data']);
+        static::assertCount(8, $response['data']);
 
         static::assertSame([
             'data' => [
@@ -1808,6 +1914,112 @@ class SearchControllerTest extends WebTestCase
                         ],
                     ]
                 ],
+                [
+                    'id' => (string)$createdClassifieds[8]->getUuid(),
+                    'name' => 'testClassified9',
+                    'description' => 'testClassifiedDescription9',
+                    'price' => '15,48',
+                    'offerNumber' => 'testOfferNumber9',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Another Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Another Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '2/3',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2023',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '200 kw (272 PS)',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[9]->getUuid(),
+                    'name' => 'testClassified10',
+                    'description' => 'testClassifiedDescription10',
+                    'price' => '20,00',
+                    'offerNumber' => 'testOfferNumber10',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Another Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Another Test Brand Model child option two',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '2/3',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2023',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '200 kw (272 PS)',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                    ]
+                ],
             ]
         ], $response);
     }
@@ -2049,7 +2261,7 @@ class SearchControllerTest extends WebTestCase
         $response = json_decode($this->client->getResponse()->getContent(), true);
 
         static::assertArrayHasKey('data', $response);
-        static::assertCount(5, $response['data']);
+        static::assertCount(7, $response['data']);
 
         static::assertSame([
             'data' => [
@@ -2315,6 +2527,502 @@ class SearchControllerTest extends WebTestCase
                         [
                             'optionName' => 'Getriebe',
                             'value' => 'Schaltgetriebe',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[8]->getUuid(),
+                    'name' => 'testClassified9',
+                    'description' => 'testClassifiedDescription9',
+                    'price' => '15,48',
+                    'offerNumber' => 'testOfferNumber9',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Another Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Another Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '2/3',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2023',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '200 kw (272 PS)',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[9]->getUuid(),
+                    'name' => 'testClassified10',
+                    'description' => 'testClassifiedDescription10',
+                    'price' => '20,00',
+                    'offerNumber' => 'testOfferNumber10',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Another Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Another Test Brand Model child option two',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '2/3',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2023',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '200 kw (272 PS)',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                    ]
+                ],
+            ]
+        ], $response);
+    }
+
+    public function testSearchClassifiedWithBrandFilter(): void
+    {
+        $createdClassifieds = $this->createClassifieds();
+
+        $propertyGroupOption = $this->getPropertyGroupOption(
+            'Marke, Modell, Variante',
+            'Another Test Brand',
+            'Marke'
+        );
+
+        $this->client->request(
+            'POST',
+            '/customer-frontend-api/search/classified',
+            [],
+            [],
+            [],
+            json_encode(
+                [
+                    'page' => 1,
+                    'brand' => (string)$propertyGroupOption->getUuid()
+                ]
+            )
+        );
+
+        static::assertResponseIsSuccessful();
+
+        $response = json_decode($this->client->getResponse()->getContent(), true);
+
+        static::assertArrayHasKey('data', $response);
+        static::assertCount(2, $response['data']);
+
+        static::assertSame([
+            'data' => [
+                [
+                    'id' => (string)$createdClassifieds[8]->getUuid(),
+                    'name' => 'testClassified9',
+                    'description' => 'testClassifiedDescription9',
+                    'price' => '15,48',
+                    'offerNumber' => 'testOfferNumber9',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Another Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Another Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '2/3',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2023',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '200 kw (272 PS)',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[9]->getUuid(),
+                    'name' => 'testClassified10',
+                    'description' => 'testClassifiedDescription10',
+                    'price' => '20,00',
+                    'offerNumber' => 'testOfferNumber10',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Another Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Another Test Brand Model child option two',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '2/3',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2023',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '200 kw (272 PS)',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                    ]
+                ],
+            ]
+        ], $response);
+    }
+
+    public function testSearchClassifiedWithBrandAndModelFilter(): void
+    {
+        $createdClassifieds = $this->createClassifieds();
+
+        $propertyGroupOptionBrand = $this->getPropertyGroupOption(
+            'Marke, Modell, Variante',
+            'Another Test Brand',
+            'Marke'
+        );
+
+        $propertyGroupOptionModel = $this->getPropertyGroupOption(
+            'Marke, Modell, Variante',
+            'Another Test Brand Model child option two',
+            'Another Test Brand Model with child options'
+        );
+
+        $this->client->request(
+            'POST',
+            '/customer-frontend-api/search/classified',
+            [],
+            [],
+            [],
+            json_encode(
+                [
+                    'page' => 1,
+                    'brand' => (string)$propertyGroupOptionBrand->getUuid(),
+                    'model' => (string)$propertyGroupOptionModel->getUuid(),
+                ]
+            )
+        );
+
+        static::assertResponseIsSuccessful();
+
+        $response = json_decode($this->client->getResponse()->getContent(), true);
+
+        static::assertArrayHasKey('data', $response);
+        static::assertCount(1, $response['data']);
+
+        static::assertSame([
+            'data' => [
+                [
+                    'id' => (string)$createdClassifieds[9]->getUuid(),
+                    'name' => 'testClassified10',
+                    'description' => 'testClassifiedDescription10',
+                    'price' => '20,00',
+                    'offerNumber' => 'testOfferNumber10',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Another Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Another Test Brand Model child option two',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '2/3',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2023',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '200 kw (272 PS)',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                    ]
+                ],
+            ]
+        ], $response);
+    }
+
+    public function testSearchClassifiedWithModelFilterForAllChildOptions(): void
+    {
+        $createdClassifieds = $this->createClassifieds();
+
+        $propertyGroupOptionBrand = $this->getPropertyGroupOption(
+            'Marke, Modell, Variante',
+            'Another Test Brand',
+            'Marke'
+        );
+
+        $propertyGroupOptionModel = $this->getPropertyGroupOption(
+            'Marke, Modell, Variante',
+            'Another Test Brand Model with child options',
+            'Another Test Brand'
+        );
+
+        $this->client->request(
+            'POST',
+            '/customer-frontend-api/search/classified',
+            [],
+            [],
+            [],
+            json_encode(
+                [
+                    'page' => 1,
+                    'brand' => (string)$propertyGroupOptionBrand->getUuid(),
+                    'model' => (string)$propertyGroupOptionModel->getUuid(),
+                ]
+            )
+        );
+
+        static::assertResponseIsSuccessful();
+
+        $response = json_decode($this->client->getResponse()->getContent(), true);
+
+        static::assertArrayHasKey('data', $response);
+        static::assertCount(2, $response['data']);
+
+        static::assertSame([
+            'data' => [
+                [
+                    'id' => (string)$createdClassifieds[8]->getUuid(),
+                    'name' => 'testClassified9',
+                    'description' => 'testClassifiedDescription9',
+                    'price' => '15,48',
+                    'offerNumber' => 'testOfferNumber9',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Another Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Another Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '2/3',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2023',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '200 kw (272 PS)',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[9]->getUuid(),
+                    'name' => 'testClassified10',
+                    'description' => 'testClassifiedDescription10',
+                    'price' => '20,00',
+                    'offerNumber' => 'testOfferNumber10',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Another Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Another Test Brand Model child option two',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '2/3',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2023',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '200 kw (272 PS)',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
                         ],
                     ]
                 ],
@@ -2915,6 +3623,48 @@ class SearchControllerTest extends WebTestCase
                 '2/3',
                 '5',
                 '2020',
+                '200 kw (272 PS)',
+                'Benzin',
+                '10560'
+            )
+        );
+
+        $createdClassifieds[] = $this->createClassified(
+            'testClassified9',
+            'testClassifiedDescription9',
+            1548,
+            'testOfferNumber9',
+            $this->getClassifiedPropertyGroupOptions(
+                'Neufahrzeug',
+                'Another Test Brand',
+                'Another Test Brand Model child option one',
+                'Another Test Brand Model with child options',
+                'Limousine',
+                'Automatik',
+                '2/3',
+                '5',
+                '2023',
+                '200 kw (272 PS)',
+                'Benzin',
+                '10560'
+            )
+        );
+
+        $createdClassifieds[] = $this->createClassified(
+            'testClassified10',
+            'testClassifiedDescription10',
+            2000,
+            'testOfferNumber10',
+            $this->getClassifiedPropertyGroupOptions(
+                'Neufahrzeug',
+                'Another Test Brand',
+                'Another Test Brand Model child option two',
+                'Another Test Brand Model with child options',
+                'Limousine',
+                'Automatik',
+                '2/3',
+                '5',
+                '2023',
                 '200 kw (272 PS)',
                 'Benzin',
                 '10560'
