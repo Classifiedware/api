@@ -255,6 +255,29 @@ class ClassifiedRepository extends ServiceEntityRepository
         return $ids;
     }
 
+    public function getPropertyGroupOptionIdsByGroupId(string $propertyGroupId): array
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $query = $qb
+            ->select(['pgo.uuid'])
+            ->from(PropertyGroupOption::class, 'pgo')
+            ->innerJoin('pgo.propertyGroup', 'pg')
+            ->andWhere($qb->expr()->eq('pg.uuid', ':propertyGroupId'))
+            ->andWhere($qb->expr()->isNotNull('pgo.parent'))
+            ->setParameter('propertyGroupId', Uuid::fromString($propertyGroupId)->toBinary());
+
+        $ids = [];
+        foreach ($query->getQuery()->getArrayResult() as $row) {
+            if (!isset($row['uuid'])) {
+                continue;
+            }
+
+            $ids[] = Uuid::fromString($row['uuid'])->toBinary();
+        }
+
+        return $ids;
+    }
+
     public function getPropertyGroupId(string $name): string
     {
         $qb = $this->getEntityManager()->createQueryBuilder();

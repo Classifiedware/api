@@ -3030,6 +3030,170 @@ class SearchControllerTest extends WebTestCase
         ], $response);
     }
 
+    public function testSearchClassifiedWithEquipmentGroup(): void
+    {
+        $createdClassifieds = $this->createClassifieds();
+
+        $propertyGroupOptionOne = $this->getPropertyGroupOption(
+            'Ausstattung',
+            'Adaptives Dämpfungssystem',
+            'Technik'
+        );
+
+        $propertyGroupOptionTwo = $this->getPropertyGroupOption(
+            'Ausstattung',
+            'Ambiente Beleuchtung',
+            'Komfort'
+        );
+
+        $this->client->request(
+            'POST',
+            '/customer-frontend-api/search/classified',
+            [],
+            [],
+            [],
+            json_encode(
+                [
+                    'page' => 1,
+                    'propertyGroupOptionIds' => [
+                        (string)$propertyGroupOptionOne->getUuid(),
+                        (string)$propertyGroupOptionTwo->getUuid(),
+                    ]
+                ]
+            )
+        );
+
+        static::assertResponseIsSuccessful();
+
+        $response = json_decode($this->client->getResponse()->getContent(), true);
+
+        static::assertArrayHasKey('data', $response);
+        static::assertCount(2, $response['data']);
+
+        static::assertSame([
+            'data' => [
+                [
+                    'id' => (string)$createdClassifieds[10]->getUuid(),
+                    'name' => 'testClassified11',
+                    'description' => 'testClassifiedDescription11',
+                    'price' => '30,00',
+                    'offerNumber' => 'testOfferNumber11',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '2/3',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2020',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '200 kw (272 PS)',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Schaltgetriebe',
+                        ],
+                        [
+                            'optionName' => 'Technik',
+                            'value' => 'Adaptives Dämpfungssystem',
+                        ],
+                        [
+                            'optionName' => 'Komfort',
+                            'value' => 'Ambiente Beleuchtung',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[11]->getUuid(),
+                    'name' => 'testClassified12',
+                    'description' => 'testClassifiedDescription12',
+                    'price' => '60,00',
+                    'offerNumber' => 'testOfferNumber12',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '2/3',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2020',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '200 kw (272 PS)',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Schaltgetriebe',
+                        ],
+                        [
+                            'optionName' => 'Komfort',
+                            'value' => 'Ambiente Beleuchtung',
+                        ],
+                    ]
+                ],
+            ]
+        ], $response);
+    }
+
     public function testSearchClassifiedContainsNoResults(): void
     {
         $this->createClassifieds();
@@ -3669,6 +3833,67 @@ class SearchControllerTest extends WebTestCase
                 'Benzin',
                 '10560'
             )
+        );
+
+        $propertyGroupOptions = $this->getClassifiedPropertyGroupOptions(
+            'Neufahrzeug',
+            'Test Brand',
+            'Test Brand Model child option one',
+            'Test Brand with child options',
+            'Limousine',
+            'Schaltgetriebe',
+            '2/3',
+            '5',
+            '2020',
+            '200 kw (272 PS)',
+            'Benzin',
+            '10560'
+        );
+
+        $propertyGroupOption = $this->getPropertyGroupOption('Ausstattung', 'Adaptives Dämpfungssystem', 'Technik');
+        if ($propertyGroupOption instanceof PropertyGroupOption) {
+            $propertyGroupOptions[] = $propertyGroupOption;
+        }
+
+        $propertyGroupOption = $this->getPropertyGroupOption('Ausstattung', 'Ambiente Beleuchtung', 'Komfort');
+        if ($propertyGroupOption instanceof PropertyGroupOption) {
+            $propertyGroupOptions[] = $propertyGroupOption;
+        }
+
+        $createdClassifieds[] = $this->createClassified(
+            'testClassified11',
+            'testClassifiedDescription11',
+            3000,
+            'testOfferNumber11',
+            $propertyGroupOptions
+        );
+
+        $propertyGroupOptions = $this->getClassifiedPropertyGroupOptions(
+            'Neufahrzeug',
+            'Test Brand',
+            'Test Brand Model child option one',
+            'Test Brand with child options',
+            'Limousine',
+            'Schaltgetriebe',
+            '2/3',
+            '5',
+            '2020',
+            '200 kw (272 PS)',
+            'Benzin',
+            '10560'
+        );
+
+        $propertyGroupOption = $this->getPropertyGroupOption('Ausstattung', 'Ambiente Beleuchtung', 'Komfort');
+        if ($propertyGroupOption instanceof PropertyGroupOption) {
+            $propertyGroupOptions[] = $propertyGroupOption;
+        }
+
+        $createdClassifieds[] = $this->createClassified(
+            'testClassified12',
+            'testClassifiedDescription12',
+            6000,
+            'testOfferNumber12',
+            $propertyGroupOptions
         );
 
         return $createdClassifieds;
