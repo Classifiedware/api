@@ -230,7 +230,7 @@ class ClassifiedRepository extends ServiceEntityRepository
         return $ids;
     }
 
-    public function getExcludedPropertyGroupOptionIdsForEquipment(string $propertyGroupId, array $whitelistPropertyGroupOptionIds): array
+    public function getExcludedPropertyGroupOptionIdsForEquipment(string $propertyGroupId, array $whitelistPropertyGroupOptionIds, bool $withParent): array
     {
         $whitelistPropertyGroupOptionIds = array_map(fn (string $propertyGroupOptionId) => Uuid::fromString($propertyGroupOptionId)->toBinary(), $whitelistPropertyGroupOptionIds);
 
@@ -241,9 +241,12 @@ class ClassifiedRepository extends ServiceEntityRepository
             ->innerJoin('pgo.propertyGroup', 'pg')
             ->andWhere($qb->expr()->eq('pg.uuid', ':propertyGroupId'))
             ->andWhere($qb->expr()->notIn('pgo.uuid', ':whitelistPropertyGroupOptionIds'))
-            ->andWhere($qb->expr()->isNotNull('pgo.parent'))
             ->setParameter('propertyGroupId', Uuid::fromString($propertyGroupId)->toBinary())
             ->setParameter('whitelistPropertyGroupOptionIds', $whitelistPropertyGroupOptionIds);
+
+        if ($withParent) {
+            $query->andWhere($qb->expr()->isNotNull('pgo.parent'));
+        }
 
         $ids = [];
         foreach ($query->getQuery()->getArrayResult() as $row) {
@@ -282,7 +285,7 @@ class ClassifiedRepository extends ServiceEntityRepository
         return $ids;
     }
 
-    public function getPropertyGroupOptionIdsByGroupId(string $propertyGroupId): array
+    public function getPropertyGroupOptionIdsByGroupId(string $propertyGroupId, bool $withParent): array
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
         $query = $qb
@@ -290,8 +293,11 @@ class ClassifiedRepository extends ServiceEntityRepository
             ->from(PropertyGroupOption::class, 'pgo')
             ->innerJoin('pgo.propertyGroup', 'pg')
             ->andWhere($qb->expr()->eq('pg.uuid', ':propertyGroupId'))
-            ->andWhere($qb->expr()->isNotNull('pgo.parent'))
             ->setParameter('propertyGroupId', Uuid::fromString($propertyGroupId)->toBinary());
+
+        if ($withParent) {
+            $query->andWhere($qb->expr()->isNotNull('pgo.parent'));
+        }
 
         $ids = [];
         foreach ($query->getQuery()->getArrayResult() as $row) {

@@ -4,11 +4,11 @@ namespace App\Api\Search;
 
 use App\Repository\ClassifiedRepository;
 
-class VehicleEquipmentSearchCriteriaHandler implements SearchCriteriaHandlerInterface
+class VehicleInteriorColorSearchCriteriaHandler implements SearchCriteriaHandlerInterface
 {
     private string $propertyGroupId = '';
 
-    private const GROUP_NAME = 'Ausstattung';
+    private const GROUP_NAME = 'Innenausstattung';
 
     public function __construct(
         private readonly ClassifiedRepository $classifiedRepository
@@ -23,12 +23,12 @@ class VehicleEquipmentSearchCriteriaHandler implements SearchCriteriaHandlerInte
 
     public function getAllowedPropertyGroupOptionIds(ClassifiedSearchDto $searchDto): array
     {
-        return $this->classifiedRepository->getPropertyGroupOptionIdsByGroupId($this->propertyGroupId, true);
+        return $this->classifiedRepository->getPropertyGroupOptionIdsByGroupId($this->propertyGroupId, false);
     }
 
     public function getExcludedPropertyGroupOptionIds(ClassifiedSearchDto $searchDto): array
     {
-        return $this->classifiedRepository->getExcludedPropertyGroupOptionIdsForEquipment($this->propertyGroupId, $searchDto->getPropertyGroupOptionIds(), true);
+        return $this->classifiedRepository->getExcludedPropertyGroupOptionIdsForEquipment($this->propertyGroupId, $searchDto->getPropertyGroupOptionIds(), false);
     }
 
     private function loadPropertyGroupId(): void
