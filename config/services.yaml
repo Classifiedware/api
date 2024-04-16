@@ -47,6 +47,9 @@ services:
     App\Api\Search\VehicleExteriorColorSearchCriteriaHandler:
         tags: ['app.search_condition.handler']
 
+    App\Api\Search\VehicleInteriorColorSearchCriteriaHandler:
+        tags: ['app.search_condition.handler']
+
     App\Api\Search\BrandSearchCriteriaHandler:
         tags: ['app.search_condition.handler']
 
