@@ -3592,7 +3592,7 @@ class SearchControllerTest extends WebTestCase
         ], $response);
     }
 
-    public function testSearchClassifiedWithExteriorGroup(): void
+    public function testSearchClassifiedWithExteriorColor(): void
     {
         $createdClassifieds = $this->createClassifieds();
 
@@ -3752,7 +3752,7 @@ class SearchControllerTest extends WebTestCase
         ], $response);
     }
 
-    public function testSearchClassifiedWithExteriorGroupContainsNoResults(): void
+    public function testSearchClassifiedWithExteriorColorContainsNoResults(): void
     {
         $this->createClassifieds();
 
