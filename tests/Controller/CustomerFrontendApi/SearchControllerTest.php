@@ -34,6 +34,8 @@ class SearchControllerTest extends WebTestCase
 
     private PropertyGroup $propertyGroupEngine;
 
+    private PropertyGroup $propertyGroupExteriorColor;
+
     private PropertyGroup $propertyGroupEquipment;
 
     private PropertyGroupOptionRepository $propertyGroupOptionRepository;
@@ -376,6 +378,30 @@ class SearchControllerTest extends WebTestCase
                                     'value' => 'Schaltgetriebe'
                                 ],
                             ]
+                        ],
+                    ]
+                ],
+                [
+                    'name' => 'Außenfarbe',
+                    'isEquipmentGroup' => false,
+                    'groupOptions' => [
+                        [
+                            'id' => (string)$this->propertyGroupExteriorColor->getGroupOptions()->get(0)->getUuid(),
+                            'name' => 'Schwarz',
+                            'type' => 'checkbox',
+                            'optionValues' => [],
+                        ],
+                        [
+                            'id' => (string)$this->propertyGroupExteriorColor->getGroupOptions()->get(1)->getUuid(),
+                            'name' => 'Grau',
+                            'type' => 'checkbox',
+                            'optionValues' => [],
+                        ],
+                        [
+                            'id' => (string)$this->propertyGroupExteriorColor->getGroupOptions()->get(2)->getUuid(),
+                            'name' => 'Weiss',
+                            'type' => 'checkbox',
+                            'optionValues' => [],
                         ],
                     ]
                 ],
@@ -2054,7 +2080,7 @@ class SearchControllerTest extends WebTestCase
         $response = json_decode($this->client->getResponse()->getContent(), true);
 
         static::assertArrayHasKey('data', $response);
-        static::assertCount(5, $response['data']);
+        static::assertCount(7, $response['data']);
 
         static::assertSame([
             'data' => [
@@ -2332,6 +2358,120 @@ class SearchControllerTest extends WebTestCase
                         [
                             'optionName' => 'Komfort',
                             'value' => 'Ambiente Beleuchtung',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[12]->getUuid(),
+                    'name' => 'testClassified13',
+                    'description' => 'testClassifiedDescription13',
+                    'price' => '90.000,00',
+                    'offerNumber' => 'testOfferNumber13',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '6/7',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2019',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '200 kw (272 PS)',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                        [
+                            'optionName' => 'Außenfarbe',
+                            'value' => 'Schwarz',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[13]->getUuid(),
+                    'name' => 'testClassified14',
+                    'description' => 'testClassifiedDescription14',
+                    'price' => '50.123,00',
+                    'offerNumber' => 'testOfferNumber14',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '6/7',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2019',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '200 kw (272 PS)',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                        [
+                            'optionName' => 'Außenfarbe',
+                            'value' => 'Grau',
                         ],
                     ]
                 ],
@@ -3312,6 +3452,204 @@ class SearchControllerTest extends WebTestCase
         ], $response);
     }
 
+    public function testSearchClassifiedWithExteriorGroup(): void
+    {
+        $createdClassifieds = $this->createClassifieds();
+
+        $propertyGroupOptionOne = $this->getPropertyGroupOption(
+            'Außenfarbe',
+            'Schwarz',
+            null
+        );
+
+        $propertyGroupOptionTwo = $this->getPropertyGroupOption(
+            'Außenfarbe',
+            'Grau',
+            null
+        );
+
+        $this->client->request(
+            'POST',
+            '/customer-frontend-api/search/classified',
+            [],
+            [],
+            [],
+            json_encode(
+                [
+                    'page' => 1,
+                    'propertyGroupOptionIds' => [
+                        (string)$propertyGroupOptionOne->getUuid(),
+                        (string)$propertyGroupOptionTwo->getUuid(),
+                    ]
+                ]
+            )
+        );
+
+        static::assertResponseIsSuccessful();
+
+        $response = json_decode($this->client->getResponse()->getContent(), true);
+
+        static::assertArrayHasKey('data', $response);
+        static::assertCount(2, $response['data']);
+
+        static::assertSame([
+            'data' => [
+                [
+                    'id' => (string)$createdClassifieds[12]->getUuid(),
+                    'name' => 'testClassified13',
+                    'description' => 'testClassifiedDescription13',
+                    'price' => '90.000,00',
+                    'offerNumber' => 'testOfferNumber13',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '6/7',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2019',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '200 kw (272 PS)',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                        [
+                            'optionName' => 'Außenfarbe',
+                            'value' => 'Schwarz',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[13]->getUuid(),
+                    'name' => 'testClassified14',
+                    'description' => 'testClassifiedDescription14',
+                    'price' => '50.123,00',
+                    'offerNumber' => 'testOfferNumber14',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '6/7',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2019',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '200 kw (272 PS)',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                        [
+                            'optionName' => 'Außenfarbe',
+                            'value' => 'Grau',
+                        ],
+                    ]
+                ],
+            ]
+        ], $response);
+    }
+
+    public function testSearchClassifiedWithExteriorGroupContainsNoResults(): void
+    {
+        $this->createClassifieds();
+
+        $propertyGroupOptionOne = $this->getPropertyGroupOption(
+            'Außenfarbe',
+            'Weiß',
+            null
+        );
+
+        $this->client->request(
+            'POST',
+            '/customer-frontend-api/search/classified',
+            [],
+            [],
+            [],
+            json_encode(
+                [
+                    'page' => 1,
+                    'propertyGroupOptionIds' => [
+                        (string)$propertyGroupOptionOne->getUuid(),
+                    ]
+                ]
+            )
+        );
+
+        static::assertResponseIsSuccessful();
+
+        $response = json_decode($this->client->getResponse()->getContent(), true);
+
+        static::assertArrayHasKey('data', $response);
+        static::assertCount(0, $response['data']);
+
+        static::assertSame([
+            'data' => []
+        ], $response);
+    }
+
     public function testSearchClassifiedWithEquipmentGroupContainsNoResults(): void
     {
         $this->createClassifieds();
@@ -3622,6 +3960,24 @@ class SearchControllerTest extends WebTestCase
             ],
         ]);
 
+        $propertyGroupExteriorColor = $this->createPropertyGroup('Außenfarbe', [
+            [
+                'name' => 'Schwarz',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => []
+            ],
+            [
+                'name' => 'Grau',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => []
+            ],
+            [
+                'name' => 'Weiss',
+                'type' => PropertyGroupOption::TYPE_CHECKBOX,
+                'values' => []
+            ],
+        ]);
+
         $propertyGroupEquipment = $this->createPropertyGroup('Ausstattung', [
             [
                 'name' => 'Technik',
@@ -3646,6 +4002,7 @@ class SearchControllerTest extends WebTestCase
         $this->propertyGroupVehicleType = $propertyGroupVehicleType;
         $this->propertyGroupBasicData = $propertyGroupBasicData;
         $this->propertyGroupEngine = $propertyGroupEngine;
+        $this->propertyGroupExteriorColor = $propertyGroupExteriorColor;
         $this->propertyGroupEquipment = $propertyGroupEquipment;
     }
 
@@ -4049,6 +4406,62 @@ class SearchControllerTest extends WebTestCase
             'testClassifiedDescription12',
             6000,
             'testOfferNumber12',
+            $propertyGroupOptions
+        );
+
+        $propertyGroupOptions = $this->getClassifiedPropertyGroupOptions(
+            'Neufahrzeug',
+            'Test Brand',
+            'Test Brand Model child option one',
+            'Test Brand with child options',
+            'Limousine',
+            'Automatik',
+            '6/7',
+            '5',
+            '2019',
+            '200 kw (272 PS)',
+            'Benzin',
+            '10560'
+        );
+
+        $propertyGroupOption = $this->getPropertyGroupOption('Außenfarbe', 'Schwarz', null);
+        if ($propertyGroupOption instanceof PropertyGroupOption) {
+            $propertyGroupOptions[] = $propertyGroupOption;
+        }
+
+        $createdClassifieds[] = $this->createClassified(
+            'testClassified13',
+            'testClassifiedDescription13',
+            9000000,
+            'testOfferNumber13',
+            $propertyGroupOptions
+        );
+
+        $propertyGroupOptions = $this->getClassifiedPropertyGroupOptions(
+            'Neufahrzeug',
+            'Test Brand',
+            'Test Brand Model child option one',
+            'Test Brand with child options',
+            'Limousine',
+            'Automatik',
+            '6/7',
+            '5',
+            '2019',
+            '200 kw (272 PS)',
+            'Benzin',
+            '10560'
+        );
+
+        $propertyGroupOption = $this->getPropertyGroupOption('Außenfarbe', 'Grau', null);
+        if ($propertyGroupOption instanceof PropertyGroupOption) {
+            $propertyGroupOptions[] = $propertyGroupOption;
+        }
+
+        $createdClassifieds[] = $this->createClassified(
+            'testClassified14',
+            'testClassifiedDescription14',
+            5012300,
+            'testOfferNumber14',
             $propertyGroupOptions
         );
 
