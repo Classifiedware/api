@@ -48,7 +48,7 @@ class CarDealerClassifiedFixture extends Fixture implements DependentFixtureInte
                 '4/5',
                 '5',
                 '2023',
-                '200 kw (272 PS)',
+                '272',
                 'Benzin',
                 '70205'
             ),
@@ -70,7 +70,7 @@ class CarDealerClassifiedFixture extends Fixture implements DependentFixtureInte
                 '4/5',
                 '4',
                 '2020',
-                '150 kw (204 PS)',
+                '204',
                 'Diesel',
                 '10560'
             ),
@@ -92,7 +92,7 @@ class CarDealerClassifiedFixture extends Fixture implements DependentFixtureInte
                 '2/3',
                 '3',
                 '2018',
-                '100 kw (136 PS)',
+                '136',
                 'Benzin',
                 '10560'
             ),
@@ -114,7 +114,7 @@ class CarDealerClassifiedFixture extends Fixture implements DependentFixtureInte
                 '2/3',
                 '2',
                 '2018',
-                '200 kw (272 PS)',
+                '272',
                 'Elektro',
                 '70205'
             ),
@@ -136,7 +136,7 @@ class CarDealerClassifiedFixture extends Fixture implements DependentFixtureInte
                 '6/7',
                 '7',
                 '2021',
-                '600 kw (816 PS)',
+                '816',
                 'Benzin',
                 '70205'
             ),
@@ -158,7 +158,7 @@ class CarDealerClassifiedFixture extends Fixture implements DependentFixtureInte
                 '4/5',
                 '5',
                 '2024',
-                '150 kw (204 PS)',
+                '204',
                 'Benzin',
                 '10560'
             ),
@@ -180,7 +180,7 @@ class CarDealerClassifiedFixture extends Fixture implements DependentFixtureInte
                 '4/5',
                 '5',
                 '2024',
-                '300 kw (408 PS)',
+                '408',
                 'Benzin',
                 '10560'
             ),
@@ -202,7 +202,7 @@ class CarDealerClassifiedFixture extends Fixture implements DependentFixtureInte
                 '4/5',
                 '5',
                 '2024',
-                '400 kw (544 PS)',
+                '544',
                 'Benzin',
                 '70205'
             ),
@@ -267,7 +267,7 @@ class CarDealerClassifiedFixture extends Fixture implements DependentFixtureInte
             $propertyGroupOptions[] = $propertyGroupOption;
         }
 
-        $propertyGroupOption = $this->getPropertyGroupOption('Basisdaten', $horsePower, 'Leistung (in kw)');
+        $propertyGroupOption = $this->getPropertyGroupOption('Basisdaten', $horsePower, 'Leistung');
         if ($propertyGroupOption instanceof PropertyGroupOption) {
             $propertyGroupOptions[] = $propertyGroupOption;
         }

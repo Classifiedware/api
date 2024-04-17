@@ -50,6 +50,9 @@ services:
     App\Api\Search\VehicleInteriorColorSearchCriteriaHandler:
         tags: ['app.search_condition.handler']
 
+    App\Api\Search\VehicleHorsePowerSearchCriteriaHandler:
+        tags: ['app.search_condition.handler']
+
     App\Api\Search\BrandSearchCriteriaHandler:
         tags: ['app.search_condition.handler']
 
