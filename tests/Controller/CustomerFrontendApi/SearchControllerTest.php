@@ -328,7 +328,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'id' => (string)$this->propertyGroupBasicData->getGroupOptions()->get(25)->getUuid(),
-                            'name' => 'Leistung (in kw)',
+                            'name' => 'Leistung',
                             'type' => 'selectRange',
                             'optionValues' => [
                                 [
@@ -592,7 +592,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '250',
                         ],
                         [
@@ -645,7 +645,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '250',
                         ],
                         [
@@ -732,7 +732,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '250',
                         ],
                         [
@@ -819,7 +819,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '70205',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '350',
                         ],
                         [
@@ -872,7 +872,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '70205',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '350',
                         ],
                         [
@@ -959,7 +959,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '70205',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '350',
                         ],
                         [
@@ -1012,7 +1012,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '450',
                         ],
                         [
@@ -1065,7 +1065,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '450',
                         ],
                         [
@@ -1118,7 +1118,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '550',
                         ],
                         [
@@ -1171,7 +1171,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '650',
                         ],
                         [
@@ -1258,7 +1258,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '250',
                         ],
                         [
@@ -1311,7 +1311,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '250',
                         ],
                         [
@@ -1364,7 +1364,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '450',
                         ],
                         [
@@ -1417,7 +1417,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '450',
                         ],
                         [
@@ -1470,7 +1470,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '550',
                         ],
                         [
@@ -1523,7 +1523,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '650',
                         ],
                         [
@@ -1576,7 +1576,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '650',
                         ],
                         [
@@ -1629,7 +1629,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '750',
                         ],
                         [
@@ -1716,7 +1716,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '250',
                         ],
                         [
@@ -1769,7 +1769,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '250',
                         ],
                         [
@@ -1822,7 +1822,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '70205',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '350',
                         ],
                         [
@@ -1875,7 +1875,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '70205',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '350',
                         ],
                         [
@@ -1928,7 +1928,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '450',
                         ],
                         [
@@ -1981,7 +1981,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '650',
                         ],
                         [
@@ -2034,7 +2034,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '650',
                         ],
                         [
@@ -2087,7 +2087,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '750',
                         ],
                         [
@@ -2178,7 +2178,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '450',
                         ],
                         [
@@ -2231,7 +2231,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '550',
                         ],
                         [
@@ -2284,7 +2284,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '650',
                         ],
                         [
@@ -2337,7 +2337,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '750',
                         ],
                         [
@@ -2398,7 +2398,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '850',
                         ],
                         [
@@ -2455,7 +2455,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '850',
                         ],
                         [
@@ -2512,7 +2512,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '850',
                         ],
                         [
@@ -2569,7 +2569,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '850',
                         ],
                         [
@@ -2626,7 +2626,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '850',
                         ],
                         [
@@ -2731,7 +2731,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '250',
                         ],
                         [
@@ -2784,7 +2784,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '450',
                         ],
                         [
@@ -2837,7 +2837,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '450',
                         ],
                         [
@@ -2890,7 +2890,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '550',
                         ],
                         [
@@ -2943,7 +2943,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '650',
                         ],
                         [
@@ -2996,7 +2996,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '650',
                         ],
                         [
@@ -3049,7 +3049,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '750',
                         ],
                         [
@@ -3139,7 +3139,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '650',
                         ],
                         [
@@ -3192,7 +3192,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '750',
                         ],
                         [
@@ -3289,7 +3289,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '750',
                         ],
                         [
@@ -3386,7 +3386,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '650',
                         ],
                         [
@@ -3439,7 +3439,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '750',
                         ],
                         [
@@ -3538,7 +3538,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '750',
                         ],
                         [
@@ -3599,7 +3599,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '850',
                         ],
                         [
@@ -3702,7 +3702,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '850',
                         ],
                         [
@@ -3759,7 +3759,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '850',
                         ],
                         [
@@ -3900,7 +3900,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '850',
                         ],
                         [
@@ -3957,7 +3957,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '850',
                         ],
                         [
@@ -4061,7 +4061,7 @@ class SearchControllerTest extends WebTestCase
         $propertyGroupOptionOne = $this->getPropertyGroupOption(
             'Basisdaten',
             '850',
-            'Leistung (in kw)'
+            'Leistung'
         );
 
         $this->client->request(
@@ -4129,7 +4129,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '850',
                         ],
                         [
@@ -4186,7 +4186,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '850',
                         ],
                         [
@@ -4243,7 +4243,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '850',
                         ],
                         [
@@ -4300,7 +4300,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '850',
                         ],
                         [
@@ -4357,7 +4357,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '850',
                         ],
                         [
@@ -4385,13 +4385,13 @@ class SearchControllerTest extends WebTestCase
         $propertyGroupOptionOne = $this->getPropertyGroupOption(
             'Basisdaten',
             '650',
-            'Leistung (in kw)'
+            'Leistung'
         );
 
         $propertyGroupOptionTwo = $this->getPropertyGroupOption(
             'Basisdaten',
             '850',
-            'Leistung (in kw)'
+            'Leistung'
         );
 
         $this->client->request(
@@ -4462,7 +4462,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '650',
                         ],
                         [
@@ -4515,7 +4515,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '650',
                         ],
                         [
@@ -4568,7 +4568,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '750',
                         ],
                         [
@@ -4621,7 +4621,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '750',
                         ],
                         [
@@ -4682,7 +4682,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '850',
                         ],
                         [
@@ -4739,7 +4739,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '850',
                         ],
                         [
@@ -4796,7 +4796,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '850',
                         ],
                         [
@@ -4853,7 +4853,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '850',
                         ],
                         [
@@ -4910,7 +4910,7 @@ class SearchControllerTest extends WebTestCase
                             'value' => '10560',
                         ],
                         [
-                            'optionName' => 'Leistung (in kw)',
+                            'optionName' => 'Leistung',
                             'value' => '850',
                         ],
                         [
@@ -4938,7 +4938,7 @@ class SearchControllerTest extends WebTestCase
         $propertyGroupOptionOne = $this->getPropertyGroupOption(
             'Basisdaten',
             '950',
-            'Leistung (in kw)'
+            'Leistung'
         );
 
         $this->client->request(
@@ -5222,7 +5222,7 @@ class SearchControllerTest extends WebTestCase
                 'values' => ['10560', '70205']
             ],
             [
-                'name' => 'Leistung (in kw)',
+                'name' => 'Leistung',
                 'type' => PropertyGroupOption::TYPE_SELECT_RANGE,
                 'values' => ['250', '350', '450', '550', '650', '750', '850', '950']
             ],
@@ -5363,7 +5363,7 @@ class SearchControllerTest extends WebTestCase
             $propertyGroupOptions[] = $propertyGroupOption;
         }
 
-        $propertyGroupOption = $this->getPropertyGroupOption('Basisdaten', $horsePower, 'Leistung (in kw)');
+        $propertyGroupOption = $this->getPropertyGroupOption('Basisdaten', $horsePower, 'Leistung');
         if ($propertyGroupOption instanceof PropertyGroupOption) {
             $propertyGroupOptions[] = $propertyGroupOption;
         }

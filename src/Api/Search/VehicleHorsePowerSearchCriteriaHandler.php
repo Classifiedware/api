@@ -13,7 +13,7 @@ class VehicleHorsePowerSearchCriteriaHandler implements SearchCriteriaHandlerInt
     private string $propertyGroupOptionId = '';
 
     private const GROUP_NAME = 'Basisdaten';
-    public const GROUP_OPTION_HORSE_POWER = 'Leistung (in kw)';
+    public const GROUP_OPTION_HORSE_POWER = 'Leistung';
 
     public function __construct(
         private readonly ClassifiedRepository $classifiedRepository

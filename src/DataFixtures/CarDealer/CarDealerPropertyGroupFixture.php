@@ -176,7 +176,7 @@ class CarDealerPropertyGroupFixture extends Fixture
                 'values' => $mileageValues
             ],
             [
-                'name' => 'Leistung (in kw)',
+                'name' => 'Leistung',
                 'type' => PropertyGroupOption::TYPE_SELECT_RANGE,
                 'values' => $this->getHorsePowerValues()
             ],
@@ -693,16 +693,16 @@ class CarDealerPropertyGroupFixture extends Fixture
     private function getHorsePowerValues(): array
     {
         return [
-            '40 kw (54 PS)',
-            '60 kw (82 PS)',
-            '80 kw (109 PS)',
-            '100 kw (136 PS)',
-            '150 kw (204 PS)',
-            '200 kw (272 PS)',
-            '300 kw (408 PS)',
-            '400 kw (544 PS)',
-            '500 kw (680 PS)',
-            '600 kw (816 PS)',
+            '54',
+            '82',
+            '109',
+            '136',
+            '204',
+            '272',
+            '408',
+            '544',
+            '680',
+            '816',
         ];
     }
 }
