@@ -327,13 +327,37 @@ class SearchControllerTest extends WebTestCase
                             ]
                         ],
                         [
-                            'id' => (string)$this->propertyGroupBasicData->getGroupOptions()->get(18)->getUuid(),
+                            'id' => (string)$this->propertyGroupBasicData->getGroupOptions()->get(24)->getUuid(),
                             'name' => 'Leistung (in kw)',
                             'type' => 'selectRange',
                             'optionValues' => [
                                 [
                                     'id' => (string)$this->propertyGroupBasicData->getGroupOptions()->get(17)->getUuid(),
-                                    'value' => '200 kw (272 PS)',
+                                    'value' => '250',
+                                ],
+                                [
+                                    'id' => (string)$this->propertyGroupBasicData->getGroupOptions()->get(18)->getUuid(),
+                                    'value' => '350',
+                                ],
+                                [
+                                    'id' => (string)$this->propertyGroupBasicData->getGroupOptions()->get(19)->getUuid(),
+                                    'value' => '450',
+                                ],
+                                [
+                                    'id' => (string)$this->propertyGroupBasicData->getGroupOptions()->get(20)->getUuid(),
+                                    'value' => '550',
+                                ],
+                                [
+                                    'id' => (string)$this->propertyGroupBasicData->getGroupOptions()->get(21)->getUuid(),
+                                    'value' => '650',
+                                ],
+                                [
+                                    'id' => (string)$this->propertyGroupBasicData->getGroupOptions()->get(22)->getUuid(),
+                                    'value' => '750',
+                                ],
+                                [
+                                    'id' => (string)$this->propertyGroupBasicData->getGroupOptions()->get(23)->getUuid(),
+                                    'value' => '850',
                                 ],
                             ]
                         ],
@@ -565,7 +589,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '250',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -618,7 +642,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '250',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -705,7 +729,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '250',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -792,7 +816,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '350',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -845,7 +869,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '350',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -932,7 +956,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '350',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -985,7 +1009,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '450',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -1038,7 +1062,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '450',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -1091,7 +1115,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '550',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -1144,7 +1168,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '650',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -1231,7 +1255,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '250',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -1284,7 +1308,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '250',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -1337,7 +1361,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '450',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -1390,7 +1414,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '450',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -1443,7 +1467,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '550',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -1496,7 +1520,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '650',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -1549,7 +1573,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '650',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -1602,7 +1626,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '750',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -1689,7 +1713,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '250',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -1742,7 +1766,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '250',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -1795,7 +1819,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '350',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -1848,7 +1872,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '350',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -1901,7 +1925,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '450',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -1954,7 +1978,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '650',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -2007,7 +2031,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '650',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -2060,7 +2084,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '750',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -2151,7 +2175,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '450',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -2204,7 +2228,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '550',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -2257,7 +2281,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '650',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -2310,7 +2334,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '750',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -2371,7 +2395,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '850',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -2428,7 +2452,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '850',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -2485,7 +2509,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '850',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -2542,7 +2566,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '850',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -2599,7 +2623,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '850',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -2704,7 +2728,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '250',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -2757,7 +2781,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '450',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -2810,7 +2834,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '450',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -2863,7 +2887,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '550',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -2916,7 +2940,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '650',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -2969,7 +2993,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '650',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -3022,7 +3046,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '750',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -3112,7 +3136,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '650',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -3165,7 +3189,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '750',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -3262,7 +3286,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '750',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -3359,7 +3383,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '650',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -3412,7 +3436,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '750',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -3511,7 +3535,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '750',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -3572,7 +3596,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '850',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -3675,7 +3699,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '850',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -3732,7 +3756,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '850',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -3873,7 +3897,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '850',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -3930,7 +3954,7 @@ class SearchControllerTest extends WebTestCase
                         ],
                         [
                             'optionName' => 'Leistung (in kw)',
-                            'value' => '200 kw (272 PS)',
+                            'value' => '850',
                         ],
                         [
                             'optionName' => 'Kraftstoffart',
@@ -4023,6 +4047,883 @@ class SearchControllerTest extends WebTestCase
 
         static::assertSame([
             'data' => []
+        ], $response);
+    }
+
+    public function testSearchClassifiedWithHorsePowerFromFilter()
+    {
+        $createdClassifieds = $this->createClassifieds();
+
+        $propertyGroupOptionOne = $this->getPropertyGroupOption(
+            'Basisdaten',
+            '850',
+            'Leistung (in kw)'
+        );
+
+        $this->client->request(
+            'POST',
+            '/customer-frontend-api/search/classified',
+            [],
+            [],
+            [],
+            json_encode(
+                [
+                    'page' => 1,
+                    'propertyGroupOptionIdsSelectFrom' => [
+                        (string)$propertyGroupOptionOne->getUuid(),
+                    ]
+                ]
+            )
+        );
+
+        static::assertResponseIsSuccessful();
+
+        $response = json_decode($this->client->getResponse()->getContent(), true);
+
+        static::assertArrayHasKey('data', $response);
+        static::assertCount(5, $response['data']);
+
+        static::assertSame([
+            'data' => [
+                [
+                    'id' => (string)$createdClassifieds[11]->getUuid(),
+                    'name' => 'testClassified12',
+                    'description' => 'testClassifiedDescription12',
+                    'price' => '60,00',
+                    'offerNumber' => 'testOfferNumber12',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '6/7',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2019',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '850',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                        [
+                            'optionName' => 'Komfort',
+                            'value' => 'Ambiente Beleuchtung',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[12]->getUuid(),
+                    'name' => 'testClassified13',
+                    'description' => 'testClassifiedDescription13',
+                    'price' => '90.000,00',
+                    'offerNumber' => 'testOfferNumber13',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '6/7',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2019',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '850',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                        [
+                            'optionName' => 'Außenfarbe',
+                            'value' => 'Schwarz',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[13]->getUuid(),
+                    'name' => 'testClassified14',
+                    'description' => 'testClassifiedDescription14',
+                    'price' => '50.123,00',
+                    'offerNumber' => 'testOfferNumber14',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '6/7',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2019',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '850',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                        [
+                            'optionName' => 'Außenfarbe',
+                            'value' => 'Grau',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[14]->getUuid(),
+                    'name' => 'testClassified15',
+                    'description' => 'testClassifiedDescription15',
+                    'price' => '99.123,48',
+                    'offerNumber' => 'testOfferNumber15',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '6/7',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2019',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '850',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                        [
+                            'optionName' => 'Innenausstattung',
+                            'value' => 'Anthrazit',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[15]->getUuid(),
+                    'name' => 'testClassified16',
+                    'description' => 'testClassifiedDescription16',
+                    'price' => '60.123,00',
+                    'offerNumber' => 'testOfferNumber16',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '6/7',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2019',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '850',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                        [
+                            'optionName' => 'Innenausstattung',
+                            'value' => 'Blau',
+                        ],
+                    ]
+                ],
+            ]
+        ], $response);
+    }
+
+    public function testSearchClassifiedWithHorsePowerWithBothFilters()
+    {
+        $createdClassifieds = $this->createClassifieds();
+
+        $propertyGroupOptionOne = $this->getPropertyGroupOption(
+            'Basisdaten',
+            '650',
+            'Leistung (in kw)'
+        );
+
+        $propertyGroupOptionTwo = $this->getPropertyGroupOption(
+            'Basisdaten',
+            '850',
+            'Leistung (in kw)'
+        );
+
+        $this->client->request(
+            'POST',
+            '/customer-frontend-api/search/classified',
+            [],
+            [],
+            [],
+            json_encode(
+                [
+                    'page' => 1,
+                    'propertyGroupOptionIdsSelectFrom' => [
+                        (string)$propertyGroupOptionOne->getUuid(),
+                    ],
+                    'propertyGroupOptionIdsSelectTo' => [
+                        (string)$propertyGroupOptionTwo->getUuid(),
+                    ]
+                ]
+            )
+        );
+
+        static::assertResponseIsSuccessful();
+
+        $response = json_decode($this->client->getResponse()->getContent(), true);
+
+        static::assertArrayHasKey('data', $response);
+        static::assertCount(9, $response['data']);
+
+        static::assertSame([
+            'data' => [
+                [
+                    'id' => (string)$createdClassifieds[7]->getUuid(),
+                    'name' => 'testClassified8',
+                    'description' => 'testClassifiedDescription8',
+                    'price' => '115,48',
+                    'offerNumber' => 'testOfferNumber8',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '2/3',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2020',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '650',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Schaltgetriebe',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[8]->getUuid(),
+                    'name' => 'testClassified9',
+                    'description' => 'testClassifiedDescription9',
+                    'price' => '15,48',
+                    'offerNumber' => 'testOfferNumber9',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Another Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Another Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '2/3',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2023',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '650',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[9]->getUuid(),
+                    'name' => 'testClassified10',
+                    'description' => 'testClassifiedDescription10',
+                    'price' => '20,00',
+                    'offerNumber' => 'testOfferNumber10',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Another Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Another Test Brand Model child option two',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '2/3',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2023',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '750',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[10]->getUuid(),
+                    'name' => 'testClassified11',
+                    'description' => 'testClassifiedDescription11',
+                    'price' => '30,00',
+                    'offerNumber' => 'testOfferNumber11',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '6/7',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2019',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '750',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                        [
+                            'optionName' => 'Technik',
+                            'value' => 'Adaptives Dämpfungssystem',
+                        ],
+                        [
+                            'optionName' => 'Komfort',
+                            'value' => 'Ambiente Beleuchtung',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[11]->getUuid(),
+                    'name' => 'testClassified12',
+                    'description' => 'testClassifiedDescription12',
+                    'price' => '60,00',
+                    'offerNumber' => 'testOfferNumber12',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '6/7',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2019',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '850',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                        [
+                            'optionName' => 'Komfort',
+                            'value' => 'Ambiente Beleuchtung',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[12]->getUuid(),
+                    'name' => 'testClassified13',
+                    'description' => 'testClassifiedDescription13',
+                    'price' => '90.000,00',
+                    'offerNumber' => 'testOfferNumber13',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '6/7',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2019',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '850',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                        [
+                            'optionName' => 'Außenfarbe',
+                            'value' => 'Schwarz',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[13]->getUuid(),
+                    'name' => 'testClassified14',
+                    'description' => 'testClassifiedDescription14',
+                    'price' => '50.123,00',
+                    'offerNumber' => 'testOfferNumber14',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '6/7',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2019',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '850',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                        [
+                            'optionName' => 'Außenfarbe',
+                            'value' => 'Grau',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[14]->getUuid(),
+                    'name' => 'testClassified15',
+                    'description' => 'testClassifiedDescription15',
+                    'price' => '99.123,48',
+                    'offerNumber' => 'testOfferNumber15',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '6/7',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2019',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '850',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                        [
+                            'optionName' => 'Innenausstattung',
+                            'value' => 'Anthrazit',
+                        ],
+                    ]
+                ],
+                [
+                    'id' => (string)$createdClassifieds[15]->getUuid(),
+                    'name' => 'testClassified16',
+                    'description' => 'testClassifiedDescription16',
+                    'price' => '60.123,00',
+                    'offerNumber' => 'testOfferNumber16',
+                    'options' => [
+                        [
+                            'optionName' => 'Fahrzeugzustand',
+                            'value' => 'Neufahrzeug',
+                        ],
+                        [
+                            'optionName' => 'Marke',
+                            'value' => 'Test Brand',
+                        ],
+                        [
+                            'optionName' => 'Modell',
+                            'value' => 'Test Brand Model child option one',
+                        ],
+                        [
+                            'optionName' => 'Fahrzeugtyp',
+                            'value' => 'Limousine',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Sitzplätze',
+                            'value' => '5',
+                        ],
+                        [
+                            'optionName' => 'Anzahl Türen',
+                            'value' => '6/7',
+                        ],
+                        [
+                            'optionName' => 'Erstzulassung',
+                            'value' => '2019',
+                        ],
+                        [
+                            'optionName' => 'Kilometer',
+                            'value' => '10560',
+                        ],
+                        [
+                            'optionName' => 'Leistung (in kw)',
+                            'value' => '850',
+                        ],
+                        [
+                            'optionName' => 'Kraftstoffart',
+                            'value' => 'Benzin',
+                        ],
+                        [
+                            'optionName' => 'Getriebe',
+                            'value' => 'Automatik',
+                        ],
+                        [
+                            'optionName' => 'Innenausstattung',
+                            'value' => 'Blau',
+                        ],
+                    ]
+                ],
+            ]
         ], $response);
     }
 
@@ -4281,7 +5182,7 @@ class SearchControllerTest extends WebTestCase
             [
                 'name' => 'Leistung (in kw)',
                 'type' => PropertyGroupOption::TYPE_SELECT_RANGE,
-                'values' => ['200 kw (272 PS)']
+                'values' => ['250', '350', '450', '550', '650', '750', '850']
             ],
         ]);
 
@@ -4510,7 +5411,7 @@ class SearchControllerTest extends WebTestCase
                 '2/3',
                 '5',
                 '2023',
-                '200 kw (272 PS)',
+                '250',
                 'Benzin',
                 '10560'
             )
@@ -4531,7 +5432,7 @@ class SearchControllerTest extends WebTestCase
                 '2/3',
                 '5',
                 '2023',
-                '200 kw (272 PS)',
+                '250',
                 'Benzin',
                 '10560'
             )
@@ -4552,7 +5453,7 @@ class SearchControllerTest extends WebTestCase
                 '4/5',
                 '5',
                 '2023',
-                '200 kw (272 PS)',
+                '350',
                 'Diesel',
                 '70205'
             )
@@ -4573,7 +5474,7 @@ class SearchControllerTest extends WebTestCase
                 '4/5',
                 '5',
                 '2023',
-                '200 kw (272 PS)',
+                '350',
                 'Diesel',
                 '70205'
             )
@@ -4594,7 +5495,7 @@ class SearchControllerTest extends WebTestCase
                 '2/3',
                 '5',
                 '2023',
-                '200 kw (272 PS)',
+                '450',
                 'Benzin',
                 '10560'
             )
@@ -4615,7 +5516,7 @@ class SearchControllerTest extends WebTestCase
                 '2/3',
                 '5',
                 '2018',
-                '200 kw (272 PS)',
+                '450',
                 'Benzin',
                 '10560'
             )
@@ -4636,7 +5537,7 @@ class SearchControllerTest extends WebTestCase
                 '2/3',
                 '5',
                 '2019',
-                '200 kw (272 PS)',
+                '550',
                 'Benzin',
                 '10560'
             )
@@ -4657,7 +5558,7 @@ class SearchControllerTest extends WebTestCase
                 '2/3',
                 '5',
                 '2020',
-                '200 kw (272 PS)',
+                '650',
                 'Benzin',
                 '10560'
             )
@@ -4678,7 +5579,7 @@ class SearchControllerTest extends WebTestCase
                 '2/3',
                 '5',
                 '2023',
-                '200 kw (272 PS)',
+                '650',
                 'Benzin',
                 '10560'
             )
@@ -4699,7 +5600,7 @@ class SearchControllerTest extends WebTestCase
                 '2/3',
                 '5',
                 '2023',
-                '200 kw (272 PS)',
+                '750',
                 'Benzin',
                 '10560'
             )
@@ -4715,7 +5616,7 @@ class SearchControllerTest extends WebTestCase
             '6/7',
             '5',
             '2019',
-            '200 kw (272 PS)',
+            '750',
             'Benzin',
             '10560'
         );
@@ -4748,7 +5649,7 @@ class SearchControllerTest extends WebTestCase
             '6/7',
             '5',
             '2019',
-            '200 kw (272 PS)',
+            '850',
             'Benzin',
             '10560'
         );
@@ -4776,7 +5677,7 @@ class SearchControllerTest extends WebTestCase
             '6/7',
             '5',
             '2019',
-            '200 kw (272 PS)',
+            '850',
             'Benzin',
             '10560'
         );
@@ -4804,7 +5705,7 @@ class SearchControllerTest extends WebTestCase
             '6/7',
             '5',
             '2019',
-            '200 kw (272 PS)',
+            '850',
             'Benzin',
             '10560'
         );
@@ -4832,7 +5733,7 @@ class SearchControllerTest extends WebTestCase
             '6/7',
             '5',
             '2019',
-            '200 kw (272 PS)',
+            '850',
             'Benzin',
             '10560'
         );
@@ -4860,7 +5761,7 @@ class SearchControllerTest extends WebTestCase
             '6/7',
             '5',
             '2019',
-            '200 kw (272 PS)',
+            '850',
             'Benzin',
             '10560'
         );
