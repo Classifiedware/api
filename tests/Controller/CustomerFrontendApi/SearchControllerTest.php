@@ -327,7 +327,7 @@ class SearchControllerTest extends WebTestCase
                             ]
                         ],
                         [
-                            'id' => (string)$this->propertyGroupBasicData->getGroupOptions()->get(24)->getUuid(),
+                            'id' => (string)$this->propertyGroupBasicData->getGroupOptions()->get(25)->getUuid(),
                             'name' => 'Leistung (in kw)',
                             'type' => 'selectRange',
                             'optionValues' => [
@@ -358,6 +358,10 @@ class SearchControllerTest extends WebTestCase
                                 [
                                     'id' => (string)$this->propertyGroupBasicData->getGroupOptions()->get(23)->getUuid(),
                                     'value' => '850',
+                                ],
+                                [
+                                    'id' => (string)$this->propertyGroupBasicData->getGroupOptions()->get(24)->getUuid(),
+                                    'value' => '950',
                                 ],
                             ]
                         ],
@@ -4927,6 +4931,44 @@ class SearchControllerTest extends WebTestCase
         ], $response);
     }
 
+    public function testSearchClassifiedWithHorsePowerContainsNoResults(): void
+    {
+        $this->createClassifieds();
+
+        $propertyGroupOptionOne = $this->getPropertyGroupOption(
+            'Basisdaten',
+            '950',
+            'Leistung (in kw)'
+        );
+
+        $this->client->request(
+            'POST',
+            '/customer-frontend-api/search/classified',
+            [],
+            [],
+            [],
+            json_encode(
+                [
+                    'page' => 1,
+                    'propertyGroupOptionIdsSelectFrom' => [
+                        (string)$propertyGroupOptionOne->getUuid(),
+                    ]
+                ]
+            )
+        );
+
+        static::assertResponseIsSuccessful();
+
+        $response = json_decode($this->client->getResponse()->getContent(), true);
+
+        static::assertArrayHasKey('data', $response);
+        static::assertCount(0, $response['data']);
+
+        static::assertSame([
+            'data' => []
+        ], $response);
+    }
+
     public function testSearchClassifiedContainsNoResults(): void
     {
         $this->createClassifieds();
@@ -5182,7 +5224,7 @@ class SearchControllerTest extends WebTestCase
             [
                 'name' => 'Leistung (in kw)',
                 'type' => PropertyGroupOption::TYPE_SELECT_RANGE,
-                'values' => ['250', '350', '450', '550', '650', '750', '850']
+                'values' => ['250', '350', '450', '550', '650', '750', '850', '950']
             ],
         ]);
 
