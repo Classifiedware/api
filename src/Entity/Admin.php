@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Repository\AdminRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -22,6 +23,9 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string')]
     private string $password;
+
+    #[ORM\OneToMany(mappedBy: 'admin', targetEntity: AdminAccessToken::class)]
+    private Collection $accessTokens;
 
     public function getEmail(): ?string
     {
@@ -68,6 +72,16 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
         $this->password = $password;
 
         return $this;
+    }
+
+    public function getAccessTokens(): Collection
+    {
+        return $this->accessTokens;
+    }
+
+    public function setAccessTokens(Collection $accessTokens): void
+    {
+        $this->accessTokens = $accessTokens;
     }
 
     /**
