@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin-api/classified')]
 class AdminClassifiedController extends AbstractController
 {
     public function __construct(
@@ -20,7 +19,7 @@ class AdminClassifiedController extends AbstractController
     ) {
     }
 
-    #[Route('/create', name: 'app.admin-api.classified-create', methods: ['POST'])]
+    #[Route('/api/admin/classified/create', name: 'api-admin.classified-create', methods: ['POST'])]
     public function classifiedCreate(Request $request): Response
     {
         try {
