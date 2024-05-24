@@ -17,6 +17,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class PropertyGroupRepository extends ServiceEntityRepository
 {
+    private const PROPERTY_GROUP_EQUIPMENT = 'Ausstattung';
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, PropertyGroup::class);
@@ -58,6 +60,28 @@ class PropertyGroupRepository extends ServiceEntityRepository
             ->leftJoin('pgo.parent', 'pgop')
             ->leftJoin('pgo.children', 'pgoc')
             ->leftJoin('pgoc.children', 'pgoch');
+
+        return $qb->getQuery()->getArrayResult();
+    }
+
+    public function getPropertyGroupForEquipment(): array
+    {
+        $qb = $this->createQueryBuilder('pg');
+
+        $qb = $qb
+            ->select([
+                'partial pg.{id, uuid, name, isEquipmentGroup}',
+                'partial pgo.{id, uuid, name, type}',
+                'pgop',
+                'pgoc',
+                'pgoch'
+            ])
+            ->leftJoin('pg.groupOptions', 'pgo', Join::WITH)
+            ->leftJoin('pgo.parent', 'pgop')
+            ->leftJoin('pgo.children', 'pgoc')
+            ->leftJoin('pgoc.children', 'pgoch')
+            ->where($qb->expr()->eq('pg.name', ':propertyGroupNameEquipment'))
+            ->setParameter('propertyGroupNameEquipment', self::PROPERTY_GROUP_EQUIPMENT);
 
         return $qb->getQuery()->getArrayResult();
     }
