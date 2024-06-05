@@ -34,9 +34,13 @@ class Classified
     #[ORM\ManyToMany(targetEntity: PropertyGroupOption::class)]
     private Collection $propertyGroupOptions;
 
+    #[ORM\OneToMany(mappedBy: 'classified', targetEntity: ClassifiedMedia::class)]
+    private Collection $media;
+
     public function __construct()
     {
         $this->propertyGroupOptions = new ArrayCollection();
+        $this->media = new ArrayCollection();
     }
 
     public function getName(): ?string
@@ -97,5 +101,15 @@ class Classified
         $this->propertyGroupOptions = $propertyGroupOptions;
 
         return $this;
+    }
+
+    public function getMedia(): Collection
+    {
+        return $this->media;
+    }
+
+    public function setMedia(Collection $media): void
+    {
+        $this->media = $media;
     }
 }
