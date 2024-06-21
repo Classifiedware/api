@@ -20,6 +20,6 @@ class AdminPropertyGroupController extends AbstractController
     #[Route('/api/admin/property/load', name: 'api-admin.property-load', methods: ['GET'])]
     public function propertyLoad(Request $request): Response
     {
-        return $this->json(['data' => $this->propertyService->getPropertyGroupForEquipment()]);
+        return $this->json(['data' => $this->propertyService->getProperties()]);
     }
 }

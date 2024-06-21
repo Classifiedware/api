@@ -54,39 +54,6 @@ class PropertyService
         return $mappedPropertyGroups;
     }
 
-    public function getPropertyGroupForEquipment(): array
-    {
-        $propertyGroups = $this->propertyGroupRepository->getPropertyGroupForEquipment();
-
-        $mappedPropertyGroups = [];
-        foreach ($propertyGroups as $propertyGroup) {
-            $propertyGroupOptions = $propertyGroup['groupOptions'] ?? [];
-
-            $groupOptions = [];
-            foreach ($propertyGroupOptions as $groupOption) {
-                if (!isset($groupOption['parent'])) {
-                    $optionValues = $this->getGroupsOptionsByParentId($groupOption['id'], $propertyGroupOptions);
-
-                    $groupOptions[] = [
-                        'id' => $groupOption['uuid'],
-                        'name' => $groupOption['name'],
-                        'type' => $groupOption['type'],
-                        'optionValues' => $optionValues,
-                    ];
-                }
-            }
-
-            $mappedPropertyGroups[] = [
-                'name' => $propertyGroup['name'],
-                'isEquipmentGroup' => $propertyGroup['isEquipmentGroup'],
-                'groupOptions' => $groupOptions,
-            ];
-        }
-        unset($propertyGroups);
-
-        return $mappedPropertyGroups;
-    }
-
     private function getBrandModels(array $propertyGroups): array
     {
         $models = [];

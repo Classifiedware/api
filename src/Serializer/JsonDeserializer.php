@@ -19,7 +19,7 @@ class JsonDeserializer implements DeserializerInterface
     }
 
     #[\ReturnTypeWillChange]
-    public function deserialize(string $data, string $objectClass): mixed
+    public function deserialize(mixed $data, string $objectClass): mixed
     {
         try {
             $deserializedObject = $this->serializer->deserialize($data, $objectClass, 'json', [

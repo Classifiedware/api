@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Dto;
 
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class ClassifiedDto
@@ -18,16 +19,18 @@ class ClassifiedDto
     private ?string $description;
 
     #[Assert\NotBlank]
-    private ?int $price;
+    private ?string $price;
 
     #[Assert\NotBlank]
     private ?string $offerNumber;
 
-    #[Assert\All(
-        new Assert\Type(ClassifiedPropertyGroupOptionDto::class)
-    )]
+    private array $propertyGroupOptionIds = [];
+
+    #[Assert\All([
+        new Assert\Type(File::class),
+    ])]
     #[Assert\Valid]
-    private array $propertyGroupOptions = [];
+    private array $uploadedFiles = [];
 
     public function getId(): ?string
     {
@@ -65,12 +68,12 @@ class ClassifiedDto
         return $this;
     }
 
-    public function getPrice(): int
+    public function getPrice(): string
     {
         return $this->price;
     }
 
-    public function setPrice(?int $price): self
+    public function setPrice(?string $price): self
     {
         $this->price = $price;
 
@@ -89,44 +92,23 @@ class ClassifiedDto
         return $this;
     }
 
-    public function getPropertyGroupOptions(): array
+    public function getPropertyGroupOptionIds(): array
     {
-        return $this->propertyGroupOptions;
+        return $this->propertyGroupOptionIds;
     }
 
-    public function setPropertyGroupOptions(array $propertyGroupOptions): self
+    public function setPropertyGroupOptionIds(array $propertyGroupOptionIds): void
     {
-        $this->propertyGroupOptions = $propertyGroupOptions;
-
-        return $this;
+        $this->propertyGroupOptionIds = $propertyGroupOptionIds;
     }
 
-    public function addPropertyGroupOption(ClassifiedPropertyGroupOptionDto $classifiedPropertyGroupOption): self
+    public function getUploadedFiles(): array
     {
-        $this->propertyGroupOptions[] = $classifiedPropertyGroupOption;
-
-        return $this;
+        return $this->uploadedFiles;
     }
 
-    public function toArray(): array
+    public function setUploadedFiles(array $uploadedFiles): void
     {
-        $propertyGroupOptions = [];
-
-        foreach ($this->propertyGroupOptions as $propertyGroupOption) {
-            if (!$propertyGroupOption instanceof ClassifiedPropertyGroupOptionDto) {
-                continue;
-            }
-
-            $propertyGroupOptions[] = $propertyGroupOption->toArray();
-        }
-
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'description' => $this->description,
-            'price' => number_format(($this->price / 100), 2, ',', '.'),
-            'offerNumber' => $this->offerNumber,
-            'options' => $propertyGroupOptions,
-        ];
+        $this->uploadedFiles = $uploadedFiles;
     }
 }
