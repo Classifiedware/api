@@ -50,7 +50,7 @@ class AdminClassifiedController extends AbstractController
         $classifiedData = json_encode($request->request->all()['jsonData'] ?? []);
         /** @var ClassifiedDto $classifiedDto */
         $classifiedDto = $this->deserializer->deserialize($classifiedData, ClassifiedDto::class);
-        $classifiedDto->setUploadedFiles($request->files->get('uploadedImages'));
+        $classifiedDto->setUploadedFiles($request->files->get('uploadedImages', []));
 
         return $classifiedDto;
     }

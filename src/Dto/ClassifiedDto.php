@@ -9,7 +9,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class ClassifiedDto
 {
-    #[Assert\NotBlank]
     private ?string $id;
 
     #[Assert\NotBlank]
@@ -25,6 +24,8 @@ class ClassifiedDto
     private ?string $offerNumber;
 
     private array $propertyGroupOptionIds = [];
+
+    private array $enteredPropertyGroupOptionData = [];
 
     #[Assert\All([
         new Assert\Type(File::class),
@@ -100,6 +101,16 @@ class ClassifiedDto
     public function setPropertyGroupOptionIds(array $propertyGroupOptionIds): void
     {
         $this->propertyGroupOptionIds = $propertyGroupOptionIds;
+    }
+
+    public function getEnteredPropertyGroupOptionData(): array
+    {
+        return $this->enteredPropertyGroupOptionData;
+    }
+
+    public function setEnteredPropertyGroupOptionData(array $enteredPropertyGroupOptionData): void
+    {
+        $this->enteredPropertyGroupOptionData = $enteredPropertyGroupOptionData;
     }
 
     public function getUploadedFiles(): array

@@ -44,6 +44,7 @@ class PropertyService
             }
 
             $mappedPropertyGroups[] = [
+                'id' => (string)$propertyGroup['uuid'],
                 'name' => $propertyGroup['name'],
                 'isEquipmentGroup' => $propertyGroup['isEquipmentGroup'],
                 'groupOptions' => $groupOptions,
