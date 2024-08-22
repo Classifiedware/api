@@ -22,6 +22,7 @@ class ClassifiedService
     public function __construct(
         private readonly PropertyGroupRepository $propertyGroupRepository,
         private readonly PropertyGroupOptionRepository $propertyGroupOptionRepository,
+        private readonly MediaUploadService $mediaUploadService,
         private readonly ValidatorInterface $validator,
         private readonly EntityManagerInterface $entityManager
     ) {
@@ -76,6 +77,8 @@ class ClassifiedService
         }
 
         // TODO: handle upload images
+
+        $uploadedMedia = $this->mediaUploadService->uploadMedia($classifiedDto->getUploadedFiles());
 
         $this->entityManager->persist($classified);
         $this->entityManager->flush();
