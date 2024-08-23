@@ -5,9 +5,11 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     media_dir_relative: 'public/media'
+    thumbnail_dir_relative: 'public/thumbnail'
     media_dir: "%kernel.project_dir%/%media_dir_relative%"
-    thumbnail_dir: "%kernel.project_dir%/public/thumbnail"
+    thumbnail_dir: "%kernel.project_dir%/%thumbnail_dir_relative%"
     upload_allowed_extensions: ['jpg', 'jpeg', 'png', 'gif']
+    thumbnail_sizes: ['240x180']
 
 services:
     # default configuration for services in *this* file
@@ -27,9 +29,11 @@ services:
     App\Service\MediaUploadService:
         arguments:
             $mediaDirRelative: '%media_dir_relative%'
+            $thumbnailDirRelative: '%thumbnail_dir_relative%'
             $mediaDir: '%media_dir%'
             $thumbnailDir: '%thumbnail_dir%'
             $uploadAllowedExtensions: '%upload_allowed_extensions%'
+            $thumbnailSizes: '%thumbnail_sizes%'
 
     App\Api\Search\VehicleConditionSearchCriteriaHandler:
         tags: ['app.search_condition.handler']
