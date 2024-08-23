@@ -73,6 +73,7 @@ class MediaUploadService
         $fileHash = $this->generateFileHash($imageFile->getFilename());
         $mediaPath = $this->generateHashedPath($this->mediaDir, $fileHash, $this->getFileExtension($imageFile));
         $mediaPathRelative = str_replace($this->mediaDir, $this->mediaDirRelative, $mediaPath);
+        $mediaPathRelative = str_replace('public/', '', $mediaPathRelative);
         $fileName = pathinfo($mediaPath, PATHINFO_BASENAME);
         $mediaDir = dirname($mediaPath);
 
@@ -122,6 +123,7 @@ class MediaUploadService
         );
         $thumbnailPath = $this->generateHashedPath($this->thumbnailDir, $fileHash, $thumbnailExtension);
         $thumbnailPathRelative = str_replace($this->thumbnailDir, $this->thumbnailDirRelative, $thumbnailPath);
+        $thumbnailPathRelative = str_replace('public/', '', $thumbnailPathRelative);
         $thumbnailDir = dirname($thumbnailPath);
 
         if (!$this->filesystem->exists($thumbnailDir)) {
