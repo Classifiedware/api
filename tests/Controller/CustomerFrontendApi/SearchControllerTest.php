@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\Controller\CustomerFrontendApi;
 
 use App\Dto\ClassifiedDto;
-use App\Dto\ClassifiedPropertyGroupOptionDto;
 use App\Entity\Classified;
 use App\Entity\PropertyGroup;
 use App\Entity\PropertyGroupOption;
@@ -68,6 +67,7 @@ class SearchControllerTest extends WebTestCase
         static::assertSame([
             'data' => [
                 [
+                    'id' => (string)$this->propertyGroupVehicleCondition->getUuid(),
                     'name' => 'Fahrzeugzustand',
                     'isEquipmentGroup' => false,
                     'groupOptions' => [
@@ -86,6 +86,7 @@ class SearchControllerTest extends WebTestCase
                     ]
                 ],
                 [
+                    'id' => (string)$this->propertyGroupBrandWithModel->getUuid(),
                     'name' => 'Marke, Modell, Variante',
                     'isEquipmentGroup' => false,
                     'groupOptions' => [
@@ -155,6 +156,7 @@ class SearchControllerTest extends WebTestCase
                     ]
                 ],
                 [
+                    'id' => (string)$this->propertyGroupVehicleType->getUuid(),
                     'name' => 'Fahrzeugtyp',
                     'isEquipmentGroup' => false,
                     'groupOptions' => [
@@ -243,6 +245,7 @@ class SearchControllerTest extends WebTestCase
                     ]
                 ],
                 [
+                    'id' => (string)$this->propertyGroupBasicData->getUuid(),
                     'name' => 'Basisdaten',
                     'isEquipmentGroup' => false,
                     'groupOptions' => [
@@ -368,6 +371,7 @@ class SearchControllerTest extends WebTestCase
                     ],
                 ],
                 [
+                    'id' => (string)$this->propertyGroupEngine->getUuid(),
                     'name' => 'Motor',
                     'isEquipmentGroup' => false,
                     'groupOptions' => [
@@ -412,6 +416,7 @@ class SearchControllerTest extends WebTestCase
                     ]
                 ],
                 [
+                    'id' => (string)$this->propertyGroupExteriorColor->getUuid(),
                     'name' => 'Außenfarbe',
                     'isEquipmentGroup' => false,
                     'groupOptions' => [
@@ -436,6 +441,7 @@ class SearchControllerTest extends WebTestCase
                     ]
                 ],
                 [
+                    'id' => (string)$this->propertyGroupInteriorColor->getUuid(),
                     'name' => 'Innenausstattung',
                     'isEquipmentGroup' => false,
                     'groupOptions' => [
@@ -460,6 +466,7 @@ class SearchControllerTest extends WebTestCase
                     ]
                 ],
                 [
+                    'id' => (string)$this->propertyGroupEquipment->getUuid(),
                     'name' => 'Ausstattung',
                     'isEquipmentGroup' => true,
                     'groupOptions' => [
@@ -556,7 +563,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[0]->getUuid(),
                     'name' => 'Test Classified',
                     'description' => 'testClassifiedDescription',
-                    'price' => '123,45',
+                    'price' => '12.345,00',
                     'offerNumber' => 'testOfferNumber',
                     'options' => [
                         [
@@ -609,7 +616,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[1]->getUuid(),
                     'name' => 'testClassified2',
                     'description' => 'testClassifiedDescription2',
-                    'price' => '223,45',
+                    'price' => '22.345,00',
                     'offerNumber' => 'testOfferNumber2',
                     'options' => [
                         [
@@ -696,7 +703,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[1]->getUuid(),
                     'name' => 'testClassified2',
                     'description' => 'testClassifiedDescription2',
-                    'price' => '223,45',
+                    'price' => '22.345,00',
                     'offerNumber' => 'testOfferNumber2',
                     'options' => [
                         [
@@ -783,7 +790,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[2]->getUuid(),
                     'name' => 'testClassified3',
                     'description' => 'testClassifiedDescription3',
-                    'price' => '221,23',
+                    'price' => '22.123,00',
                     'offerNumber' => 'testOfferNumber3',
                     'options' => [
                         [
@@ -836,7 +843,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[3]->getUuid(),
                     'name' => 'testClassified4',
                     'description' => 'testClassifiedDescription4',
-                    'price' => '551,25',
+                    'price' => '55.125,00',
                     'offerNumber' => 'testOfferNumber4',
                     'options' => [
                         [
@@ -923,7 +930,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[3]->getUuid(),
                     'name' => 'testClassified4',
                     'description' => 'testClassifiedDescription4',
-                    'price' => '551,25',
+                    'price' => '55.125,00',
                     'offerNumber' => 'testOfferNumber4',
                     'options' => [
                         [
@@ -976,7 +983,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[4]->getUuid(),
                     'name' => 'testClassified5',
                     'description' => 'testClassifiedDescription5',
-                    'price' => '823,45',
+                    'price' => '82.345,00',
                     'offerNumber' => 'testOfferNumber5',
                     'options' => [
                         [
@@ -1029,7 +1036,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[5]->getUuid(),
                     'name' => 'testClassified6',
                     'description' => 'testClassifiedDescription6',
-                    'price' => '213,46',
+                    'price' => '21.346,00',
                     'offerNumber' => 'testOfferNumber6',
                     'options' => [
                         [
@@ -1082,7 +1089,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[6]->getUuid(),
                     'name' => 'testClassified7',
                     'description' => 'testClassifiedDescription7',
-                    'price' => '113,45',
+                    'price' => '11.345,00',
                     'offerNumber' => 'testOfferNumber7',
                     'options' => [
                         [
@@ -1135,7 +1142,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[7]->getUuid(),
                     'name' => 'testClassified8',
                     'description' => 'testClassifiedDescription8',
-                    'price' => '115,48',
+                    'price' => '11.548,00',
                     'offerNumber' => 'testOfferNumber8',
                     'options' => [
                         [
@@ -1222,7 +1229,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[0]->getUuid(),
                     'name' => 'Test Classified',
                     'description' => 'testClassifiedDescription',
-                    'price' => '123,45',
+                    'price' => '12.345,00',
                     'offerNumber' => 'testOfferNumber',
                     'options' => [
                         [
@@ -1275,7 +1282,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[1]->getUuid(),
                     'name' => 'testClassified2',
                     'description' => 'testClassifiedDescription2',
-                    'price' => '223,45',
+                    'price' => '22.345,00',
                     'offerNumber' => 'testOfferNumber2',
                     'options' => [
                         [
@@ -1328,7 +1335,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[4]->getUuid(),
                     'name' => 'testClassified5',
                     'description' => 'testClassifiedDescription5',
-                    'price' => '823,45',
+                    'price' => '82.345,00',
                     'offerNumber' => 'testOfferNumber5',
                     'options' => [
                         [
@@ -1381,7 +1388,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[5]->getUuid(),
                     'name' => 'testClassified6',
                     'description' => 'testClassifiedDescription6',
-                    'price' => '213,46',
+                    'price' => '21.346,00',
                     'offerNumber' => 'testOfferNumber6',
                     'options' => [
                         [
@@ -1434,7 +1441,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[6]->getUuid(),
                     'name' => 'testClassified7',
                     'description' => 'testClassifiedDescription7',
-                    'price' => '113,45',
+                    'price' => '11.345,00',
                     'offerNumber' => 'testOfferNumber7',
                     'options' => [
                         [
@@ -1487,7 +1494,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[7]->getUuid(),
                     'name' => 'testClassified8',
                     'description' => 'testClassifiedDescription8',
-                    'price' => '115,48',
+                    'price' => '11.548,00',
                     'offerNumber' => 'testOfferNumber8',
                     'options' => [
                         [
@@ -1540,7 +1547,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[8]->getUuid(),
                     'name' => 'testClassified9',
                     'description' => 'testClassifiedDescription9',
-                    'price' => '15,48',
+                    'price' => '1.548,00',
                     'offerNumber' => 'testOfferNumber9',
                     'options' => [
                         [
@@ -1593,7 +1600,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[9]->getUuid(),
                     'name' => 'testClassified10',
                     'description' => 'testClassifiedDescription10',
-                    'price' => '20,00',
+                    'price' => '2.000,00',
                     'offerNumber' => 'testOfferNumber10',
                     'options' => [
                         [
@@ -1680,7 +1687,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[0]->getUuid(),
                     'name' => 'Test Classified',
                     'description' => 'testClassifiedDescription',
-                    'price' => '123,45',
+                    'price' => '12.345,00',
                     'offerNumber' => 'testOfferNumber',
                     'options' => [
                         [
@@ -1733,7 +1740,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[1]->getUuid(),
                     'name' => 'testClassified2',
                     'description' => 'testClassifiedDescription2',
-                    'price' => '223,45',
+                    'price' => '22.345,00',
                     'offerNumber' => 'testOfferNumber2',
                     'options' => [
                         [
@@ -1786,7 +1793,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[2]->getUuid(),
                     'name' => 'testClassified3',
                     'description' => 'testClassifiedDescription3',
-                    'price' => '221,23',
+                    'price' => '22.123,00',
                     'offerNumber' => 'testOfferNumber3',
                     'options' => [
                         [
@@ -1839,7 +1846,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[3]->getUuid(),
                     'name' => 'testClassified4',
                     'description' => 'testClassifiedDescription4',
-                    'price' => '551,25',
+                    'price' => '55.125,00',
                     'offerNumber' => 'testOfferNumber4',
                     'options' => [
                         [
@@ -1892,7 +1899,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[4]->getUuid(),
                     'name' => 'testClassified5',
                     'description' => 'testClassifiedDescription5',
-                    'price' => '823,45',
+                    'price' => '82.345,00',
                     'offerNumber' => 'testOfferNumber5',
                     'options' => [
                         [
@@ -1945,7 +1952,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[7]->getUuid(),
                     'name' => 'testClassified8',
                     'description' => 'testClassifiedDescription8',
-                    'price' => '115,48',
+                    'price' => '11.548,00',
                     'offerNumber' => 'testOfferNumber8',
                     'options' => [
                         [
@@ -1998,7 +2005,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[8]->getUuid(),
                     'name' => 'testClassified9',
                     'description' => 'testClassifiedDescription9',
-                    'price' => '15,48',
+                    'price' => '1.548,00',
                     'offerNumber' => 'testOfferNumber9',
                     'options' => [
                         [
@@ -2051,7 +2058,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[9]->getUuid(),
                     'name' => 'testClassified10',
                     'description' => 'testClassifiedDescription10',
-                    'price' => '20,00',
+                    'price' => '2.000,00',
                     'offerNumber' => 'testOfferNumber10',
                     'options' => [
                         [
@@ -2142,7 +2149,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[5]->getUuid(),
                     'name' => 'testClassified6',
                     'description' => 'testClassifiedDescription6',
-                    'price' => '213,46',
+                    'price' => '21.346,00',
                     'offerNumber' => 'testOfferNumber6',
                     'options' => [
                         [
@@ -2195,7 +2202,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[6]->getUuid(),
                     'name' => 'testClassified7',
                     'description' => 'testClassifiedDescription7',
-                    'price' => '113,45',
+                    'price' => '11.345,00',
                     'offerNumber' => 'testOfferNumber7',
                     'options' => [
                         [
@@ -2248,7 +2255,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[7]->getUuid(),
                     'name' => 'testClassified8',
                     'description' => 'testClassifiedDescription8',
-                    'price' => '115,48',
+                    'price' => '11.548,00',
                     'offerNumber' => 'testOfferNumber8',
                     'options' => [
                         [
@@ -2301,7 +2308,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[10]->getUuid(),
                     'name' => 'testClassified11',
                     'description' => 'testClassifiedDescription11',
-                    'price' => '30,00',
+                    'price' => '3.000,00',
                     'offerNumber' => 'testOfferNumber11',
                     'options' => [
                         [
@@ -2362,7 +2369,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[11]->getUuid(),
                     'name' => 'testClassified12',
                     'description' => 'testClassifiedDescription12',
-                    'price' => '60,00',
+                    'price' => '6.000,00',
                     'offerNumber' => 'testOfferNumber12',
                     'options' => [
                         [
@@ -2419,7 +2426,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[12]->getUuid(),
                     'name' => 'testClassified13',
                     'description' => 'testClassifiedDescription13',
-                    'price' => '90.000,00',
+                    'price' => '9.000.000,00',
                     'offerNumber' => 'testOfferNumber13',
                     'options' => [
                         [
@@ -2476,7 +2483,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[13]->getUuid(),
                     'name' => 'testClassified14',
                     'description' => 'testClassifiedDescription14',
-                    'price' => '50.123,00',
+                    'price' => '5.012.300,00',
                     'offerNumber' => 'testOfferNumber14',
                     'options' => [
                         [
@@ -2533,7 +2540,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[14]->getUuid(),
                     'name' => 'testClassified15',
                     'description' => 'testClassifiedDescription15',
-                    'price' => '99.123,48',
+                    'price' => '9.912.348,00',
                     'offerNumber' => 'testOfferNumber15',
                     'options' => [
                         [
@@ -2590,7 +2597,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[15]->getUuid(),
                     'name' => 'testClassified16',
                     'description' => 'testClassifiedDescription16',
-                    'price' => '60.123,00',
+                    'price' => '6.012.300,00',
                     'offerNumber' => 'testOfferNumber16',
                     'options' => [
                         [
@@ -2695,7 +2702,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[0]->getUuid(),
                     'name' => 'Test Classified',
                     'description' => 'testClassifiedDescription',
-                    'price' => '123,45',
+                    'price' => '12.345,00',
                     'offerNumber' => 'testOfferNumber',
                     'options' => [
                         [
@@ -2748,7 +2755,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[4]->getUuid(),
                     'name' => 'testClassified5',
                     'description' => 'testClassifiedDescription5',
-                    'price' => '823,45',
+                    'price' => '82.345,00',
                     'offerNumber' => 'testOfferNumber5',
                     'options' => [
                         [
@@ -2801,7 +2808,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[5]->getUuid(),
                     'name' => 'testClassified6',
                     'description' => 'testClassifiedDescription6',
-                    'price' => '213,46',
+                    'price' => '21.346,00',
                     'offerNumber' => 'testOfferNumber6',
                     'options' => [
                         [
@@ -2854,7 +2861,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[6]->getUuid(),
                     'name' => 'testClassified7',
                     'description' => 'testClassifiedDescription7',
-                    'price' => '113,45',
+                    'price' => '11.345,00',
                     'offerNumber' => 'testOfferNumber7',
                     'options' => [
                         [
@@ -2907,7 +2914,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[7]->getUuid(),
                     'name' => 'testClassified8',
                     'description' => 'testClassifiedDescription8',
-                    'price' => '115,48',
+                    'price' => '11.548,00',
                     'offerNumber' => 'testOfferNumber8',
                     'options' => [
                         [
@@ -2960,7 +2967,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[8]->getUuid(),
                     'name' => 'testClassified9',
                     'description' => 'testClassifiedDescription9',
-                    'price' => '15,48',
+                    'price' => '1.548,00',
                     'offerNumber' => 'testOfferNumber9',
                     'options' => [
                         [
@@ -3013,7 +3020,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[9]->getUuid(),
                     'name' => 'testClassified10',
                     'description' => 'testClassifiedDescription10',
-                    'price' => '20,00',
+                    'price' => '2.000,00',
                     'offerNumber' => 'testOfferNumber10',
                     'options' => [
                         [
@@ -3103,7 +3110,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[8]->getUuid(),
                     'name' => 'testClassified9',
                     'description' => 'testClassifiedDescription9',
-                    'price' => '15,48',
+                    'price' => '1.548,00',
                     'offerNumber' => 'testOfferNumber9',
                     'options' => [
                         [
@@ -3156,7 +3163,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[9]->getUuid(),
                     'name' => 'testClassified10',
                     'description' => 'testClassifiedDescription10',
-                    'price' => '20,00',
+                    'price' => '2.000,00',
                     'offerNumber' => 'testOfferNumber10',
                     'options' => [
                         [
@@ -3253,7 +3260,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[9]->getUuid(),
                     'name' => 'testClassified10',
                     'description' => 'testClassifiedDescription10',
-                    'price' => '20,00',
+                    'price' => '2.000,00',
                     'offerNumber' => 'testOfferNumber10',
                     'options' => [
                         [
@@ -3350,7 +3357,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[8]->getUuid(),
                     'name' => 'testClassified9',
                     'description' => 'testClassifiedDescription9',
-                    'price' => '15,48',
+                    'price' => '1.548,00',
                     'offerNumber' => 'testOfferNumber9',
                     'options' => [
                         [
@@ -3403,7 +3410,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[9]->getUuid(),
                     'name' => 'testClassified10',
                     'description' => 'testClassifiedDescription10',
-                    'price' => '20,00',
+                    'price' => '2.000,00',
                     'offerNumber' => 'testOfferNumber10',
                     'options' => [
                         [
@@ -3502,7 +3509,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[10]->getUuid(),
                     'name' => 'testClassified11',
                     'description' => 'testClassifiedDescription11',
-                    'price' => '30,00',
+                    'price' => '3.000,00',
                     'offerNumber' => 'testOfferNumber11',
                     'options' => [
                         [
@@ -3563,7 +3570,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[11]->getUuid(),
                     'name' => 'testClassified12',
                     'description' => 'testClassifiedDescription12',
-                    'price' => '60,00',
+                    'price' => '6.000,00',
                     'offerNumber' => 'testOfferNumber12',
                     'options' => [
                         [
@@ -3666,7 +3673,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[12]->getUuid(),
                     'name' => 'testClassified13',
                     'description' => 'testClassifiedDescription13',
-                    'price' => '90.000,00',
+                    'price' => '9.000.000,00',
                     'offerNumber' => 'testOfferNumber13',
                     'options' => [
                         [
@@ -3723,7 +3730,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[13]->getUuid(),
                     'name' => 'testClassified14',
                     'description' => 'testClassifiedDescription14',
-                    'price' => '50.123,00',
+                    'price' => '5.012.300,00',
                     'offerNumber' => 'testOfferNumber14',
                     'options' => [
                         [
@@ -3864,7 +3871,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[14]->getUuid(),
                     'name' => 'testClassified15',
                     'description' => 'testClassifiedDescription15',
-                    'price' => '99.123,48',
+                    'price' => '9.912.348,00',
                     'offerNumber' => 'testOfferNumber15',
                     'options' => [
                         [
@@ -3921,7 +3928,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[15]->getUuid(),
                     'name' => 'testClassified16',
                     'description' => 'testClassifiedDescription16',
-                    'price' => '60.123,00',
+                    'price' => '6.012.300,00',
                     'offerNumber' => 'testOfferNumber16',
                     'options' => [
                         [
@@ -4093,7 +4100,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[11]->getUuid(),
                     'name' => 'testClassified12',
                     'description' => 'testClassifiedDescription12',
-                    'price' => '60,00',
+                    'price' => '6.000,00',
                     'offerNumber' => 'testOfferNumber12',
                     'options' => [
                         [
@@ -4150,7 +4157,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[12]->getUuid(),
                     'name' => 'testClassified13',
                     'description' => 'testClassifiedDescription13',
-                    'price' => '90.000,00',
+                    'price' => '9.000.000,00',
                     'offerNumber' => 'testOfferNumber13',
                     'options' => [
                         [
@@ -4207,7 +4214,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[13]->getUuid(),
                     'name' => 'testClassified14',
                     'description' => 'testClassifiedDescription14',
-                    'price' => '50.123,00',
+                    'price' => '5.012.300,00',
                     'offerNumber' => 'testOfferNumber14',
                     'options' => [
                         [
@@ -4264,7 +4271,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[14]->getUuid(),
                     'name' => 'testClassified15',
                     'description' => 'testClassifiedDescription15',
-                    'price' => '99.123,48',
+                    'price' => '9.912.348,00',
                     'offerNumber' => 'testOfferNumber15',
                     'options' => [
                         [
@@ -4321,7 +4328,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[15]->getUuid(),
                     'name' => 'testClassified16',
                     'description' => 'testClassifiedDescription16',
-                    'price' => '60.123,00',
+                    'price' => '6.012.300,00',
                     'offerNumber' => 'testOfferNumber16',
                     'options' => [
                         [
@@ -4426,7 +4433,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[7]->getUuid(),
                     'name' => 'testClassified8',
                     'description' => 'testClassifiedDescription8',
-                    'price' => '115,48',
+                    'price' => '11.548,00',
                     'offerNumber' => 'testOfferNumber8',
                     'options' => [
                         [
@@ -4479,7 +4486,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[8]->getUuid(),
                     'name' => 'testClassified9',
                     'description' => 'testClassifiedDescription9',
-                    'price' => '15,48',
+                    'price' => '1.548,00',
                     'offerNumber' => 'testOfferNumber9',
                     'options' => [
                         [
@@ -4532,7 +4539,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[9]->getUuid(),
                     'name' => 'testClassified10',
                     'description' => 'testClassifiedDescription10',
-                    'price' => '20,00',
+                    'price' => '2.000,00',
                     'offerNumber' => 'testOfferNumber10',
                     'options' => [
                         [
@@ -4585,7 +4592,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[10]->getUuid(),
                     'name' => 'testClassified11',
                     'description' => 'testClassifiedDescription11',
-                    'price' => '30,00',
+                    'price' => '3.000,00',
                     'offerNumber' => 'testOfferNumber11',
                     'options' => [
                         [
@@ -4646,7 +4653,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[11]->getUuid(),
                     'name' => 'testClassified12',
                     'description' => 'testClassifiedDescription12',
-                    'price' => '60,00',
+                    'price' => '6.000,00',
                     'offerNumber' => 'testOfferNumber12',
                     'options' => [
                         [
@@ -4703,7 +4710,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[12]->getUuid(),
                     'name' => 'testClassified13',
                     'description' => 'testClassifiedDescription13',
-                    'price' => '90.000,00',
+                    'price' => '9.000.000,00',
                     'offerNumber' => 'testOfferNumber13',
                     'options' => [
                         [
@@ -4760,7 +4767,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[13]->getUuid(),
                     'name' => 'testClassified14',
                     'description' => 'testClassifiedDescription14',
-                    'price' => '50.123,00',
+                    'price' => '5.012.300,00',
                     'offerNumber' => 'testOfferNumber14',
                     'options' => [
                         [
@@ -4817,7 +4824,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[14]->getUuid(),
                     'name' => 'testClassified15',
                     'description' => 'testClassifiedDescription15',
-                    'price' => '99.123,48',
+                    'price' => '9.912.348,00',
                     'offerNumber' => 'testOfferNumber15',
                     'options' => [
                         [
@@ -4874,7 +4881,7 @@ class SearchControllerTest extends WebTestCase
                     'id' => (string)$createdClassifieds[15]->getUuid(),
                     'name' => 'testClassified16',
                     'description' => 'testClassifiedDescription16',
-                    'price' => '60.123,00',
+                    'price' => '6.012.300,00',
                     'offerNumber' => 'testOfferNumber16',
                     'options' => [
                         [
@@ -5412,7 +5419,7 @@ class SearchControllerTest extends WebTestCase
     private function createClassified(
         string $name,
         string $description,
-        int $price,
+        string $price,
         string $offerNumber,
         array $propertyGroupOptions,
     ): Classified {
@@ -5423,13 +5430,14 @@ class SearchControllerTest extends WebTestCase
         $classifiedDto->setPrice($price);
         $classifiedDto->setOfferNumber($offerNumber);
 
+        $propertyGroupOptionIds = [];
         foreach ($propertyGroupOptions as $propertyGroupOption) {
             if ($propertyGroupOption instanceof PropertyGroupOption) {
-                $propertyGroupOptionDto = new ClassifiedPropertyGroupOptionDto();
-                $propertyGroupOptionDto->setPropertyGroupOptionId((string)$propertyGroupOption->getUuid());
-                $classifiedDto->addPropertyGroupOption($propertyGroupOptionDto);
+                $propertyGroupOptionIds[] = (string)$propertyGroupOption->getUuid();
             }
         }
+
+        $classifiedDto->setPropertyGroupOptionIds($propertyGroupOptionIds);
 
         return $this->classifiedService->createClassified($classifiedDto);
     }
@@ -5441,7 +5449,7 @@ class SearchControllerTest extends WebTestCase
         $createdClassifieds[] = $this->createClassified(
             'Test Classified',
             'testClassifiedDescription',
-            12345,
+            '12345',
             'testOfferNumber',
             $this->getClassifiedPropertyGroupOptions(
                 'Gebrauchtfahrzeug',
@@ -5462,7 +5470,7 @@ class SearchControllerTest extends WebTestCase
         $createdClassifieds[] = $this->createClassified(
             'testClassified2',
             'testClassifiedDescription2',
-            22345,
+            '22345',
             'testOfferNumber2',
             $this->getClassifiedPropertyGroupOptions(
                 'Gebrauchtfahrzeug',
@@ -5483,7 +5491,7 @@ class SearchControllerTest extends WebTestCase
         $createdClassifieds[] = $this->createClassified(
             'testClassified3',
             'testClassifiedDescription3',
-            22123,
+            '22123',
             'testOfferNumber3',
             $this->getClassifiedPropertyGroupOptions(
                 'Neufahrzeug',
@@ -5504,7 +5512,7 @@ class SearchControllerTest extends WebTestCase
         $createdClassifieds[] = $this->createClassified(
             'testClassified4',
             'testClassifiedDescription4',
-            55125,
+            '55125',
             'testOfferNumber4',
             $this->getClassifiedPropertyGroupOptions(
                 'Neufahrzeug',
@@ -5525,7 +5533,7 @@ class SearchControllerTest extends WebTestCase
         $createdClassifieds[] = $this->createClassified(
             'testClassified5',
             'testClassifiedDescription5',
-            82345,
+            '82345',
             'testOfferNumber5',
             $this->getClassifiedPropertyGroupOptions(
                 'Neufahrzeug',
@@ -5546,7 +5554,7 @@ class SearchControllerTest extends WebTestCase
         $createdClassifieds[] = $this->createClassified(
             'testClassified6',
             'testClassifiedDescription6',
-            21346,
+            '21346',
             'testOfferNumber6',
             $this->getClassifiedPropertyGroupOptions(
                 'Neufahrzeug',
@@ -5567,7 +5575,7 @@ class SearchControllerTest extends WebTestCase
         $createdClassifieds[] = $this->createClassified(
             'testClassified7',
             'testClassifiedDescription7',
-            11345,
+            '11345',
             'testOfferNumber7',
             $this->getClassifiedPropertyGroupOptions(
                 'Neufahrzeug',
@@ -5588,7 +5596,7 @@ class SearchControllerTest extends WebTestCase
         $createdClassifieds[] = $this->createClassified(
             'testClassified8',
             'testClassifiedDescription8',
-            11548,
+            '11548',
             'testOfferNumber8',
             $this->getClassifiedPropertyGroupOptions(
                 'Neufahrzeug',
@@ -5609,7 +5617,7 @@ class SearchControllerTest extends WebTestCase
         $createdClassifieds[] = $this->createClassified(
             'testClassified9',
             'testClassifiedDescription9',
-            1548,
+            '1548',
             'testOfferNumber9',
             $this->getClassifiedPropertyGroupOptions(
                 'Neufahrzeug',
@@ -5630,7 +5638,7 @@ class SearchControllerTest extends WebTestCase
         $createdClassifieds[] = $this->createClassified(
             'testClassified10',
             'testClassifiedDescription10',
-            2000,
+            '2000',
             'testOfferNumber10',
             $this->getClassifiedPropertyGroupOptions(
                 'Neufahrzeug',
@@ -5676,7 +5684,7 @@ class SearchControllerTest extends WebTestCase
         $createdClassifieds[] = $this->createClassified(
             'testClassified11',
             'testClassifiedDescription11',
-            3000,
+            '3000',
             'testOfferNumber11',
             $propertyGroupOptions
         );
@@ -5704,7 +5712,7 @@ class SearchControllerTest extends WebTestCase
         $createdClassifieds[] = $this->createClassified(
             'testClassified12',
             'testClassifiedDescription12',
-            6000,
+            '6000',
             'testOfferNumber12',
             $propertyGroupOptions
         );
@@ -5732,7 +5740,7 @@ class SearchControllerTest extends WebTestCase
         $createdClassifieds[] = $this->createClassified(
             'testClassified13',
             'testClassifiedDescription13',
-            9000000,
+            '9000000',
             'testOfferNumber13',
             $propertyGroupOptions
         );
@@ -5760,7 +5768,7 @@ class SearchControllerTest extends WebTestCase
         $createdClassifieds[] = $this->createClassified(
             'testClassified14',
             'testClassifiedDescription14',
-            5012300,
+            '5012300',
             'testOfferNumber14',
             $propertyGroupOptions
         );
@@ -5788,7 +5796,7 @@ class SearchControllerTest extends WebTestCase
         $createdClassifieds[] = $this->createClassified(
             'testClassified15',
             'testClassifiedDescription15',
-            9912348,
+            '9912348',
             'testOfferNumber15',
             $propertyGroupOptions
         );
@@ -5816,7 +5824,7 @@ class SearchControllerTest extends WebTestCase
         $createdClassifieds[] = $this->createClassified(
             'testClassified16',
             'testClassifiedDescription16',
-            6012300,
+            '6012300',
             'testOfferNumber16',
             $propertyGroupOptions
         );
