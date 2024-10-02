@@ -6,6 +6,9 @@ namespace App\Controller\CustomerFrontendApi;
 
 use App\Api\ClassifiedSearchListServiceInterface;
 use App\Api\Search\ClassifiedSearchDto;
+use App\Api\Struct\ClassifiedStruct;
+use App\Api\Struct\PropertyGroupOptionStruct;
+use App\Api\Struct\ResponseStruct;
 use App\Serializer\DeserializerInterface;
 use App\Service\PropertyService;
 use Psr\Log\LoggerInterface;
@@ -35,9 +38,11 @@ class SearchController extends AbstractController
     public function searchClassified(Request $request): Response
     {
         try {
-            $result = $this->classifiedSearchListService->searchClassifieds($this->deserializeDto($request));
+            $response = $this->classifiedSearchListService->searchClassifieds($this->deserializeDto($request));
 
-            return $this->json($result);
+            $classifieds = $this->buildResponseForClassifieds($response);
+
+            return $this->json(['data' => $classifieds]);
         } catch (\Throwable $e) {
             $this->logger->error($e->getMessage(), [
                 'trace' => $e->getTraceAsString(),
@@ -57,5 +62,30 @@ class SearchController extends AbstractController
     private function deserializeDto(Request $request): ClassifiedSearchDto
     {
         return $this->deserializer->deserialize($request->getContent(), ClassifiedSearchDto::class);
+    }
+
+    private function buildResponseForClassifieds(ResponseStruct $response): array
+    {
+        return array_map(fn (ClassifiedStruct $classified) => $this->buildFromStruct($classified), $response->getData());
+    }
+
+    private function buildFromStruct(ClassifiedStruct $struct): array
+    {
+        return [
+            'id' => $struct->getId(),
+            'name' => $struct->getName(),
+            'description' => $struct->getDescription(),
+            'price' => $this->formatPrice($struct->getPrice()),
+            'offerNumber' => $struct->getOfferNumber(),
+            'options' => array_map(fn (PropertyGroupOptionStruct $propertyGroupOption) => [
+                'optionName' => $propertyGroupOption->getParentId() ? $propertyGroupOption->getGroupOptionNameParent() : $propertyGroupOption->getGroupName(),
+                'value' => $propertyGroupOption->getName(),
+            ], $struct->getPropertyGroupOptions()),
+        ];
+    }
+
+    private function formatPrice(int $price): string
+    {
+        return number_format(($price / 100), 2, ',', '.');
     }
 }

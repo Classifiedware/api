@@ -16,13 +16,12 @@ class ClassifiedSearchListService implements ClassifiedSearchListServiceInterfac
     private const LIMIT_PER_PAGE = 10;
 
     public function __construct(
-        private readonly ClassifiedResponseBuilderInterface $classifiedResponseBuilder,
         private readonly ClassifiedRepository $classifiedRepository,
         private readonly SearchCriteriaHandler $searchCriteriaHandler,
     ) {
     }
 
-    public function searchClassifieds(ClassifiedSearchDto $searchDto): array
+    public function searchClassifieds(ClassifiedSearchDto $searchDto): ResponseStruct
     {
         $this->enrichSearchDto($searchDto);
 
@@ -37,6 +36,7 @@ class ClassifiedSearchListService implements ClassifiedSearchListServiceInterfac
             $this->searchCriteriaHandler->getExcludedPropertyGroupOptionIds()
         );
 
+        /** @var array<ClassifiedStruct> $classifieds */
         $classifieds = [];
         foreach ($result as $row) {
             if (!\is_array($row)) {
@@ -54,13 +54,11 @@ class ClassifiedSearchListService implements ClassifiedSearchListServiceInterfac
             $classifieds[] = $classified;
         }
 
-        return $this->classifiedResponseBuilder->buildFromList(
-            new ResponseStruct(
-                1,
-                false,
-                false,
-                $classifieds
-            )
+        return new ResponseStruct(
+            1,
+            false,
+            false,
+            $classifieds
         );
     }
 
