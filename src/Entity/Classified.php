@@ -34,7 +34,7 @@ class Classified
     #[ORM\ManyToMany(targetEntity: PropertyGroupOption::class)]
     private Collection $propertyGroupOptions;
 
-    #[ORM\OneToMany(mappedBy: 'classified', targetEntity: ClassifiedMedia::class)]
+    #[ORM\OneToMany(mappedBy: 'classified', targetEntity: ClassifiedMedia::class, cascade: ['persist'], orphanRemoval: true)]
     private Collection $media;
 
     public function __construct()
@@ -111,5 +111,14 @@ class Classified
     public function setMedia(Collection $media): void
     {
         $this->media = $media;
+    }
+
+    public function addMedia(ClassifiedMedia $media): self
+    {
+        if (!$this->media->contains($media)) {
+            $this->media[] = $media;
+        }
+
+        return $this;
     }
 }

@@ -6,6 +6,7 @@ namespace App\Service;
 
 use App\Dto\ClassifiedDto;
 use App\Entity\Classified;
+use App\Entity\ClassifiedMedia;
 use App\Entity\PropertyGroup;
 use App\Entity\PropertyGroupOption;
 use App\Exception\ClassifiedValidationException;
@@ -76,9 +77,7 @@ class ClassifiedService
             }
         }
 
-        // TODO: handle upload images
-
-        $uploadedMedia = $this->mediaUploadService->uploadMedia($classifiedDto->getUploadedFiles());
+        $this->uploadClassifiedMedia($classifiedDto, $classified);
 
         $this->entityManager->persist($classified);
         $this->entityManager->flush();
@@ -122,5 +121,19 @@ class ClassifiedService
         $this->entityManager->flush();
 
         return $propertyGroupOption;
+    }
+
+    private function uploadClassifiedMedia(ClassifiedDto $classifiedDto, Classified $classified): void
+    {
+        $uploadedMedia = $this->mediaUploadService->uploadMedia($classifiedDto->getUploadedFiles());
+        foreach ($uploadedMedia as $media) {
+            $classifiedMedia = new ClassifiedMedia();
+            $classifiedMedia->setUuid(Uuid::v4());
+            $classifiedMedia->setClassified($classified);
+            $classifiedMedia->setMedia($media);
+            $classifiedMedia->setCreatedAt(new \DateTimeImmutable());
+
+            $classified->addMedia($classifiedMedia);
+        }
     }
 }
