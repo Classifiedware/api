@@ -16,6 +16,7 @@ class ClassifiedSearchListService implements ClassifiedSearchListServiceInterfac
     private const LIMIT_PER_PAGE = 10;
 
     public function __construct(
+        private readonly string $appUrl,
         private readonly ClassifiedRepository $classifiedRepository,
         private readonly SearchCriteriaHandler $searchCriteriaHandler,
     ) {
@@ -113,12 +114,16 @@ class ClassifiedSearchListService implements ClassifiedSearchListServiceInterfac
 
     private function buildClassified(array $row): ClassifiedStruct
     {
+        $thumbnailUrl = $row['media'][0]['media']['mediaThumbnails'][0]['path'] ?? '';
+        $thumbnailUrl = $this->appUrl . '/' . $thumbnailUrl;
+
         return new ClassifiedStruct(
             (string)$row['uuid'],
             $row['name'],
             $row['description'],
             $row['price'],
-            $row['offerNumber']
+            $row['offerNumber'],
+            $thumbnailUrl
         );
     }
 

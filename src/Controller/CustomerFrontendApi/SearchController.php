@@ -77,6 +77,7 @@ class SearchController extends AbstractController
             'description' => $struct->getDescription(),
             'price' => $this->formatPrice($struct->getPrice()),
             'offerNumber' => $struct->getOfferNumber(),
+            'thumbnailUrl' => $struct->getThumbnailUrl(),
             'options' => array_map(fn (PropertyGroupOptionStruct $propertyGroupOption) => [
                 'optionName' => $propertyGroupOption->getParentId() ? $propertyGroupOption->getGroupOptionNameParent() : $propertyGroupOption->getGroupName(),
                 'value' => $propertyGroupOption->getName(),

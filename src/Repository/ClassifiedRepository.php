@@ -61,14 +61,23 @@ class ClassifiedRepository extends ServiceEntityRepository
                     'partial c.{id, uuid, name, description, price, offerNumber}',
                     'partial pgo.{id, uuid, name, type}',
                     'partial pgop.{id, uuid, name, type, isModel}',
-                    'partial pg.{id, uuid, name}'
+                    'partial pg.{id, uuid, name}',
+                    'cm',
+                    'media',
+                    'mt',
                 ]
             )
             ->leftJoin('c.propertyGroupOptions', 'pgo', Join::WITH, $qb->expr()->andX(
                 $qb->expr()->in('pgo.id', $propertyGroupOptionsIds)
             ))
             ->leftJoin('pgo.parent', 'pgop')
-            ->leftJoin('pgo.propertyGroup', 'pg');
+            ->leftJoin('pgo.propertyGroup', 'pg')
+            ->leftJoin('c.media', 'cm')
+            ->leftJoin('cm.media', 'media')
+            ->leftJoin('media.mediaThumbnails', 'mt', Join::WITH, $qb->expr()->andX(
+                $qb->expr()->eq('mt.width', '240'),
+                $qb->expr()->eq('mt.height', '180')
+            ));
 
         $classifiedIds = $this->getClassifiedIdsForPropertyGroupOptionIds($allowedPropertyGroupOptionIds, $excludedPropertyGroupOptionIds);
         $query->andWhere('c.id IN (:classifiedIds)');
