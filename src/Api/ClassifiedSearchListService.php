@@ -114,8 +114,10 @@ class ClassifiedSearchListService implements ClassifiedSearchListServiceInterfac
 
     private function buildClassified(array $row): ClassifiedStruct
     {
-        $thumbnailUrl = $row['media'][0]['media']['mediaThumbnails'][0]['path'] ?? '';
-        $thumbnailUrl = $this->appUrl . '/' . $thumbnailUrl;
+        $thumbnailUrl = $row['media'][0]['media']['mediaThumbnails'][0]['path'] ?? null;
+        if ($thumbnailUrl !== null) {
+            $thumbnailUrl = $this->appUrl . '/' . $thumbnailUrl;
+        }
 
         return new ClassifiedStruct(
             (string)$row['uuid'],

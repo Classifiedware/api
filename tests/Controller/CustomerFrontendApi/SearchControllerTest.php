@@ -565,6 +565,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription',
                     'price' => '12.345,00',
                     'offerNumber' => 'testOfferNumber',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -618,6 +619,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription2',
                     'price' => '22.345,00',
                     'offerNumber' => 'testOfferNumber2',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -705,6 +707,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription2',
                     'price' => '22.345,00',
                     'offerNumber' => 'testOfferNumber2',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -792,6 +795,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription3',
                     'price' => '22.123,00',
                     'offerNumber' => 'testOfferNumber3',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -845,6 +849,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription4',
                     'price' => '55.125,00',
                     'offerNumber' => 'testOfferNumber4',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -932,6 +937,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription4',
                     'price' => '55.125,00',
                     'offerNumber' => 'testOfferNumber4',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -985,6 +991,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription5',
                     'price' => '82.345,00',
                     'offerNumber' => 'testOfferNumber5',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -1038,6 +1045,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription6',
                     'price' => '21.346,00',
                     'offerNumber' => 'testOfferNumber6',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -1091,6 +1099,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription7',
                     'price' => '11.345,00',
                     'offerNumber' => 'testOfferNumber7',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -1144,6 +1153,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription8',
                     'price' => '11.548,00',
                     'offerNumber' => 'testOfferNumber8',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -1231,6 +1241,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription',
                     'price' => '12.345,00',
                     'offerNumber' => 'testOfferNumber',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -1284,6 +1295,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription2',
                     'price' => '22.345,00',
                     'offerNumber' => 'testOfferNumber2',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -1337,6 +1349,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription5',
                     'price' => '82.345,00',
                     'offerNumber' => 'testOfferNumber5',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -1390,6 +1403,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription6',
                     'price' => '21.346,00',
                     'offerNumber' => 'testOfferNumber6',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -1443,6 +1457,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription7',
                     'price' => '11.345,00',
                     'offerNumber' => 'testOfferNumber7',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -1496,6 +1511,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription8',
                     'price' => '11.548,00',
                     'offerNumber' => 'testOfferNumber8',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -1549,6 +1565,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription9',
                     'price' => '1.548,00',
                     'offerNumber' => 'testOfferNumber9',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -1602,6 +1619,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription10',
                     'price' => '2.000,00',
                     'offerNumber' => 'testOfferNumber10',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -1689,6 +1707,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription',
                     'price' => '12.345,00',
                     'offerNumber' => 'testOfferNumber',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -1742,6 +1761,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription2',
                     'price' => '22.345,00',
                     'offerNumber' => 'testOfferNumber2',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -1795,6 +1815,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription3',
                     'price' => '22.123,00',
                     'offerNumber' => 'testOfferNumber3',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -1848,6 +1869,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription4',
                     'price' => '55.125,00',
                     'offerNumber' => 'testOfferNumber4',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -1901,6 +1923,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription5',
                     'price' => '82.345,00',
                     'offerNumber' => 'testOfferNumber5',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -1954,6 +1977,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription8',
                     'price' => '11.548,00',
                     'offerNumber' => 'testOfferNumber8',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -2007,6 +2031,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription9',
                     'price' => '1.548,00',
                     'offerNumber' => 'testOfferNumber9',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -2060,6 +2085,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription10',
                     'price' => '2.000,00',
                     'offerNumber' => 'testOfferNumber10',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -2151,6 +2177,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription6',
                     'price' => '21.346,00',
                     'offerNumber' => 'testOfferNumber6',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -2204,6 +2231,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription7',
                     'price' => '11.345,00',
                     'offerNumber' => 'testOfferNumber7',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -2257,6 +2285,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription8',
                     'price' => '11.548,00',
                     'offerNumber' => 'testOfferNumber8',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -2310,6 +2339,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription11',
                     'price' => '3.000,00',
                     'offerNumber' => 'testOfferNumber11',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -2371,6 +2401,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription12',
                     'price' => '6.000,00',
                     'offerNumber' => 'testOfferNumber12',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -2428,6 +2459,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription13',
                     'price' => '9.000.000,00',
                     'offerNumber' => 'testOfferNumber13',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -2485,6 +2517,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription14',
                     'price' => '5.012.300,00',
                     'offerNumber' => 'testOfferNumber14',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -2542,6 +2575,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription15',
                     'price' => '9.912.348,00',
                     'offerNumber' => 'testOfferNumber15',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -2599,6 +2633,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription16',
                     'price' => '6.012.300,00',
                     'offerNumber' => 'testOfferNumber16',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -2704,6 +2739,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription',
                     'price' => '12.345,00',
                     'offerNumber' => 'testOfferNumber',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -2757,6 +2793,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription5',
                     'price' => '82.345,00',
                     'offerNumber' => 'testOfferNumber5',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -2810,6 +2847,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription6',
                     'price' => '21.346,00',
                     'offerNumber' => 'testOfferNumber6',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -2863,6 +2901,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription7',
                     'price' => '11.345,00',
                     'offerNumber' => 'testOfferNumber7',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -2916,6 +2955,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription8',
                     'price' => '11.548,00',
                     'offerNumber' => 'testOfferNumber8',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -2969,6 +3009,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription9',
                     'price' => '1.548,00',
                     'offerNumber' => 'testOfferNumber9',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -3022,6 +3063,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription10',
                     'price' => '2.000,00',
                     'offerNumber' => 'testOfferNumber10',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -3112,6 +3154,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription9',
                     'price' => '1.548,00',
                     'offerNumber' => 'testOfferNumber9',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -3165,6 +3208,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription10',
                     'price' => '2.000,00',
                     'offerNumber' => 'testOfferNumber10',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -3262,6 +3306,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription10',
                     'price' => '2.000,00',
                     'offerNumber' => 'testOfferNumber10',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -3359,6 +3404,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription9',
                     'price' => '1.548,00',
                     'offerNumber' => 'testOfferNumber9',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -3412,6 +3458,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription10',
                     'price' => '2.000,00',
                     'offerNumber' => 'testOfferNumber10',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -3511,6 +3558,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription11',
                     'price' => '3.000,00',
                     'offerNumber' => 'testOfferNumber11',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -3572,6 +3620,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription12',
                     'price' => '6.000,00',
                     'offerNumber' => 'testOfferNumber12',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -3675,6 +3724,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription13',
                     'price' => '9.000.000,00',
                     'offerNumber' => 'testOfferNumber13',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -3732,6 +3782,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription14',
                     'price' => '5.012.300,00',
                     'offerNumber' => 'testOfferNumber14',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -3873,6 +3924,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription15',
                     'price' => '9.912.348,00',
                     'offerNumber' => 'testOfferNumber15',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -3930,6 +3982,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription16',
                     'price' => '6.012.300,00',
                     'offerNumber' => 'testOfferNumber16',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -4102,6 +4155,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription12',
                     'price' => '6.000,00',
                     'offerNumber' => 'testOfferNumber12',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -4159,6 +4213,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription13',
                     'price' => '9.000.000,00',
                     'offerNumber' => 'testOfferNumber13',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -4216,6 +4271,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription14',
                     'price' => '5.012.300,00',
                     'offerNumber' => 'testOfferNumber14',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -4273,6 +4329,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription15',
                     'price' => '9.912.348,00',
                     'offerNumber' => 'testOfferNumber15',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -4330,6 +4387,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription16',
                     'price' => '6.012.300,00',
                     'offerNumber' => 'testOfferNumber16',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -4435,6 +4493,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription8',
                     'price' => '11.548,00',
                     'offerNumber' => 'testOfferNumber8',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -4488,6 +4547,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription9',
                     'price' => '1.548,00',
                     'offerNumber' => 'testOfferNumber9',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -4541,6 +4601,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription10',
                     'price' => '2.000,00',
                     'offerNumber' => 'testOfferNumber10',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -4594,6 +4655,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription11',
                     'price' => '3.000,00',
                     'offerNumber' => 'testOfferNumber11',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -4655,6 +4717,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription12',
                     'price' => '6.000,00',
                     'offerNumber' => 'testOfferNumber12',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -4712,6 +4775,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription13',
                     'price' => '9.000.000,00',
                     'offerNumber' => 'testOfferNumber13',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -4769,6 +4833,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription14',
                     'price' => '5.012.300,00',
                     'offerNumber' => 'testOfferNumber14',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -4826,6 +4891,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription15',
                     'price' => '9.912.348,00',
                     'offerNumber' => 'testOfferNumber15',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',
@@ -4883,6 +4949,7 @@ class SearchControllerTest extends WebTestCase
                     'description' => 'testClassifiedDescription16',
                     'price' => '6.012.300,00',
                     'offerNumber' => 'testOfferNumber16',
+                    'thumbnailUrl' => null,
                     'options' => [
                         [
                             'optionName' => 'Fahrzeugzustand',

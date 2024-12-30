@@ -10,7 +10,7 @@ class ClassifiedStruct
         private readonly string $description,
         private readonly int $price,
         private readonly string $offerNumber,
-        private readonly string $thumbnailUrl,
+        private readonly ?string $thumbnailUrl,
         private array $propertyGroupOptions = []
     ) {
     }
@@ -40,7 +40,7 @@ class ClassifiedStruct
         return $this->offerNumber;
     }
 
-    public function getThumbnailUrl(): string
+    public function getThumbnailUrl(): ?string
     {
         return $this->thumbnailUrl;
     }
