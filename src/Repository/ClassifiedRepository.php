@@ -11,6 +11,7 @@ use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\Query\Expr\Join;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Uid\Uuid;
@@ -50,38 +51,19 @@ class ClassifiedRepository extends ServiceEntityRepository
 
     public function findClassifiedsForSearchList(int $page, int $itemsPerPage, array $allowedPropertyGroupOptionIds, array $excludedPropertyGroupOptionIds): array
     {
-        $qb = $this->createQueryBuilder('c');
-
-        $allowedPropertyGroupOptionIds = array_map(fn (string $propertyGroupOptionId) => Uuid::fromString($propertyGroupOptionId)->toBinary(), $allowedPropertyGroupOptionIds);
-
         $propertyGroupOptionsIds = $this->getPropertyGroupOptionIdsToShownInSearchList();
 
-        $query = $qb
-            ->select([
-                    'partial c.{id, uuid, name, description, price, offerNumber}',
-                    'partial pgo.{id, uuid, name, type}',
-                    'partial pgop.{id, uuid, name, type, isModel}',
-                    'partial pg.{id, uuid, name}',
-                    'cm',
-                    'media',
-                    'mt',
-                ]
-            )
-            ->leftJoin('c.propertyGroupOptions', 'pgo', Join::WITH, $qb->expr()->andX(
-                $qb->expr()->in('pgo.id', $propertyGroupOptionsIds)
-            ))
-            ->leftJoin('pgo.parent', 'pgop')
-            ->leftJoin('pgo.propertyGroup', 'pg')
-            ->leftJoin('c.media', 'cm')
-            ->leftJoin('cm.media', 'media')
-            ->leftJoin('media.mediaThumbnails', 'mt', Join::WITH, $qb->expr()->andX(
-                $qb->expr()->eq('mt.width', '240'),
-                $qb->expr()->eq('mt.height', '180')
-            ));
-
-        $classifiedIds = $this->getClassifiedIdsForPropertyGroupOptionIds($allowedPropertyGroupOptionIds, $excludedPropertyGroupOptionIds);
-        $query->andWhere('c.id IN (:classifiedIds)');
-        $query->setParameter('classifiedIds', $classifiedIds);
+        $query = $this->getClassifiedsForSearchListQuery($propertyGroupOptionsIds, $allowedPropertyGroupOptionIds, $excludedPropertyGroupOptionIds);
+        $query->select([
+                'partial c.{id, uuid, name, description, price, offerNumber}',
+                'partial pgo.{id, uuid, name, type}',
+                'partial pgop.{id, uuid, name, type, isModel}',
+                'partial pg.{id, uuid, name}',
+                'cm',
+                'media',
+                'mt',
+            ]
+        );
 
         $paginatorQuery = $this->getEntityManager()
             ->createQuery($query->getDQL())
@@ -413,6 +395,36 @@ class ClassifiedRepository extends ServiceEntityRepository
             ->where($qb->expr()->in('nicpgo.uuid', ':excludedPropertyGroupOptionIds'))
             ->setParameter('excludedPropertyGroupOptionIds', $excludedPropertyGroupOptionIds)
             ->getQuery();
+    }
+
+    private function getClassifiedsForSearchListQuery(
+        array $propertyGroupOptionsIds,
+        array $allowedPropertyGroupOptionIds,
+        array $excludedPropertyGroupOptionIds
+    ): QueryBuilder
+    {
+        $allowedPropertyGroupOptionIds = array_map(fn (string $propertyGroupOptionId) => Uuid::fromString($propertyGroupOptionId)->toBinary(), $allowedPropertyGroupOptionIds);
+
+        $qb = $this->createQueryBuilder('c');
+
+        $query = $qb
+            ->leftJoin('c.propertyGroupOptions', 'pgo', Join::WITH, $qb->expr()->andX(
+                $qb->expr()->in('pgo.id', $propertyGroupOptionsIds)
+            ))
+            ->leftJoin('pgo.parent', 'pgop')
+            ->leftJoin('pgo.propertyGroup', 'pg')
+            ->leftJoin('c.media', 'cm')
+            ->leftJoin('cm.media', 'media')
+            ->leftJoin('media.mediaThumbnails', 'mt', Join::WITH, $qb->expr()->andX(
+                $qb->expr()->eq('mt.width', '240'),
+                $qb->expr()->eq('mt.height', '180')
+            ));
+
+        $classifiedIds = $this->getClassifiedIdsForPropertyGroupOptionIds($allowedPropertyGroupOptionIds, $excludedPropertyGroupOptionIds);
+        $query->andWhere('c.id IN (:classifiedIds)');
+        $query->setParameter('classifiedIds', $classifiedIds);
+
+        return $query;
     }
 
 //    /**
