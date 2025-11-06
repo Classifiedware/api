@@ -9,7 +9,9 @@ use App\Entity\Classified;
 use App\Entity\ClassifiedMedia;
 use App\Entity\PropertyGroup;
 use App\Entity\PropertyGroupOption;
+use App\Exception\ClassifiedNotFoundException;
 use App\Exception\ClassifiedValidationException;
+use App\Repository\ClassifiedRepository;
 use App\Repository\PropertyGroupOptionRepository;
 use App\Repository\PropertyGroupRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,12 +23,23 @@ class ClassifiedService
     private const PROPERTY_GROUP_OPTION_DELIMITER = '|';
 
     public function __construct(
+        private readonly ClassifiedRepository $classifiedRepository,
         private readonly PropertyGroupRepository $propertyGroupRepository,
         private readonly PropertyGroupOptionRepository $propertyGroupOptionRepository,
         private readonly MediaUploadService $mediaUploadService,
         private readonly ValidatorInterface $validator,
         private readonly EntityManagerInterface $entityManager
     ) {
+    }
+
+    public function loadClassified(string $classifiedId): Classified
+    {
+        $classified = $this->classifiedRepository->findOneBy(['uuid' => $classifiedId]);
+        if (!$classified instanceof Classified) {
+            throw new ClassifiedNotFoundException($classifiedId);
+        }
+
+        return $classified;
     }
 
     public function createClassified(ClassifiedDto $classifiedDto): Classified

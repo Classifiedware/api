@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace App\Controller\AdminApi;
 
 use App\Dto\ClassifiedDto;
+use App\Entity\Classified;
+use App\Entity\PropertyGroupOption;
+use App\Exception\ClassifiedNotFoundException;
 use App\Exception\ClassifiedValidationException;
 use App\Serializer\DeserializerInterface;
 use App\Service\ClassifiedService;
@@ -21,6 +24,63 @@ class AdminClassifiedController extends AbstractController
         private readonly DeserializerInterface $deserializer,
         private readonly LoggerInterface $logger,
     ) {
+    }
+
+    #[Route('/api/admin/classified/{classifiedId}', name: 'api-admin.classified-load', methods: ['GET'])]
+    public function classifiedLoad(string $classifiedId): Response
+    {
+        try {
+            $classified = $this->classifiedService->loadClassified($classifiedId);
+
+            $checkedPropertyGroupOptionIds = [];
+            $selectedPropertyGroupOptionIds = [];
+            $enteredPropertyGroupOptionData = [];
+            $selectedBrand = '';
+            $selectedModel = '';
+            foreach ($classified->getPropertyGroupOptions() as $groupOption) {
+                /** @var PropertyGroupOption $groupOption */
+                if ($groupOption->getType() === PropertyGroupOption::TYPE_CHECKBOX || $groupOption->getType() === PropertyGroupOption::TYPE_MULTI_SELECT) {
+                    $checkedPropertyGroupOptionIds[] = (string)$groupOption->getUuid();
+                }
+
+                if ($groupOption->getType() === PropertyGroupOption::TYPE_SELECT
+                && $groupOption->getParent()->getName() !== 'Marke'
+                && !$groupOption->isModel()
+                ) {
+                    $selectedPropertyGroupOptionIds[$groupOption->getPropertyGroup()->getUuid().'|'.$groupOption->getParent()->getUuid()] = (string)$groupOption->getUuid();
+                }
+
+                if ($groupOption->getType() === PropertyGroupOption::TYPE_SELECT_RANGE && $groupOption->getName() !== 'Preis (€)') {
+                    $enteredPropertyGroupOptionData[$groupOption->getPropertyGroup()->getUuid().'|'.$groupOption->getParent()->getUuid()] = $groupOption->getName();
+                }
+
+                if ($groupOption->getType() === PropertyGroupOption::TYPE_SELECT && $groupOption->getParent()->getName() === 'Marke') {
+                    $selectedBrand = $groupOption->getName().'|'.$groupOption->getUuid();
+                }
+
+                if ($groupOption->getType() === PropertyGroupOption::TYPE_SELECT && $groupOption->isModel()) {
+                    $selectedModel = $groupOption->getUuid();
+                }
+            }
+
+            $classifiedData = [
+                'id' => $classified->getUuid(),
+                'name' => $classified->getName(),
+                'description' => $classified->getDescription(),
+                'price' => (string)$classified->getPrice(),
+                'offerNumber' => $classified->getOfferNumber(),
+                'checkedPropertyGroupOptionIds' => $checkedPropertyGroupOptionIds,
+                'selectedPropertyGroupOptionIds' => $selectedPropertyGroupOptionIds,
+                'enteredPropertyGroupOptionData' => $enteredPropertyGroupOptionData,
+                'selectedBrand' => $selectedBrand,
+                'selectedModel' => $selectedModel,
+                'uploadedImages' => [],
+            ];
+
+            return $this->json(['data' => $classifiedData]);
+        } catch (ClassifiedNotFoundException $notFoundException) {
+            return $this->json(['error' => $notFoundException->getMessage()], Response::HTTP_NOT_FOUND);
+        }
     }
 
     #[Route('/api/admin/classified/create', name: 'api-admin.classified-create', methods: ['POST'])]
