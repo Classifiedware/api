@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Controller\AdminApi;
 
 use App\Dto\ClassifiedDto;
-use App\Entity\Classified;
 use App\Entity\PropertyGroupOption;
 use App\Exception\ClassifiedNotFoundException;
 use App\Exception\ClassifiedValidationException;
 use App\Serializer\DeserializerInterface;
 use App\Service\ClassifiedService;
+use App\Service\PropertyService;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,6 +21,7 @@ class AdminClassifiedController extends AbstractController
 {
     public function __construct(
         private readonly ClassifiedService $classifiedService,
+        private readonly PropertyService $propertyService,
         private readonly DeserializerInterface $deserializer,
         private readonly LoggerInterface $logger,
     ) {
@@ -39,7 +40,9 @@ class AdminClassifiedController extends AbstractController
             $selectedModel = '';
             foreach ($classified->getPropertyGroupOptions() as $groupOption) {
                 /** @var PropertyGroupOption $groupOption */
-                if ($groupOption->getType() === PropertyGroupOption::TYPE_CHECKBOX || $groupOption->getType() === PropertyGroupOption::TYPE_MULTI_SELECT) {
+                if ($groupOption->getType() === PropertyGroupOption::TYPE_CHECKBOX
+                    || $groupOption->getType() === PropertyGroupOption::TYPE_CHECKBOX_GROUP
+                    || $groupOption->getType() === PropertyGroupOption::TYPE_MULTI_SELECT) {
                     $checkedPropertyGroupOptionIds[] = (string)$groupOption->getUuid();
                 }
 
@@ -59,7 +62,7 @@ class AdminClassifiedController extends AbstractController
                 }
 
                 if ($groupOption->getType() === PropertyGroupOption::TYPE_SELECT && $groupOption->isModel()) {
-                    $selectedModel = $groupOption->getUuid();
+                    $selectedModel = (string)$groupOption->getUuid();
                 }
             }
 
@@ -75,6 +78,7 @@ class AdminClassifiedController extends AbstractController
                 'selectedBrand' => $selectedBrand,
                 'selectedModel' => $selectedModel,
                 'uploadedImages' => [],
+                'propertyGroups' => $this->propertyService->getProperties(),
             ];
 
             return $this->json(['data' => $classifiedData]);
