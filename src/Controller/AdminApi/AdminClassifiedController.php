@@ -95,9 +95,9 @@ class AdminClassifiedController extends AbstractController
         try {
             $classifiedDto = $this->deserializeDto($request);
 
-            $result = $this->classifiedService->createClassified($classifiedDto);
+            $createdClassified = $this->classifiedService->createClassified($classifiedDto);
 
-            return $this->json(['data' => $result]);
+            return $this->json(['data' => ['id' => (string)$createdClassified->getUuid()]]);
         } catch (ClassifiedValidationException $validationException) {
             return $this->json(
                 [
