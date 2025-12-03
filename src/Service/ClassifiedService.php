@@ -58,37 +58,19 @@ class ClassifiedService
         $classified->setOfferNumber($classifiedDto->getOfferNumber());
         $classified->setCreatedAt(new \DateTimeImmutable());
 
-        foreach ($classifiedDto->getPropertyGroupOptionIds() as $propertyGroupOptionId) {
-            $propertyGroupOption = $this->getPropertyGroupOptionById($propertyGroupOptionId);
+        $selectedBrand = $this->getPropertyGroupOptionById($classifiedDto->getSelectedBrandId());
+        $selectedModel = $this->getPropertyGroupOptionById($classifiedDto->getSelectedModelId());
 
-            if ($propertyGroupOption instanceof PropertyGroupOption) {
-                $classified->getPropertyGroupOptions()->add($propertyGroupOption);
-            }
+        if ($selectedBrand instanceof PropertyGroupOption) {
+            $classified->getPropertyGroupOptions()->add($selectedBrand);
         }
 
-        foreach ($classifiedDto->getEnteredPropertyGroupOptionData() as $groupOptionData => $groupOptionValue) {
-            $parsedGroupOption = explode(self::PROPERTY_GROUP_OPTION_DELIMITER, $groupOptionData);
-            [$groupOptionId, $groupId] = $parsedGroupOption;
-
-            $propertyGroupOptionParent = $this->getPropertyGroupOptionById($groupOptionId);
-
-            $propertyGroupOption = $this->propertyGroupOptionRepository->findOneBy([
-                    'parent' => $propertyGroupOptionParent,
-                    'name' => $groupOptionValue,
-                ]
-            );
-
-            if ($propertyGroupOption instanceof PropertyGroupOption) {
-                $classified->getPropertyGroupOptions()->add($propertyGroupOption);
-            }
-
-            if (!$propertyGroupOption instanceof PropertyGroupOption) {
-                $propertyGroup = $this->getPropertyGroupById($groupId);
-                $createdPropertyGroupOption = $this->createPropertyGroupOption($groupOptionValue, $propertyGroup, $propertyGroupOptionParent);
-
-                $classified->getPropertyGroupOptions()->add($createdPropertyGroupOption);
-            }
+        if ($selectedModel instanceof PropertyGroupOption) {
+            $classified->getPropertyGroupOptions()->add($selectedModel);
         }
+
+        $this->addPropertyGroupOptionIds($classified, $classifiedDto->getPropertyGroupOptionIds());
+        $this->addEnteredData($classifiedDto->getEnteredPropertyGroupOptionData(), $classified);
 
         $this->uploadClassifiedMedia($classifiedDto, $classified);
 
@@ -112,6 +94,32 @@ class ClassifiedService
                 'uuid' => Uuid::fromString($id)->toBinary(),
             ]
         );
+    }
+
+    private function addPropertyGroupOptionIds(Classified $classified, array $propertyGroupOptionIds): void
+    {
+        foreach ($propertyGroupOptionIds as $propertyGroupOptionId) {
+            $propertyGroupOption = $this->getPropertyGroupOptionById($propertyGroupOptionId);
+
+            if ($propertyGroupOption instanceof PropertyGroupOption) {
+                $classified->getPropertyGroupOptions()->add($propertyGroupOption);
+            }
+        }
+    }
+
+    private function addEnteredData(array $parseableItems, Classified $classified): void
+    {
+        foreach ($parseableItems as $groupOptionData => $groupOptionValue) {
+            $parsedGroupOption = explode(self::PROPERTY_GROUP_OPTION_DELIMITER, $groupOptionData);
+            [$groupId, $groupOptionId] = $parsedGroupOption;
+
+            $propertyGroupOptionParent = $this->getPropertyGroupOptionById($groupOptionId);
+
+            $propertyGroup = $this->getPropertyGroupById($groupId);
+            $createdPropertyGroupOption = $this->createPropertyGroupOption($groupOptionValue, $propertyGroup, $propertyGroupOptionParent);
+
+            $classified->getPropertyGroupOptions()->add($createdPropertyGroupOption);
+        }
     }
 
     private function createPropertyGroupOption(

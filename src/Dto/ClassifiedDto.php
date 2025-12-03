@@ -23,6 +23,12 @@ class ClassifiedDto
     #[Assert\NotBlank]
     private ?string $offerNumber;
 
+    #[Assert\NotBlank]
+    private ?string $selectedBrandId;
+
+    #[Assert\NotBlank]
+    private ?string $selectedModelId;
+
     private array $propertyGroupOptionIds = [];
 
     private array $enteredPropertyGroupOptionData = [];
@@ -93,14 +99,40 @@ class ClassifiedDto
         return $this;
     }
 
+    public function getSelectedBrandId(): ?string
+    {
+        return $this->selectedBrandId;
+    }
+
+    public function setSelectedBrandId(?string $selectedBrandId): ClassifiedDto
+    {
+        $this->selectedBrandId = $selectedBrandId;
+
+        return $this;
+    }
+
+    public function getSelectedModelId(): ?string
+    {
+        return $this->selectedModelId;
+    }
+
+    public function setSelectedModelId(?string $selectedModelId): ClassifiedDto
+    {
+        $this->selectedModelId = $selectedModelId;
+
+        return $this;
+    }
+
     public function getPropertyGroupOptionIds(): array
     {
         return $this->propertyGroupOptionIds;
     }
 
-    public function setPropertyGroupOptionIds(array $propertyGroupOptionIds): void
+    public function setPropertyGroupOptionIds(array $propertyGroupOptionIds): ClassifiedDto
     {
         $this->propertyGroupOptionIds = $propertyGroupOptionIds;
+
+        return $this;
     }
 
     public function getEnteredPropertyGroupOptionData(): array
