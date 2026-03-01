@@ -34,16 +34,19 @@ class AdminClassifiedController extends AbstractController
             $classified = $this->classifiedService->loadClassified($classifiedId);
 
             $checkedPropertyGroupOptionIds = [];
+            $checkedPropertyGroupOptionEquipmentIds = [];
             $selectedPropertyGroupOptionIds = [];
             $enteredPropertyGroupOptionData = [];
             $selectedBrand = '';
             $selectedModel = '';
             foreach ($classified->getPropertyGroupOptions() as $groupOption) {
                 /** @var PropertyGroupOption $groupOption */
-                if ($groupOption->getType() === PropertyGroupOption::TYPE_CHECKBOX
-                    || $groupOption->getType() === PropertyGroupOption::TYPE_CHECKBOX_GROUP
-                    || $groupOption->getType() === PropertyGroupOption::TYPE_MULTI_SELECT) {
-                    $checkedPropertyGroupOptionIds[] = (string)$groupOption->getUuid();
+                if ($groupOption->getType() === PropertyGroupOption::TYPE_CHECKBOX || $groupOption->getType() === PropertyGroupOption::TYPE_CHECKBOX_GROUP) {
+                    $checkedPropertyGroupOptionIds[$groupOption->getPropertyGroup()->getUuid().'|'.$groupOption->getUuid()] = (string)$groupOption->getUuid();
+                }
+
+                if ($groupOption->getPropertyGroup()->isEquipmentGroup()) {
+                    $checkedPropertyGroupOptionEquipmentIds[$groupOption->getPropertyGroup()->getUuid().'|'.$groupOption->getParent()->getUuid().'|'.$groupOption->getUuid()] = (string)$groupOption->getUuid();
                 }
 
                 if ($groupOption->getType() === PropertyGroupOption::TYPE_SELECT
@@ -73,6 +76,7 @@ class AdminClassifiedController extends AbstractController
                 'price' => (string)$classified->getPrice(),
                 'offerNumber' => $classified->getOfferNumber(),
                 'checkedPropertyGroupOptionIds' => $checkedPropertyGroupOptionIds,
+                'checkedPropertyGroupOptionEquipmentIds' => $checkedPropertyGroupOptionEquipmentIds,
                 'selectedPropertyGroupOptionIds' => $selectedPropertyGroupOptionIds,
                 'enteredPropertyGroupOptionData' => $enteredPropertyGroupOptionData,
                 'selectedBrand' => $selectedBrand,
